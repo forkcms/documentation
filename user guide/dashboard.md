@@ -8,16 +8,21 @@ The dashboard is the first view in Fork cms, the different widgets keeps you up-
 Websites
 Here you’ll find a list of websites that placed a link to your website, the list is ordered by the amount of people that clicked on the link. Such links are very important for your ranking in search engines.
 
+![Traffic sources](assets/dashboard_referrers.png)
+
 Click on the displayed links to visit the page.
 
 Keywords
 Here you’ll find a list of a keywords that were used in a search engine to find your website. They are a good indication what people look for on your website.
+
+![Keywords](assets/dashboard_keywords.png)
 
 
 ## Blog comments
 
 Displays in one view the latest comments on your blog. Click on the comment to moderate them.
 
+![Blog comments](assets/dashboard_comments.png)
 
 ## Mailmotor
 
@@ -29,5 +34,7 @@ Displays in one view the latest comments on your blog. Click on the comment to m
 ## Personalize your dashboard
 
 On the bottom of your dashboard you’ll find a link to personalize your dashboard. If you click on the link you can start dragging around the different widgets. Click on the cross to hide a box.
+
+![Personlize dashboard](assets/dashboard_personalize.png)
 
 Take a look in our Module guide to see how you can write your own dashboard widgets.
