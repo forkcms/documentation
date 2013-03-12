@@ -1,6 +1,6 @@
 # Documentation
 
-* Getting started
+* [Getting started](getting started/)
 * [User guide](user guide/)
 * [Module guide](module guide/)
 * [Theming guide](theming guide/)
