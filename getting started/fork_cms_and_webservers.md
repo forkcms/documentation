@@ -1,0 +1,119 @@
+# Fork CMS and webservers
+
+## Webservers
+To be a lean, mean, SEO-machine, Fork CMS uses url-rewriting to form a proper url-structure for your website. Fork CMS has been configured to work just fine with Apache out of the box, but it can perfectly run on other servers as well, such as Lighttpd and Nginx.
+
+### Apache
+
+Even though Fork CMS should run just fine on Apache without additional configuration, during the installation you might get a warning that something's wrong. If that is the case, you may want to doublecheck if the ".htaccess" file is present in the root of your Fork CMS setup.
+
+This .htaccess-file is the Apache configuration-file and is a hidden file on Unix-based systems and may not have been unpacked. Please make sure that this *.htaccess* file is present in your document root and contains [this content](https://github.com/forkcms/forkcms/blob/master/.htaccess#L1). If it is not present, you can manually create it.
+
+Alternatively, it could be possible that your webserver does not allow the server's configuration to be overridden through a .htaccess-file. In that case, contact your hosting provider and ask him to change the *AllowOverride* directive. Another common problem is that the *mod_rewrite* module is not enabled on your webserver, in which case you'll also have to turn to your hosting provider to have him enable this Apache module.
+
+If you see an internal server error, it could be possible that your webserver does not allow the first 2 directives of the Fork CMS .htaccess to be set. In that case, you can simple remove the line that says:
+
+```
+Options +FollowSymlinks -Indexes
+```
+
+### Lighttpd
+
+On Apache, the .htaccess-file instructs all incoming urls should be parsed by index.php. The Lighttpd-config should reflect this. Here's a sample configuration example:
+
+```
+server.modules = (
+ "mod_simple_vhost",
+ "mod_rewrite",
+ ...
+)
+...
+
+## Fork-CMS
+$HTTP["host"] == "mydomain.com" {
+ simple-vhost.server-root = "/path/to/forkcms"
+ simple-vhost.document-root = "/"
+  dir-listing.activate = "disable"
+  url.rewrite = (
+    "^/(.*)\.(.+)$" => "$0",
+    "^/(.+)/?$" => "/index.php/$1"
+  )
+}
+```
+
+In this sample configuration, a vhost is used because Fork CMS needs to rewrite its urls using the root folder of your webserver as its root path.
+
+These are the minimal requirements to have Fork CMS set up and functioning properly as it’s supposed to with regards to configuring Lighttpd as your webserver.
+
+Additional configuration options can be added to Lighttpd's configuration file to approximate the behaviour under Apache with regards to caching and compressing and so on.
+
+<small>All credits to carroarmato0, see: http://carroarmato0.wordpress.com/2011/09/18/fork-cms-and-lighttpd/</small>
+
+### Nginx
+Another popular lightweight webserver is Nginx. The configuration of this server for Fork CMS is similar to the configuration on a Lighttpd server. Below, you can find an example configuration.
+
+```
+server {
+  listen       80;
+
+  server_name mydomain.com;
+  server_name_in_redirect off;
+  root /path/to/fork;
+
+  location / {
+    index index.html index.htm index.php;
+
+    if (!-e $request_filename) {
+      rewrite  ^(.*)$  /index.php?q=$1  last;
+      break;
+    }
+  }
+
+  location ~ ^(.+\.php)(.*)$ {
+    include fastcgi_params;
+    fastcgi_pass 127.0.0.1:9000;
+    fastcgi_index index.php;
+  }
+
+  # gzip
+  gzip on;
+  gzip_disable "MSIE [1-6]\.(?!.*SV1)"; # disables gzip compression for browsers that don't support it (in this case MS Internet Explorer before version 6 SV1).
+  gzip_http_version 1.1;
+  gzip_vary on; # This sets the response header Vary: Accept-Encoding. Some proxies have a bug in that they serve compressed content to browsers that don't support it. By setting the Vary: Accept-Encoding header, you instruct proxies to store both a compressed and uncompressed version of the content.
+  gzip_comp_level 6;
+  gzip_proxied any;
+  gzip_types text/plain text/html text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript application/javascript text/x-js ;
+  gzip_buffers 16 8k;
+
+  # client caching
+  location ~ \.(css|js|html|htm|rtf|rtx|svg|svgz|txt|xsd|xsl|xml|asf|asx|wax|wmv|wmx|avi|bmp|class|divx|doc|docx|exe|gif|gz|gzip|ico|jpg|jpeg|jpe|mdb|mid|midi|mov|qt|mp3|m4a|mp4|m4v|mpeg|mpg|mpe|mpp|odb|odc|odf|odg|odp|ods|odt|ogg|pdf|png|pot|pps|ppt|pptx|ra|ram|swf|tar|tif|tiff|wav|wma|woff|wri|xla|xls|xlsx|xlt|xlw|zip)$ {
+    expires 31d;
+    add_header Pragma "public";
+    add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+  }
+  ...
+}
+```
+
+### Cherokee
+To get Fork CMS working properly Cherokee needs to redirect the request made by the users' browsers. To do this one must edit the default rule of the vhost then add two new rules. Instructions:
+
+1. Open Cherokee Admin
+2. Open the behavior settings for the vhost
+3. Change the handler of the default rule to “Redirection”
+4. Click the “Add New RegEx” button
+5. Set type to internal, leave regular expression blank, and set substitution to “/index.php”
+6. Create two directory rules: /frontend and /backend (both are Final)
+7. Set the handlers of those two rules to “List & Send”
+8. Make sure the Directory Rules are under the static content and PHP rules
+9. Save the configuration then restart the server.
+
+<small>All credits to arch_is_awesome.</small>
+
+## Reverse proxy
+
+### Varnish
+
+If you want to configure Fork CMS to work behind Varnish, you may want to take a look at the configuration templates over at https://github.com/mattiasgeniar/varnish-3.0-configuration-templates.
+
+<small>All credits to Mattias Geniar.</smal>
