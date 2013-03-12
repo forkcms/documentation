@@ -1,9 +1,9 @@
 # Documentation
 
 * Getting started
-* User guide
-* Module guide
-* Theming guide
+* [User guide](user guide/)
+* [Module guide](module guide/)
+* [Theming guide](theming guide/)
 * About Fork CMS
 
 # Contributing
