@@ -2,6 +2,8 @@
 
 While working with Fork CMS you’ll find on a regular basis the SEO or meta tab. These allow you to optimize your page for search engines. Changing this parameters doesn’t guarantee in a better result, therefore we only recommend to change these settings if you have a good reason.
 
+![SEO](assets/pages_seo.png)
+
 ## Titles
 
 In this part you can change the title that is displayed on the top of your browser window. This title is used in the search result pages of the search engines too.
