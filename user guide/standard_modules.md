@@ -4,7 +4,11 @@
 
 View which search keywords are used on which page of your website. This should give you a good overview of what people expect from a certain page. Or what your visitors are looking for.
 
+![Search statistics](assets/modules_search_statistics.png)
+
 When you see a common mistake in the overview or when your visitors use the wrong terminology you can add synonyms to lead them to the correct page. Use add Synonym to specify the correct term and specify the synonyms used by the visitors. The search module will make sure the visitor sees the same result as by the original keyword.
+
+![Search synonyms](assets/modules_search_synonyms.png)
 
 ## Content blocks
 
@@ -28,11 +32,13 @@ When entering an article fill in at least all the required fields marked with a 
 
 The maximum filesize for the image is set by the server configuration. The publish date is using the clock of your server too to decide when your post should be public. If you want to change these you’ll have to ask your server administrator. 
 
-Pro tip: In the blog module is an hidden feature to import a blog from blogger.com, go to */blog/import_blogger* to use this.
+Pro tip: The blog module has an hidden feature to import a blog from blogger.com, go to */blog/import_blogger* to use this.
 
 ## FAQ
 
 With a full list of Frequently Asked Questions you can help your visitors in a fast way without they have to contact you. The order of the questions or categories can be changed by dragging the handle on the left.
+
+![Reorder question](assets/modules_faq_reorder.png)
 
 ## Formbuilder
 
@@ -45,6 +51,8 @@ Once you added the form you can start adding fields. Adding a field is as simple
 ## Location
 
 Adding interactive maps can be a great addition for the usability of your website. Creating a map for every address let them easily look up the directions.
+
+![Location](assets/modules_location_add.png)
 
 ## Profiles
 
