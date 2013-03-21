@@ -4,7 +4,23 @@ The [analytics module](http://www.fork-cms.com/extensions/detail/analytics) requ
 
 ## Register domain
 
-https://accounts.google.com/ManageDomains
+A detailed guide can be found on the official google [documentation](https://developers.google.com/accounts/docs/RegistrationForWebAppsAuto).
+
+### Add your domain
+
+On the [Manage Your Domains](https://accounts.google.com/ManageDomains) page, enter the url of your website and click on the *Add Domain* button.
+
+![Add Domain](assets/settings_analytics_add_domain.png)
+
+### Verify your domain
+
+The easiest way to verify your domain is by uploading the html file through (s)ftp.
+
+### Provide domain information
+
+The target URL path prefix is just your domain because Fork CMS isn't installable in subdirectories.
+
+![Target URL path prefix](assets/settings_analytics_urlpathprefix.png)
 
 ## API
 
