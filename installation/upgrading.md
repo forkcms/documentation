@@ -1,4 +1,4 @@
-# Upgrading Fork CMS
+# Upgrading
 
 Before talking about upgrading your Fork CMS setup, let's get into our release strategy.
 

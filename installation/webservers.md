@@ -1,15 +1,14 @@
-# Fork CMS and webservers
+# Alternative webservers
 
-## Webservers
 To be a lean, mean, SEO-machine, Fork CMS uses url-rewriting to form a proper url-structure for your website. Fork CMS has been configured to work just fine with Apache out of the box, but it can perfectly run on other servers as well, such as Lighttpd and Nginx.
 
-### Apache
+## Apache
 
 Even though Fork CMS should run just fine on Apache without additional configuration, during the installation you might get a warning that something's wrong. If that is the case, you may want to doublecheck if the ".htaccess" file is present in the root of your Fork CMS setup.
 
-This .htaccess-file is the Apache configuration-file and is a hidden file on Unix-based systems and may not have been unpacked. Please make sure that this *.htaccess* file is present in your document root and contains [this content](https://github.com/forkcms/forkcms/blob/master/.htaccess#L1). If it is not present, you can manually create it.
+This .htaccess-file is the Apache configuration-file and is a hidden file on Unix-based systems and may not have been unpacked. Please make sure that this **.htaccess** file is present in your document root and contains [this content](https://github.com/forkcms/forkcms/blob/master/.htaccess#L1). If it is not present, you can manually create it.
 
-Alternatively, it could be possible that your webserver does not allow the server's configuration to be overridden through a .htaccess-file. In that case, contact your hosting provider and ask him to change the *AllowOverride* directive. Another common problem is that the *mod_rewrite* module is not enabled on your webserver, in which case you'll also have to turn to your hosting provider to have him enable this Apache module.
+Alternatively, it could be possible that your webserver does not allow the server's configuration to be overridden through a .htaccess-file. In that case, contact your hosting provider and ask him to change the **AllowOverride** directive. Another common problem is that the **mod_rewrite** module is not enabled on your webserver, in which case you'll also have to turn to your hosting provider to have him enable this Apache module.
 
 If you see an internal server error, it could be possible that your webserver does not allow the first 2 directives of the Fork CMS .htaccess to be set. In that case, you can simple remove the line that says:
 
@@ -17,7 +16,7 @@ If you see an internal server error, it could be possible that your webserver do
 Options +FollowSymlinks -Indexes
 ```
 
-### Lighttpd
+## Lighttpd
 
 On Apache, the .htaccess-file instructs all incoming urls should be parsed by index.php. The Lighttpd-config should reflect this. Here's a sample configuration example:
 
@@ -47,9 +46,10 @@ These are the minimal requirements to have Fork CMS set up and functioning prope
 
 Additional configuration options can be added to Lighttpd's configuration file to approximate the behaviour under Apache with regards to caching and compressing and so on.
 
-<small>All credits to carroarmato0, see: http://carroarmato0.wordpress.com/2011/09/18/fork-cms-and-lighttpd/</small>
+All credits to carroarmato0, see: http://carroarmato0.wordpress.com/2011/09/18/fork-cms-and-lighttpd/
 
-### Nginx
+## Nginx
+
 Another popular lightweight webserver is Nginx. The configuration of this server for Fork CMS is similar to the configuration on a Lighttpd server. Below, you can find an example configuration.
 
 ```
@@ -95,7 +95,8 @@ server {
 }
 ```
 
-### Cherokee
+## Cherokee
+
 To get Fork CMS working properly Cherokee needs to redirect the request made by the users' browsers. To do this one must edit the default rule of the vhost then add two new rules. Instructions:
 
 1. Open Cherokee Admin
@@ -107,13 +108,4 @@ To get Fork CMS working properly Cherokee needs to redirect the request made by 
 7. Set the handlers of those two rules to “List & Send”
 8. Make sure the Directory Rules are under the static content and PHP rules
 9. Save the configuration then restart the server.
-
-<small>All credits to arch_is_awesome.</small>
-
-## Reverse proxy
-
-### Varnish
-
-If you want to configure Fork CMS to work behind Varnish, you may want to take a look at the configuration templates over at https://github.com/mattiasgeniar/varnish-3.0-configuration-templates.
-
-<small>All credits to Mattias Geniar.</smal>
+10. All credits to arch_is_awesome.
