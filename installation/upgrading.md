@@ -4,8 +4,6 @@ Before talking about upgrading your Fork CMS setup, let's get into our release s
 
 ## Release strategy
 
-As you can see, we try to release very often, this to keep the difference between minor versions small. Also this enables you to work with an up-to-date platform for each project you start.
-
 Each release has a version number, e.g.: 3.2.7, wherein each number has it own meaning. The first number is the super number and indicates which super version it is. Since we have performed 3 invasive rewrites of Fork CMS core code, the super number is 3.
 The second number is the major release number; the third number indicates the minor release version.
 
