@@ -39,7 +39,7 @@ Enter your MySQL credentials.
 
 ## Step 6: God
 
-The user that is created during the installation has a god status (and will have an avatar of Chuck Norris by default!), which means he has all rights. Make sure you have decent password for this almighty power.
+The user that you create here during the installation has a god status (and will have an avatar of Chuck Norris by default!), which means he has all rights. Make sure you have decent password for this almighty power.
 
 ![Installation step 6](assets/installation_step6.png)
 
