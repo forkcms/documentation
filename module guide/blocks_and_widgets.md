@@ -53,11 +53,11 @@ public function execute()
 }
 ```
 
-The execute function is always present and is called by Fork CMS when opening any action. As you can see, the execute method of FrontBaseBlock is called too. This makes sure that the js-files and css-files are autoloaded.
+The execute function is always present and is called by Fork CMS when opening any action. As you can see, the execute method of FrontendBaseBlock is called too. This makes sure that the js-files and css-files are autoloaded.
 
 The line starting with "$this->tpl->assign(" ... assigns a variable to the template we'll be using to display the action.
 
-loadTemplate (also defined in FrontBaseBlock) loads the template file in which we parse the data we'll be loading in our self defined method getData.
+loadTemplate (also defined in FrontendBaseBlock) loads the template file in which we parse the data we'll be loading in our self defined method getData.
 
 ```
  /*

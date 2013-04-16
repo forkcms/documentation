@@ -19,7 +19,7 @@ class BackendMiniBlogCronjobSendMostAwesome extends BackendBaseCronjob
 
 		$str = '';
 
-		foreach($items as $item)
+		foreach((array) $items as $item)
 		{
 			$str .= '<p><a href="' . SITE_URL . $item['full_url'] . '">' .
 							$item['title'] . ' (' . $item['awesomeness'] . ')</a></p>';

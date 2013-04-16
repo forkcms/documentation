@@ -4,7 +4,7 @@
 
 To make our different pages visible on our website we need to write a template file for every action. As said before, a template file is a html-file containing placeholders for the data that we will parse into that template-file.
 
-Let's first have look at the detail-page, in the default Fork CMS-theme, in the browser:
+Let's first have a look at the detail-page, in the default Fork CMS-theme, in the browser:
 
 ![Detail](assets/detail.png)
 

@@ -69,7 +69,41 @@ After that, we add a new navigation item. The parameters for this are explained 
 
 Fork already has a wide range of labels, messages, errors and actions pre installed. Though, it is possible you'll need some extras. To do this, we provide a locale.xml file that we use in our installer. To parse the data, we use a specific structure. In the screenshot below, you'll see that basic structure, followed by the xml for the mini blog module.
 
-![Locale xml](assets/locale.png)
+```
+<?xml version="1.0" encoding="utf-8"?>
+<locale>
+  <backend>
+  	<mini_blog>
+      <item type="label" name="Introduction">
+        <translation language="nl"><![CDATA[introductie]]></translation>
+        <translation language="en"><![CDATA[introduction]]></translation>
+      </item>
+      <item type="label" name="NotYetPublished">
+        <translation language="nl"><![CDATA[nog niet gepubliceerd]]></translation>
+        <translation language="en"><![CDATA[not yet published]]></translation>
+      </item>
+  	</mini_blog>
+    <core>
+      <item type="label" name="MiniBlog">
+        <translation language="nl"><![CDATA[mini blog]]></translation>
+        <translation language="en"><![CDATA[mini blog]]></translation>
+      </item>
+    </core>
+  </backend>
+  <frontend>
+    <core>
+      <item type="label" name="IThinkThisIsAwesome">
+        <translation language="nl"><![CDATA[dit is awesome!]]></translation>
+        <translation language="en"><![CDATA[this is awesome!]]></translation>
+      </item>
+      <item type="label" name="PeopleThinkThisPostIsAwesome">
+        <translation language="nl"><![CDATA[mensen vinden dit awesome!]]></translation>
+        <translation language="en"><![CDATA[people think this is awesome!]]></translation>
+      </item>
+    </core>
+  </frontend>
+</locale>
+```
 
 As you can see, we specify 2 children in the main node. These are backend and frontend (you can use one aswell). Within the application, for each module you have locale parameters, you create a new node with that module name. All the items within this node will be installed for the given module.
 
@@ -98,6 +132,34 @@ CREATE TABLE `mini_blog` (
 
 We also provide a info.xml with each module. This allows us to see some information about it. The main node is the <module> node. Below is a screenshot of the info.xml file for the mini blog.
 
-![Info xml](assets/info_xml.png)
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+	<name>mini_blog</name>
+	<version>1.1.0</version>
+	<requirements>
+		<minimum_version>3.5.0</minimum_version>
+	</requirements>
+	<description>
+		<![CDATA[
+			This is a mini blog system used to demonstrate how to create a module.
+		]]>
+	</description>
+	<authors>
+		<author>
+			<name><![CDATA[Jelmer Snoeck]]></name>
+			<url><![CDATA[http://www.jelmersnoeck.com]]></url>
+		</author>
+	</authors>
+	<events>
+		<event application="backend" name="after_add"><![CDATA[Triggered when a post is added.]]></event>
+		<event application="backend" name="after_delete"><![CDATA[Triggered when a post is deleted.]]></event>
+		<event application="backend" name="after_edit"><![CDATA[Triggered when a post is edited.]]></event>
+	</events>
+	<cronjobs>
+		<cronjob minute="42" hour="*" day-of-month="*" month="*" day-of-week="*" action="send_most_awesome"><![CDATA[Sends the most awesome posts to the administrator.]]></cronjob>
+	</cronjobs>
+</module>
+```
 
 As you can see, we have several sections in the module node. The upper part(name - authors) is to give some information about the module itself. The lower part(events-cronjobs) is information that we can use for other modules. The events system is already explained in another article.

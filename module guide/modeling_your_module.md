@@ -112,7 +112,7 @@ In the root folder of every module, there will be a config.php. This is the star
 ## Backend navigation
 
 For the frontend, you alter the complete navigation by dragging the page to the right places on the “pages”-page in the backend.
-For the backend however, when you write a module, you need to add the backend navigation that is used to edit the module in the /backend/cache/navigation/navigation.php. Actually, inserting the module into the backend navigation will usually be handled in the installer, which we'll get to in Chapter 24: Creating an installer.
+For the backend however, when you write a module, you need to add the backend navigation that is used to edit the module in the */backend/cache/navigation/navigation.php*. Actually, inserting the module into the backend navigation will usually be handled in the installer, which we'll get to in [Creating an installer](creating_an_installer.md).
 
 In this file, you'll find a multidimensional array representing the complete backend navigation. For more information check out the file itself.
 

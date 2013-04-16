@@ -49,7 +49,7 @@ if($requestedPage > $this->pagination['num_pages'] || $requestedPage < 1) $this-
 If we get past this, that means we're on a page that exists. Now all we have to do is fetch the data so we can assign it to our template.
 
 ```
-$this->items = FrontendMiniBlogModel::getAll($this->pagination['limit'], $this->pagination['offset']);
+$this->records = FrontendMiniBlogModel::getAll($this->pagination['limit'], $this->pagination['offset']);
 ```
 
 ## Parsing
@@ -60,7 +60,7 @@ To parse the data to your template, all you have to do is assign it in you parse
 ``` 
 protected function parse()
 {
-	$this->tpl->assign('items', $this->items);
+	$this->tpl->assign('items', $this->records);
 	$this->parsePagination();
 }
 ```

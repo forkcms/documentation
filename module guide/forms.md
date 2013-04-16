@@ -1,6 +1,6 @@
 # Forms
 
-Until now we just fetched info from the database and displayed it. Most of the time we'll want to add data to the database, mostly using forms. Fork CMS supports different types of form fields, in the example beneath just a basic selection. How to use other types, check the Cheatsheet.
+Until now we just fetched info from the database and displayed it. Most of the time we'll want to add data to the database, mostly using forms. Fork CMS supports different types of form fields, in the example beneath just a basic selection. How to use other types, check the [Cheatsheet](http://www.fork-cms.com/frontend/files/userfiles/files/cheatsheet_2_05_2011.pdf).
 
 We'll be using the edit-form of an article. First we'll take a look at the execute method which is a little bit different than the detail action we discussed before.
 
