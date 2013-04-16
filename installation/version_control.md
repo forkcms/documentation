@@ -13,7 +13,7 @@ If you're not familiar with git or github yet, here are some good resources to g
 * [Git Workflows](http://documentup.com/skwp/git-workflows-book)
 * [Learn Git Branching](http://pcottle.github.io/learnGitBranching/)
 
-Specially check out the guide about [forking a project](https://help.github.com/articles/fork-a-repo). ([Fork](http://en.wikipedia.org/wiki/Fork_(software_development)) in this context has nothing to do with our name.)
+Specially check out the guide about [forking a project](https://help.github.com/articles/fork-a-repo). ([Fork](http://en.wikipedia.org/wiki/Fork_(software_development) in this context has nothing to do with our name.)
 
 
 ## Composer
