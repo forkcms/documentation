@@ -47,7 +47,7 @@ As contributors gain experience and familiarity with the project, their profile 
 
 ### Fork CMS Technical Board
 
-The Fork CMS Technical Board is responsible for the technical direction that Fork CMS takes. It makes decisions on feature integrations, merges code contributions, and dependencies. It also makes decisions when community consensus cannot be reached.
+The Fork CMS Technical Board is responsible for the technical direction that Fork CMS takes. It makes decisions on feature integrations, merges code contributions, etc. It also makes decisions when community consensus cannot be reached.
 
 The board meets every month in Ghent, Belgium. If a member can't participate because of traveling distance or other unpractical circumstances, he can join with a video conference connection. Membership of the technical board is by invitation from the existing members.
 
@@ -89,11 +89,9 @@ Not all decisions can be made using lazy consensus. Issues such as those affecti
 
 * [Testing](testing.md)
 * [Features](features.md)
-* [Extensions](extensions.md)
 * [Translations](translations.md)
 * [User Interface](user_interface.md)
 * [Documentation](documentation.md)
-* [Best practices](best_practices.md)
 * [Spreading the word](spreading_the_word.md)
 
 
