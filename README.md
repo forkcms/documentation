@@ -66,7 +66,13 @@
 	- [Template modifiers](theming guide/template_modifiers.md)
 	- [Theme checklist](theming guide/theme_checklist.md)
 
-* About Fork CMS (TODO)
+* [Contribute](contribute/index.md)
+	- [Governance Model](contribute/index.md)
+	- [Testing](contribute/testing.md)
+	- [Features](contribute/features.md)
+	- [Documentation](contribute/documentation.md)
+	- [Spreading the word](contribute/spreading_the_word.md)
+
 
 # Contributing
 
