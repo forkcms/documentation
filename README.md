@@ -70,8 +70,4 @@
 
 # Contributing
 
-## Reporting problems
-Use the [GitHub Issues](https://github.com/forkcms/documentation/issues) 
-
-## Fix a problem
-Do a [Pull Request](https://github.com/forkcms/documentation/pulls)
+See the article about [contributing](contribute/documentation.md) to the documention.
