@@ -60,15 +60,17 @@ server {
   server_name_in_redirect off;
   root /path/to/fork;
 
+  index index.html index.php;
+  
   location / {
-    index index.html index.htm index.php;
-
-    if (!-e $request_filename) {
-      rewrite  ^(.*)$  /index.php?q=$1  last;
-      break;
-    }
+  	try_files $uri $uri/ /index.php?$args;
   }
-
+  
+  location ~ ^/(backend|install|api(\/\d.\d)?(\/client)?).*\.php$ {
+  	# backend/install/api are existing dirs, but should all pass via the front
+  	try_files $uri $uri/ /index.php?$args;
+  }
+  
   location ~ ^(.+\.php)(.*)$ {
     include fastcgi_params;
     fastcgi_pass 127.0.0.1:9000;
