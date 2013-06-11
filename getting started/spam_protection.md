@@ -12,24 +12,24 @@ The installation is rather simpel, first go to [http://akismet.com/signup](http:
 
 Select your plan
 
-![Select Akismet plan](assets/akismet_step1.png)
+![Select Akismet plan](https://raw.github.com/forkcms/documentation/master/getting%20started/assets/akismet_step1.png)
 
 Create a wordpress.com account, the email that is used for that account will be used to send you the api key.
 
-![Create wordpress.com account](assets/akismet_step2.png)
+![Create wordpress.com account](https://raw.github.com/forkcms/documentation/master/getting%20started/assets/akismet_step2.png)
 
 As last step fill in the account details and select the amount you want to pay for the service.
 
-![Fill in account details](assets/akismet_step3.png)
+![Fill in account details](https://raw.github.com/forkcms/documentation/master/getting%20started/assets/akismet_step3.png)
 
 The Akismet api key will be send by mail, threat your key as a password and keep it private.
 
-![The api key](assets/akismet_step4.png)
+![The api key](https://raw.github.com/forkcms/documentation/master/getting%20started/assets/akismet_step4.png)
 
 ### Step 2: Enter your key
 
 In the private section of Fork CMS, go to *Settings* and enter the api key on the *General* page.
 
-![Enter the key](assets/akismet_final.png)
+![Enter the key](https://raw.github.com/forkcms/documentation/master/getting%20started/assets/akismet_final.png)
 
 The largest amount of spam will be taken care of by Akismet, check out the [user guide](#todo) to learn how to manually assign comments as spam.

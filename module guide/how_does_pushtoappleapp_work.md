@@ -10,7 +10,7 @@ Because we can't publish an application in the Appstore for every Fork install w
 
 That central system is called the Fork CMS API (our API in the image). This part communicates with the Apple-servers.
 
-![How does pushToAppleApp work](assets/how_apple_push_works.png)
+![How does pushToAppleApp work](https://raw.github.com/forkcms/documentation/master/module%20guide/assets/how_apple_push_works.png)
 
 When you install the Fork Pocket-application it will ask the credentials of your site, as soon as you submit the form it will make a request to your website (1) and will add the ID of your iPhone/iPad/i... in the database.
 

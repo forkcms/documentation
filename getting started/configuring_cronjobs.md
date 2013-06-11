@@ -21,6 +21,6 @@ Webserver:
 
 Some additional modules need extra cronjobs, check the details page on your modules overview to see which cronjobs need to be set for the module.
 
-![Cronjobs from Analytics module](assets/cronjobs_analytics.png)
+![Cronjobs from Analytics module](https://raw.github.com/forkcms/documentation/master/getting%20started/assets/cronjobs_analytics.png)
 
 When setting cronjobs on servers with several Fork CMS installation try to spread the execution by changing the minutes parameter.

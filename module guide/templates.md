@@ -6,7 +6,7 @@ To make our different pages visible on our website we need to write a template f
 
 Let's first have a look at the detail-page, in the default Fork CMS-theme, in the browser:
 
-![Detail](assets/detail.png)
+![Detail](https://raw.github.com/forkcms/documentation/master/module%20guide/assets/detail.png)
 
 The code that was used in the .tpl-file you find below. As you can see it's regular html-code, but with a lot of data between { and }. We'll discuss the different types of placeholders one by one.
 

@@ -6,7 +6,7 @@ When you've finished your module, you will probably want to be able to easily in
 
 The zip file contains the absolute paths to the module, as you can see in the image below. This means that you should always have a structure that starts in the base directory of you project.
 
-![Zip structure](assets/zip_structure.png)
+![Zip structure](https://raw.github.com/forkcms/documentation/master/module%20guide/assets/zip_structure.png)
 
 ## Required files
 

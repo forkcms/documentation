@@ -4,7 +4,7 @@ Your website needs definitely a design that sets the right atmosphere. In the [e
 
 Download the desired theme and upload it with the *Upload theme* button in settings > themes section.
 
-![Themes overview](assets/themes.png)
+![Themes overview](https://raw.github.com/forkcms/documentation/master/getting%20started/assets/themes.png)
 
 Select the uploaded theme and don't forget to click *save* afterwards.
 
