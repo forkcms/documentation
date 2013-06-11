@@ -17,7 +17,7 @@ The code that was used in the .tpl-file you find below. As you can see it's regu
  <header class="hd">
  <h1>{$item.title}</h1>
  <ul>
- <li>{$msgWrittenBy|ucfirst|sprintf:{$item.user_id| usersetting:'nickname'}} {$lblOn} {$item.edited|date:{$dateFormatLong}:{$LANGUAGE}}</li>
+ <li>{$msgWrittenBy|ucfirst|sprintf:{$item.user_id|usersetting:'nickname'}} {$lblOn} {$item.edited|date:{$dateFormatLong}:{$LANGUAGE}}</li>
  </ul>
  </header>
  <div class="bd content">

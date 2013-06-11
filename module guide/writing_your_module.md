@@ -1,6 +1,6 @@
 # Writing your module
 
-##  Autoloading
+## Autoloading
 
 Before we start writing our first lines of code, a word about the naming of your files, classes, labels, ... If you name all your files well, you'll never have to include, require or embed a single file, Fork CMS will do this for you.
 
@@ -100,4 +100,30 @@ It can be a good idea to write your model.php first. The first thing you have to
 
 As you are a programmer you'll probably have seen that we want to fetch a list of items twice, in almost the same way. Instead of writing this code twice for both actions, we write it in model.php where it's shared between the actions (and even other modules.)
 
+Notice that the tags interface got implemented to make sure you create the propper functions that are used by the tags module.
+
 > If you check the code in model.php, you'll see we have some other methods too concerning implementing tags and searching, ... we'll discuss these later.
+
+## Config
+
+Another required file is the config, place it in the root of your backend and frontend module folder.
+
+```
+<?php
+class FrontendMiniBlogConfig extends FrontendBaseConfig
+{
+	/**
+	 * The default action
+	 *
+	 * @var	string
+	 */
+	protected $defaultAction = 'index';
+
+	/**
+	 * The disabled actions
+	 *
+	 * @var	array
+	 */
+	protected $disabledActions = array();
+}
+```

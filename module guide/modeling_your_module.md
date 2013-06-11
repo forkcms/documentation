@@ -57,23 +57,29 @@ In this table, you add the module name. Don't use camelCasing when giving the na
 The records in this table describe the different blocks and widgets we can add to our pages.
 If the different actions of your module will be using the same page layout you can add a record which in our case looks something like:
 
-| Column | Value     | Additional information |
-| ------ | --------- | ---------------------- |
-| module | mini_blog | The module name        |
-| type   | block     | Either block or widget, depending on the choices made above
-| label  | MiniBlog  | The label used to display the name of this page extra, this will call  lblMiniBlog - more on that in Chapter 10: Translations |
-| action | NULL      | Insert the exact name of the action (e.g. index, detail) if you only want this exact action to be shown when this is linked to a page (generally not advised, as every action will then have to be linked to another page). Insert NULL to let Fork CMS define the action based upon the url (advised, this way it is possible to make all actions of 1 module accessible through 1 page where this extra is linked to) |
+| Column   | Value     | Additional information |
+| -------- | --------- | ---------------------- |
+| module   | mini_blog | The module name        |
+| type     | block     | Either block or widget, depending on the choices made above
+| label    | MiniBlog  | The label used to display the name of this page extra, this will call  lblMiniBlog - more on that in Chapter 10: Translations |
+| action   | NULL      | Insert the exact name of the action (e.g. index, detail) if you only want this exact action to be shown when this is linked to a page (generally not advised, as every action will then have to be linked to another page). Insert NULL to let Fork CMS define the action based upon the url (advised, this way it is possible to make all actions of 1 module accessible through 1 page where this extra is linked to) |
+| data     | NULL      | Extra data that has to available for the extra |
+| hidden   | N         | Hide the extra from the overview |
+| sequence | 7000      | The order of the widgets |
 
 Should you want to add one specific action as a separate block - perhaps because the page layout (sidebar, footer, ...) is completely different from other actions so another template and thus another page must be used - you add the same record, but with the action field filled in, e.g. detail.
 
 For our widget we need to add a record like this:
 
-| Column | Value        |
-| ------ | ------------ |
-| module | mini_blog    |
-| type   | widget       |
-| label  | RecentPosts  |
-| action | recent_posts |
+| Column   | Value        |
+| -------- | ------------ |
+| module   | mini_blog    |
+| type     | widget       |
+| label    | RecentPosts  |
+| action   | recent_posts |
+| data     | NULL         |
+| hidden   | N            |
+| sequence | 7000         |
 
 
 ### groups_rights_modules
@@ -112,25 +118,18 @@ In the root folder of every module, there will be a config.php. This is the star
 ## Backend navigation
 
 For the frontend, you alter the complete navigation by dragging the page to the right places on the “pages”-page in the backend.
-For the backend however, when you write a module, you need to add the backend navigation that is used to edit the module in the */backend/cache/navigation/navigation.php*. Actually, inserting the module into the backend navigation will usually be handled in the installer, which we'll get to in [Creating an installer](creating_an_installer.md).
 
-In this file, you'll find a multidimensional array representing the complete backend navigation. For more information check out the file itself.
+For the backend however, when you write a module, you need to add the backend navigation that is used to edit the module in the *backend_navigation* table. Actually, inserting the module into the backend navigation will usually be handled in the installer, which we'll get to in [Creating an installer](creating_an_installer.md).
 
 For the mini-blog module, you'll want to add the following array to the element “children” of the array with the label “Modules”, after which the pages will become visible on the “Modules” page.
 
-```
-array(
-    'url' => 'mini_blog/index',
-    'label' => 'MiniBlog',
-    'children' => array(
-        array(
-            'url' => 'mini_blog/index',
-            'label' => 'Articles',
-            'selected_for' => array(
-                'mini_blog/add',
-                'mini_blog/edit'
-            )
-        )
-    )
-)
-```
+| column       | value                                                     |
+| ------------ | --------------------------------------------------------- |
+| id           | NULL                                                      |
+| parent_id    | 2                                                         |
+| label        | MiniBlog                                                  |
+| url          | mini_blog/index                                           |
+| selected_for | a:2:{i:0;s:13:"mini_blog/add";i:1;s:14:"mini_blog/edit";} |
+| sequence     | 9                                                         |
+
+Afterwards you'll have to delete the navigation cache file (backend/cache/navigation/navigation.php) to see the changes. And add a label `MiniBlog` to the backend core to have a nice text in your menu.
