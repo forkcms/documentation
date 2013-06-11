@@ -1,0 +1,1 @@
+In this guide, we will show how you can develop and add you're own theme with Fork. The articles are written from a designers point-of-view and no PHP knowledge is needed to follow the steps described below.
