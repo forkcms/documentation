@@ -1,0 +1,1 @@
+For this guide we assume your Fork CMS setup is correctly installed and configured. Now you want to start updating and maintaining the website.
