@@ -8,7 +8,7 @@ All bugs can be reported on [GitHub Issues](https://github.com/forkcms/forkcms/i
 
 To keep our Issue Trackers as clean as possible, bugs of extensions should be reported on the repository of the extension itself. See the detail page of the extension on our [website](http://www.fork-cms.com/extensions) to find the right GitHub repository.
 
-When you know how to fix the issue you can create a patch yourself, [fork](https://help.github.com/articles/fork-a-repo) a the repository, create a branch and submit a pull request. For more information on working with GitHub and Fork CMS, see the [features](features.md) article.
+When you know how to fix the issue you can create a patch yourself, [fork](https://help.github.com/articles/fork-a-repo) a the repository, create a branch and submit a pull request. For more information on working with GitHub and Fork CMS, see the [features](features) article.
 
 The more clear your bug description is, the easier it is to replicate and fix. Also, even on the internet, constructive language and a thank you go a long way.
 
@@ -25,4 +25,4 @@ Best practices considering security can be reported in the documentation, submit
 (TODO)
 
 
-While testing is one of the most valueable contributions, it doesn't allow you to build your creative ideas into reality. The next article is about [adding new features](features.md).
+While testing is one of the most valueable contributions, it doesn't allow you to build your creative ideas into reality. The next article is about [adding new features](features).
