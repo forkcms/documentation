@@ -32,4 +32,4 @@ In the private section of Fork CMS, go to *Settings* and enter the api key on th
 
 ![Enter the key](https://raw.github.com/forkcms/documentation/master/getting%20started/assets/akismet_final.png)
 
-The largest amount of spam will be taken care of by Akismet, check out the [user guide](#todo) to learn how to manually assign comments as spam.
+The largest amount of spam will be taken care of by Akismet, check out the [user guide](../user-guide/index) to learn how to manually assign comments as spam.

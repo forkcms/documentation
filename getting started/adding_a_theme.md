@@ -8,8 +8,6 @@ Download the desired theme and upload it with the *Upload theme* button in setti
 
 Select the uploaded theme and don't forget to click *save* afterwards.
 
-In every theme there are templates available for different kind of pages. Templates represent the layout or structure of the page. When you're familiar with html you can [create your own templates](#todo) without the work of a whole new design.
+In every theme there are templates available for different kind of pages. Templates represent the layout or structure of the page. When you're familiar with html you can [create your own templates](../theming-guide/creating-a-template) without the work of a whole new design.
 
-You can also build completely customized website designs in Fork CMS. Take a look in our [Theme Guide](#todo) to start transforming your design into a theme.
-
-After installing the theme you can start [entering your content](#todo).
+You can also build completely customized website designs in Fork CMS. Take a look in our [Theme Guide](../theming-guide) to start transforming your design into a theme.

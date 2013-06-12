@@ -50,4 +50,4 @@ Finally all necessary files get created in the background and your success messa
 
 ![Installation step 7](https://raw.github.com/forkcms/documentation/master/installation/assets/installation_step7.png)
 
-If the installation is finished you can [start configuring](#todo) your website and tools.
+If the installation is finished you can [start configuring](../getting-started/index) your website and tools.

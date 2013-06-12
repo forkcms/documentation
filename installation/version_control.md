@@ -28,4 +28,4 @@ composer install
 
 All dependencies are now installed in the *vendors* folder.
 
-Go through the [upgrading guide](upgrading.md) to find out how you can keep your setup up-to-date with Git.
+Go through the [upgrading guide](upgrading) to find out how you can keep your setup up-to-date with Git.
