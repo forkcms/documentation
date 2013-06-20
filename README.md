@@ -25,7 +25,7 @@
 	- [Standard modules](user guide/standard_modules.md)
 	- [SEO](user guide/seo.md)
 	- [Marketing](user guide/marketing.md)
-	- Mailmotor (TODO)
+	- [Mailmotor](user guide/marketing.md)
 	- [Settings](user guide/settings.md)
 	
 * [Module guide](module guide/applications_and_library.md)
