@@ -19,8 +19,10 @@ A third application, often not used, is the API or Application Programming Inter
 
 ## Library
 
-All three Applications make extensive use of the Spoon Library. If you've never worked with Spoon it might be a good idea to browse through the Spoon-documentation, although the Spoon code we'll discuss is pretty self explanatory.
+All three Applications still make extensive use of the Spoon Library. If you've never worked with Spoon it might be a good idea to browse through the [Spoon-documentation](http://www.spoon-library.com), although the Spoon code we'll discuss is pretty self explanatory.
 
-You'll find Spoon in the Library Folder. In this folder, all files are stored which are used by the three applications. You'll find globals.php here too.
+We're dropping Spoon in favor of [Symfony](http://symfony.com). The progress can be followed on [GitHub](https://github.com/forkcms/) or easier to read version on our [blog](http://fork-cms.com/blog).
 
-If you're using other library's, f.e. to link your website with facebook, twitter, picasa,... it might be a good idea to save them here, in the library/external folder.
+You'll find Spoon in the vendor Folder. In this folder, all external libraries got imported by [Composer](http://getcomposer.org/).
+
+If you're using other library's, f.e. to link your website with facebook, twitter, picasa,... it might be a good idea to save them in the library/external folder.
