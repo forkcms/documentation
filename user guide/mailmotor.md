@@ -1,6 +1,6 @@
 # Mailmotor
 
-This part allows you to easily send newsletters to your customers. Behind the scenes the mailmotor uses [Campaign Monitor](http://www.campaignmonitor.com/) to send the campaigns.
+This part allows you to easily send newsletters to your customers. Behind the scenes the mailmotor currently uses [Campaign Monitor](http://www.campaignmonitor.com/) to send the campaigns. We are working hard to integrate [Mailchimp](http://www.mailchimp.com) as an alternative for CampaignMonitor and in the future every external mail-service could be hooked.
 
 ## Add e-mail addresses
 
