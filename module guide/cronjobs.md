@@ -77,3 +77,5 @@ http://HTUSERNAME:HTPASSWORD@domain.tld/backend/cronjob.php?module=MODULENAME&ac
 When coding cronjobs you should not use one of the following functions, because they are going to break your cronjob:
 - BL::getWorkingLanguage()
 - BackendModel::createURLForAction()
+
+This comes because the cronjob doesn't know what the language is and these functions use that language.
