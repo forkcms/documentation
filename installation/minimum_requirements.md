@@ -9,6 +9,6 @@ These are the minimum requirements to run Fork CMS:
 
 If you're uncertain if your server matches these requirements you can execute the [`php_info()`](http://php.net/phpinfo) function.
 
-> Please note that Fork can not be installed in subdirectories.
+> Please note that Fork can not be installed in [subdirectories](faq).
 
-> A guide for alternative webserver is also available.
+> A guide for alternative webserver is also [available](webservers).

@@ -7,7 +7,7 @@ First of all the library gets checked if it's is located properly and is accessi
 
 ## Step 2: Check requirements
 
-Before we start installing something we want to make sure everything is configured right. The wizard goes through all [Minimum Requirements](#todo) like PHP Version, subfolder restriction, PHP Extensions, PHP ini-settings, PHP functions and webserver configuration.
+Before we start installing something we want to make sure everything is configured right. The wizard goes through all [Minimum Requirements](minimum-requirements) like PHP Version, subfolder restriction, PHP Extensions, PHP ini-settings, PHP functions and webserver configuration.
 
 ![Installation step 2](https://raw.github.com/forkcms/documentation/master/installation/assets/installation_step2.png)
 
@@ -18,7 +18,7 @@ At last, the filesystem got checked. Some directories need write priveleges in o
 
 ## Step 3: Languages
 
-One of the most remarkable features of Fork CMS is the built-in support for multilingual setups. In this step the languages are chosen for both front- as backend. The default language is shown when the *locale* module couldn't determine the browser's language.
+One of the most remarkable features of Fork CMS is the built-in support for multilingual setups. In this step the languages are chosen for both front- as backend. The default language that you select in this step is shown when the *locale* module couldn't determine the browser's language.
 
 ![Installation step 3](https://raw.github.com/forkcms/documentation/master/installation/assets/installation_step3.png)
 
