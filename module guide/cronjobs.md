@@ -71,3 +71,9 @@ As you see we use wget to call the cronjob. Note that we supply an extra paramet
 > It might be a good idea to secure the cronjob.php with a password because anyone(who knows the address to the file) could execute the cronjobs.
 > You can do this by putting a .htaccess and a .htpasswd file in the backend directory where the cronjob.php file is located. Note that the call to the your action in the crontab changes somewhat.
 http://HTUSERNAME:HTPASSWORD@domain.tld/backend/cronjob.php?module=MODULENAME&action=ACTIONNAME&id=NR
+
+## Problems when coding
+
+When coding cronjobs you should not use one of the following functions, because they are going to break your cronjob:
+- BL::getWorkingLanguage()
+- BackendModel::createURLForAction()
