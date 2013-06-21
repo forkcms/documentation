@@ -87,12 +87,12 @@ Not all decisions can be made using lazy consensus. Issues such as those affecti
 
 ## Contribution Process
 
-* [Testing](testing)
-* [Features](features)
-* [Translations](translations)
-* [User Interface](user-interface)
-* [Documentation](documentation)
-* [Spreading the word](spreading-the-word)
+* [Testing](testing.md)
+* [Features](features.md)
+* [Translations](translations.md)
+* [User Interface](user-interface.md)
+* [Documentation](documentation.md)
+* [Spreading the word](spreading-the-word.md)
 
 
 *This document is based on the [Template For A Meritocratic Governance Document](http://www.oss-watch.ac.uk/resources/meritocraticGovernanceModel) of OSS Watch*
