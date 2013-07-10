@@ -43,7 +43,7 @@ language indicator will be present in the url.
 
 
 If your site is multilingual the first part of the URL is interpreted as a language abbreviation:
-http://myforksite.local/**en**/mini-blog/detail/fork-cms-ftw.
+http://myforksite.dev/en/mini-blog/detail/fork-cms-ftw.
 
 If this is an active language, that language is chosen.
 
@@ -69,12 +69,12 @@ Which routes (URL's) are available is determined by the pages module. This modul
 cache file(s) containing all possible routes and which modules/actions are linked to that route. These
 cache file(s) are saved per language:
 
-* `frontend/cache/navigation/keys_**en**.php`
-* `frontend/cache/navigation/navigation_**en**.php`
+* `frontend/cache/navigation/keys_en.php`
+* `frontend/cache/navigation/navigation_en.php`
 
 These cache files are volatile and should never by modified manually.
 
-In the case of `http://fork.dev/en/mini-blog/detail/pigs-ftw, a search will start for *mini-blog/detail/pigs-ftw*.
+In the case of `http://fork.dev/en/mini-blog/detail/pigs-ftw`, a search will start for *mini-blog/detail/pigs-ftw*.
 If this string is not found, the last slug of the url is omitted (*mini-blog/detail/pigs-ftw*
 becomes *mini-blog/detail*) and the cache file is searched again. This happens over and over until
 a page is found. If no page is found, the request will return the 404 page.
@@ -82,7 +82,7 @@ a page is found. If no page is found, the request will return the 404 page.
 > Nesting of pages
 > When a page is located in a nested structure, this will be visible in the URL. E.g. in the
 > standard installation of Fork CMS, the “Location” page is located beneath “About-us”.
-> The URL for this page looks like: http://myforksite.local/en/**about-us/location**
+> The URL for this page looks like: http://myforksite.dev/en/about-us/location
 > It's the part in bold that is saved in the cache file.
 
 #### Action
@@ -98,7 +98,7 @@ forget to create a translation for it. Internally, the action-part in the url wi
 in the translations, and it's reference code will be used to route to the correct action, this way
 it's possible to even translate that part in the url when dealing with multiple languages.
 
-Example: http://myforksite.local/en/mini-blog/**detail**/pigs-ftp
+Example: http://myforksite.local/en/mini-blog/detail/pigs-ftp
 
 Fork CMS will browse through all action-translations for this language (in this case: en) until it
 finds one that's been translated to detail. Here, it'll find the action translation with reference
