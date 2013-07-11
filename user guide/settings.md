@@ -29,7 +29,7 @@ The languages allow you to prepare extra languages before publishing it for your
 * The fork API keys are automatically generated for other applications to connect with your website.
 * The Akismet is a spam filter service, it is free for non-business personal websites or blogs. You can request a key at https://akismet.com/signup/. After inserting the key the spam will automatically be filtered.
 
-![API Keys](https://raw.github.com/forkcms/documentation/master/user%20guide/assets/settings_general_scripts.png)
+![API Keys](https://raw.github.com/forkcms/documentation/master/user%20guide/assets/settings_general_apikeys.png)
 
 
 ### CKFinder
