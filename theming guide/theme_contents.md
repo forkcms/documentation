@@ -11,7 +11,7 @@ By copying the Triton folder, you now have the correct base structure and files 
 * apple-touch-icon.png → this icon will be used when the visitor of your site makes an alias of your site on his or her iPad or iPhone.
 * core folder → this folder contains the theme related templates javascript, images, CSS, and fonts.
 * core/templates → this is the place to save your page templates. These templates can be linked in the backend so you can select them for the pages of your website.
-* module folder → this folder contans the widgets and templates of the modules available in your theme.
+* module folder → this folder contains the widgets and templates of the modules available in your theme.
 
 Let's take a close look at what's inside Triton.
 
