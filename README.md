@@ -76,4 +76,4 @@
 
 # Contributing
 
-See the article about [contributing](contribute/documentation.md) to the documention.
+Want to help improving our documentation? See the dedicated article about [contributing](contribute/documentation.md).
