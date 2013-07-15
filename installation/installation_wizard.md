@@ -7,7 +7,7 @@ First of all the library gets checked if it's is located properly and is accessi
 
 ## Step 2: Check requirements
 
-Before we start installing something we want to make sure everything is configured right. The wizard goes through all [Minimum Requirements](minimum-requirements) like PHP Version, subfolder restriction, PHP Extensions, PHP ini-settings, PHP functions and webserver configuration.
+Before we start installing we want to make sure everything is configured right. The wizard goes through all [Minimum Requirements](minimum-requirements) like PHP Version, subfolder restriction, PHP Extensions, PHP ini-settings, PHP functions and webserver configuration.
 
 ![Installation step 2](https://raw.github.com/forkcms/documentation/master/installation/assets/installation_step2.png)
 
