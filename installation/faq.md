@@ -7,6 +7,10 @@ We think developers should try to keep the differences between the server and lo
 If you are developing with an url like http://localhost/projectname/ all your references will be relative, which is a hell when something changes. If you use an url like http://projectname.dev (can be done using virtual host setup on your local web server) you don't have to think about all those references, so you can use / as a starting point.
 
 
-## I got redirected to /install and get a 500 Forbidden error
+## I got redirected to /install but don't see the installation wizard
 
-Check if your .htaccess file is uploaded correctly. Some operating systems or ftp clients hide this file by default.
+The reason why you don't see the installer is because the [url rewriting](http://en.wikipedia.org/wiki/Rewrite_engine) isn't working properly. Check if the [.htaccess](https://github.com/forkcms/forkcms/blob/master/.htaccess) file is uploaded. Some operating systems or ftp clients hide this file by default.
+
+If all files are uploaded, check if *mod_rewrite* is installed on your webserver and make sure your webserver accepts *.htaccess* files.
+
+Still not working? Check the [webservers](webservers) article for a full read about working with webservers.
