@@ -90,7 +90,7 @@ If you provide the format parameter with a value of json (&format=json) the resp
                              "email": "matthias@spoon-library.com"
                          },
                          "name": "Matthias Mullie",
-                         "website": "http:\/\/www.anantasoft.com"
+                         "website": "http:\/\/www.mullie.eu"
                      }
                  }
              }
