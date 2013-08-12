@@ -2,13 +2,13 @@
 
 ## Variables
 
-To make our different pages visible on our website we need to write a template file for every action. As said before, a template file is a html-file containing placeholders for the data that we will parse into that template-file.
+To make our different pages visible on our website, we need to write a template file for every action. As previously mentioned, a template file is an HTML file containing placeholders for the data that we will parse into that template file.
 
-Let's first have a look at the detail-page, in the default Fork CMS-theme, in the browser:
+Let's first have a look at the detail page, in the default Fork CMS-theme, in the browser:
 
 ![Detail](https://raw.github.com/forkcms/documentation/master/module%20guide/assets/detail.png)
 
-The code that was used in the .tpl-file you find below. As you can see it's regular html-code, but with a lot of data between { and }. We'll discuss the different types of placeholders one by one.
+The code that was used in the .tpl-file is below. You can see that it's regular HTML code, but with a lot of data between curly braces — which appear as { and }. We'll discuss the different types of placeholders one by one.
 
 ```
 <div id="blogDetail">
@@ -58,9 +58,9 @@ When we discussed the detail.php file we came across the following line:
 $this->tpl->assign('item', $this->record); 
 ```
 
-With this code, the array in `$this->record`, containing our article, is parsed into the template as the array item. The syntax for reading elements from an array in a template is the dot-syntax, preceding the variable name with an $. On the sixth line your see `{$item.title}`. This does nothing more than echoing the value in the field 'title' of our array 'item'.
+With this code, the array in `$this->record`, containing our article, is parsed into the template as the array item. The syntax for reading elements from an array in a template is dot-syntax, and we precede the variable name with a dollar sign ($). On the fifth line you see `{$item.title}`. This does nothing more than echo the value of the 'title' field in our 'item' array.
 
-In some cases, you'll have array's in array's, in array's, in ... you'll write them next to each other as in our example: `{$navigation.previous.title}`
+In some cases you'll have arrays in arrays, in arrays, in ... you get the point. You'll simply chain them in dot-syntax as follows: `{$navigation.previous.title}`
 
 > **Plain simple vars**
 > Not everything needs to be an array. A normal variable is possible too:
@@ -71,19 +71,21 @@ In some cases, you'll have array's in array's, in array's, in ... you'll write t
 
 ## Locale
 
-When you're developing a module you'd better don't write plain English, Dutch, French, ... in your templates. Instead you use locale which will be replaced by the right translation. You see a couple of locale in our example:
+When you're developing a module, you'd rather not translate your content directly in your template files. Instead you use template tags and, if a different locale is selected, these tags will output the correct translation. You see a couple of locale in our example:
 
 * `{$msgWrittenBy}`
 * `{$lblOn}`
 * `{$lblPeopleThinkThisPostIsAwesome}`
 
-Everything what applies to normal data applies to labels as well. They stand between { and }, are preceded by $ and can be used in combination with modifiers (see next chapter). There are two differences. The first is that you don't have to parse them in the template yourself, this happens automatically.
+Everything that applies to normal data applies to labels as well. Each label is surrounded by curly braces, preceded by a dollar sign, and can be used in combination with modifiers (see next chapter). There are, however, two differences that set labels apart:
 
-The second is that labels always begin with lbl, msg, act or err. More about this, you'll find in the next chapter.
+The first is that you don't have to parse them in the template yourself. This happens automatically.
+
+The second is that labels always begin with lbl, msg, act, or err. You can read more about this in the next chapter.
 
 ## Modifiers
 
-Because plain simple translations or only echoing data is not always what we need, you can add modifiers to an echo of data or a label. Take this example:
+Because simple translations or echoing data is not always what we need, you can add modifiers to an echo of data or a label. Consider this example:
 
 ```
 {$item.edited|date:{$dateFormatLong}:{$LANGUAGE}}
@@ -97,13 +99,13 @@ The variable {$item.edited}, echoed without modifiers would look something like:
 
 ... a UNIX-timestamp.
 
-We put a pipe next to the variable name, followed by the modifier name and next you'll find two arguments, separated by colons. {$dateFormatLong} and {$LANGUAGE}, two other variables automatically parsed into the template by Fork. The result of this expression becomes
+We put a pipe next to the variable name, followed by the modifier name, and next you'll find two arguments separated by colons. {$dateFormatLong} and {$LANGUAGE}, two other variables automatically parsed into the template by Fork. The result of this expression becomes:
 
 ```
 Friday 22 April 2011
 ```
 
-It's possible to send the result of one modifier to another modifier, just add a pipe and write the next modifier.
+It is possible to send the result of one modifier to another modifier; just add a pipe and write the next modifier.
 
 > **modifiers**
 > There a lots of modifiers available, some with arguments (f.e. sprintf, substring, ...), others without, (ucfirst, nl2br, ...). Also check our [cheatsheet](http://www.fork-cms.be/frontend/files/userfiles/files/cheatsheet_2_05_2011.pdf).
@@ -112,7 +114,7 @@ It's possible to send the result of one modifier to another modifier, just add a
 
 Templates have other possibilities too. To illustrate these we'll use the template of the recents_posts widget.
 
-As you see on the first 4 lines, we added some comments. When you're working with different people on a website it might be a good idea to provide on overview of which variables are parsed into the template.
+As you see on the first 4 lines, we added some **comments**. When you're working on a team—or even by yourself—it's a good idea to provide an overview of which variables are parsed into the template.
 
 ```
 {*
@@ -146,19 +148,19 @@ As you see on the first 4 lines, we added some comments. When you're working wit
 
 ## Options
 
-Templates have two programming techniques. The first are options. They work just the same as an if-statement, except the only thing you can check is: Is a variable set, or not set.
+Templates support two common programming techniques. The first is **options**. Options work just the same as an if-statement, except the only thing you can check for is whether a variable is set or not set.
 
-In our example above we check if the variable widgetMiniBlogRecentPosts isset. If so, the code between the options is show. Else, it's not shown!
+In our example above we check if the variable widgetMiniBlogRecentPosts isset. If so, the code between the options is shown. Otherwise it's not!
 
-You add the “Else” yourself by reversing the same option with an exclamation mark. This way you can add some kind of error message.
+You can add the “Else” by reversing the same option with an exclamation mark. This way you can add an error message or perhaps an alternate piece of data.
 
 > **!isset()**
-> The evaluation of an option doesn't work the same as the “isset” function in php. An option is FALSE when the variable is:
+> The evaluation of an option doesn't work the same as the “isset” function in PHP. An option is FALSE when the variable is:
 > an empty string, 0 (string or integer), NULL, FALSE (boolean), an empty array.
 
 ## Iterations
 
-The second programming technique your can use in templates are iterations. With iterations, you can walk all the items of an array. This example prints all the title fields of an array.
+The second programming technique you can use in templates is iterations. With iterations, you can loop through all items of an array. This example prints all of the title fields of an array:
 
 ```
 {iteration:widgetMiniBlogRecentPosts}
@@ -166,20 +168,20 @@ The second programming technique your can use in templates are iterations. With 
 {/iteration:widgetMiniBlogRecentPosts}
 ```
 
-There are a lot of other things you should know about iterations, such as nesting iterations, the first- and last-option, cycle, ... You'll find everything about these on the Cheatsheet.
+There is plenty more you should know about iterations, such as nesting iterations, the first- and last-option, cycle, etc., and you can find all of this on the Cheatsheet.
 
 > **No $**
-> Mind that in neither in options nor iterations, the variable name is preceded by the dollar-sign.
+> Keep in mind that—in options and iterations—the variable name is NOT preceded by a dollar-sign.
 
 ## Includes
 
-Another nice thing about templates is that you can include other templates, just like you do in .php.
+Another nice thing about templates is that you can include other templates, just like you do in PHP.
 
-E.g. in the backend, you will add the following lines to every action template so all pages start with the same header:
+e.g. in the backend, you will add the following lines to every action template so all pages start with the same header:
 
 ```
 {include:{$BACKEND_CORE_PATH}/layout/templates/head.tpl}
 {include:{$BACKEND_CORE_PATH}/layout/templates/structure_start_module.tpl}
 ```
 
-The same way, you can add your own pieces of code that perhaps often return on other pages, without it's necessary to create a widget. E.g. a collection of "Share on twitter, facebook, netlog, myspace, ..." buttons.
+In the same way, you can add your own pieces of code that perhaps often return on other pages, without having to create a widget. (e.g. a collection of social sharing buttons)
