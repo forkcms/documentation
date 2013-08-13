@@ -9,7 +9,7 @@
 	- [Upgrading](installation/upgrading.md)
 
 * [Getting started](getting started/index.md)
-	- [Access private](getting started/index.md)
+	- [Administration access](getting started/index.md)
 	- [Adding modules](getting started/adding_modules.md)
 	- [Adding a theme](getting started/adding_a_theme.md)
 	- [Spam protection](getting started/spam_protection.md)
