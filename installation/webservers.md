@@ -22,31 +22,30 @@ On Apache, the .htaccess-file instructs all incoming urls should be parsed by in
 
 ```
 server.modules = (
- "mod_simple_vhost",
  "mod_rewrite",
  ...
 )
 ...
 
 ## Fork-CMS
-$HTTP["host"] == "mydomain.com" {
- simple-vhost.server-root = "/path/to/forkcms"
- simple-vhost.document-root = "/"
-  dir-listing.activate = "disable"
-  url.rewrite = (
-    "^/(.*)\.(.+)$" => "$0",
-    "^/(.+)/?$" => "/index.php/$1"
-  )
+$HTTP["host"] =~ "(mydomain.com)" {
+server.document-root = "/path/to/forkcms"
+dir-listing.activate = "disable"
+setenv.add-environment = ( "MOD_REWRITE" => "1")
+
+url.rewrite-if-not-file = ( "^/?$" => "$0",
+                "^/(backend|install|api(\/\d.\d)?(\/client)?)/(.*)" => "/index.php/$0",
+                "^/(?!(backend|install|api(\/\d.\d)?(\/client)?))(.+)/?$" => "/index.php/$0"
+               )
+
 }
 ```
 
-In this sample configuration, a vhost is used because Fork CMS needs to rewrite its urls using the root folder of your webserver as its root path.
+In this sample configuration, Fork CMS needs to rewrite its urls. This rewrite rule is based on the Apache .htaccess file and should work with the latest lighttpd 1.4.x without causing a redirect loop.
 
 These are the minimal requirements to have Fork CMS set up and functioning properly as it’s supposed to with regards to configuring Lighttpd as your webserver.
 
 Additional configuration options can be added to Lighttpd's configuration file to approximate the behaviour under Apache with regards to caching and compressing and so on.
-
-All credits to carroarmato0, see: http://carroarmato0.wordpress.com/2011/09/18/fork-cms-and-lighttpd/
 
 ## Nginx
 
