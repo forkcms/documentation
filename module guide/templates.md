@@ -12,50 +12,50 @@ The code that was used in the .tpl-file is below. You can see that it's regular 
 
 ```
 <div id="blogDetail">
- <article class="mod article">
- <div class="inner">
- <header class="hd">
- <h1>{$item.title}</h1>
- <ul>
- <li>{$msgWrittenBy|ucfirst|sprintf:{$item.user_id|usersetting:'nickname'}} {$lblOn} {$item.edited|date:{$dateFormatLong}:{$LANGUAGE}}</li>
- </ul>
- </header>
- <div class="bd content">
- {$item.introduction}
- </div>
- <div class="bd content">
- {$item.text}
- </div>
- <div class="awesome" id="awesome{$item.id}">
- <span class="counter">{$item.awesomeness}</span>
- {$lblPeopleThinkThisPostIsAwesome}
- <span class="bar">|</span>
- <a class="add" rel="{$item.id}">{$lblIThinkThisIsAwesome}</a>
- <span style="display:none;" class="added">{$lblIThinkThisIsAwesome}</span>
- </div>
- <footer class="ft">
- <ul class="pageNavigation">
- {option:navigation.previous}
- <li class="previousLink">
- <a href="{$navigation.previous.url}" rel="prev">{$lblPreviousArticle|ucfirst}: {$navigation.previous.title}</a>
- </li>
- {/option:navigation.previous}
- {option:navigation.next}
- <li class="nextLink">
- <a href="{$navigation.next.url}" rel="next">{$lblNextArticle|ucfirst}: {$navigation.next.title}</a>
- </li>
- {/option:navigation.next}
- </ul>
- </footer>
- </div>
- </article>
+    <article class="mod article">
+        <div class="inner">
+            <header class="hd">
+                <h1>{$item.title}</h1>
+                <ul>
+                    <li>{$msgWrittenBy|ucfirst|sprintf:{$item.user_id|usersetting:'nickname'}} {$lblOn} {$item.edited|date:{$dateFormatLong}:{$LANGUAGE}}</li>
+                </ul>
+            </header>
+            <div class="bd content">
+                {$item.introduction}
+            </div>
+            <div class="bd content">
+                {$item.text}
+            </div>
+            <div class="awesome" id="awesome{$item.id}">
+                <span class="counter">{$item.awesomeness}</span>
+                {$lblPeopleThinkThisPostIsAwesome}
+                <span class="bar">|</span>
+                <a class="add" rel="{$item.id}">{$lblIThinkThisIsAwesome}</a>
+                <span style="display:none;" class="added">{$lblIThinkThisIsAwesome}</span>
+            </div>
+            <footer class="ft">
+                <ul class="pageNavigation">
+                    {option:navigation.previous}
+                        <li class="previousLink">
+                            <a href="{$navigation.previous.url}" rel="prev">{$lblPreviousArticle|ucfirst}:{$navigation.previous.title}</a>
+                            </li>
+                            {/option:navigation.previous}
+                            {option:navigation.next}
+                            <li class="nextLink">
+                            <a href="{$navigation.next.url}" rel="next">{$lblNextArticle|ucfirst}:{$navigation.next.title}</a>
+                        </li>
+                    {/option:navigation.next}
+                </ul>
+            </footer>
+        </div>
+    </article>
 </div> 
 ```
 
-When we discussed the detail.php file we came across the following line:
+When we discussed the Detail.php file we came across the following line:
 
 ```
-$this->tpl->assign('item', $this->record); 
+$this->tpl->assign('item', $this->record);
 ```
 
 With this code, the array in `$this->record`, containing our article, is parsed into the template as the array item. The syntax for reading elements from an array in a template is dot-syntax, and we precede the variable name with a dollar sign ($). On the fifth line you see `{$item.title}`. This does nothing more than echo the value of the 'title' field in our 'item' array.
@@ -122,27 +122,27 @@ As you see on the first 4 lines, we added some **comments**. When you're working
  - {$widgetMiniBlogRecentPosts}
 *}
 <section id="blogRecentCommentsWidget" class="mod">
- <div class="inner">
- <header class="hd">
- <h3>{$lblRecentArticles|ucfirst}</h3>
- </header>
- <div class="bd content">
- {option:widgetMiniBlogRecentPosts}
- <ul>
- {iteration:widgetMiniBlogRecentPosts}
- <li>
- <a href="{$widgetMiniBlogRecentPosts.full_url}">{$widgetMiniBlogRecentPosts.title}</a>
- {$msgWrittenBy|ucfirst|sprintf: {$widgetMiniBlogRecentPosts.user_id|usersetting:'nickname'}} {$lblOn}
- {$widgetMiniBlogRecentPosts.edited|date:{$dateFormatShort}:{$LANGUAGE}}
- </li>
- {/iteration:widgetMiniBlogRecentPosts}
- </ul>
- {/option:widgetMiniBlogRecentPosts}
- {option:!widgetMiniBlogRecentPosts}
- {$msgThereAreNoRecentItemsYet}
- {/option:!widgetMiniBlogRecentPosts}
- </div>
- </div>
+    <div class="inner">
+        <header class="hd">
+            <h3>{$lblRecentArticles|ucfirst}</h3>
+        </header>
+        <div class="bd content">
+            {option:widgetMiniBlogRecentPosts}
+                <ul>
+                    {iteration:widgetMiniBlogRecentPosts}
+                        <li>
+                            <a href="{$widgetMiniBlogRecentPosts.full_url}">{$widgetMiniBlogRecentPosts.title}</a>
+                            {$msgWrittenBy|ucfirst|sprintf: {$widgetMiniBlogRecentPosts.user_id|usersetting:'nickname'}} {$lblOn}
+                            {$widgetMiniBlogRecentPosts.edited|date:{$dateFormatShort}:{$LANGUAGE}}
+                        </li>
+                    {/iteration:widgetMiniBlogRecentPosts}
+                </ul>
+            {/option:widgetMiniBlogRecentPosts}
+            {option:!widgetMiniBlogRecentPosts}
+                {$msgThereAreNoRecentItemsYet}
+            {/option:!widgetMiniBlogRecentPosts}
+        </div>
+    </div>
 </section>
 ```
 
@@ -180,8 +180,8 @@ Another nice thing about templates is that you can include other templates, just
 e.g. in the backend, you will add the following lines to every action template so all pages start with the same header:
 
 ```
-{include:{$BACKEND_CORE_PATH}/layout/templates/head.tpl}
-{include:{$BACKEND_CORE_PATH}/layout/templates/structure_start_module.tpl}
+{include:{$BACKEND_CORE_PATH}/Layout/Templates/Head.tpl}
+{include:{$BACKEND_CORE_PATH}/Layout/Templates/StructureStartModule.tpl}
 ```
 
 In the same way, you can add your own pieces of code that perhaps often return on other pages, without having to create a widget. (e.g. a collection of social sharing buttons)
