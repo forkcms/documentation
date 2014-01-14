@@ -27,6 +27,8 @@ Other arguments are action depended. In case of the this_is_awesome action, we n
 The action file itself is a .php file located in the ajax-folder. The structure of an Ajax action is the same as an other action file, meaning, there has to be a public “execute” function.
 
 ```
+namespace Frontend\Modules\MiniBlog\Ajax;
+
 use Frontend\Core\Engine\Base\AjaxAction as FrontendBaseAJAXAction;
 use Frontend\Modules\MiniBlog\Engine\Model as FrontendMiniBlogModel;
 
