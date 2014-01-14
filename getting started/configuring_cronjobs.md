@@ -7,16 +7,16 @@ Without additional modules has Fork CMS two cronjobs:
 Commandline: 
 
 ```
-php http://mydomain.com/backend/cronjob.php?module=core&action=process_queued_hooks
+php http://mydomain.com/src/Backend/Cronjob.php?module=Core&action=ProcessQueuedHooks
 
-php http://mydomain.com/backend/cronjob.php?module=core&action=send_queued_emails
+php http://mydomain.com/src/Backend/Cronjob.php?module=Core&action=SendQueuedEmails
 ```
 
 Webserver: 
 
 ```
-/usr/bin/wget -O - --quiet --timeout=1440 "http://mydomain.com/backend/cronjob.php?module=core&action=process_queued_hooks"
-/usr/bin/wget -O - --quiet --timeout=1440 "http://mydomain.com/backend/cronjob.php?module=core&action=process_queued_hooks"
+/usr/bin/wget -O - --quiet --timeout=1440 "http://mydomain.com/src/Backend/Cronjob?module=Core&action=ProcessQueuedHooks"
+/usr/bin/wget -O - --quiet --timeout=1440 "http://mydomain.com/src/Backend/Cronjob?module=Core&action=SendQueuedEmails"
 ```
 
 Some additional modules need extra cronjobs, check the details page on your modules overview to see which cronjobs need to be set for the module.
