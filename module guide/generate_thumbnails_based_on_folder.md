@@ -16,4 +16,4 @@ In your module you can use the code below:
 $this->frm->getField('image')->generateThumbnails($imagePath, time() . '.png');
 ```
 
-Where `$imagePath` is the folder that contains the thumbnail folders, if it doesn't exists a folder called source will be created to store the source-file.
+Where `$imagePath` is the folder that contains the thumbnail folders, if it doesn't exists a folder called source will be created to store the source-file. 
