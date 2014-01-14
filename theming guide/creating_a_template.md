@@ -7,7 +7,7 @@ We assume you know what the [difference](page-templates-positions-and-blocks) is
 
 ## Create file
 
-All template files which come with a theme are located in `/frontend/themes/mycustomtheme/core/layout/templates/`. A template file (.tpl) consists of html and [template modifiers](template-modifiers). It is recommended to use the `include` modifier to split your html between different files to make later adjustments easier. Take a look to the default [Triton](https://github.com/forkcms/forkcms/tree/master/frontend/themes/triton/core/layout/templates) theme as an example.
+All template files which come with a theme are located in `/src/Frontend/Themes/mycustomtheme/Core/Layout/Templates/`. A template file (.tpl) consists of html and [template modifiers](template-modifiers). It is recommended to use the `include` modifier to split your html between different files to make later adjustments easier. Take a look to the default [Triton](https://github.com/forkcms/forkcms/tree/master/frontend/themes/triton/core/layout/templates) theme as an example.
 
 When you're editing not your own theme it may be easier to copy an existing template of the theme and start editing the copy.
 
@@ -36,7 +36,7 @@ Add them in the templates sections of the file.
 For example the default template of the Triton:
 
 ```
-<template label="Default" path="core/layout/templates/default.tpl">
+<template label="Default" path="Core/Layout/Templates/Default.tpl">
 	<positions>
 		<position name="main" />
 		<position name="left" />
