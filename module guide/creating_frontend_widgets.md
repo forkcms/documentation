@@ -48,8 +48,6 @@ use Frontend\Core\Engine\Base\Config as FrontendBaseConfig;
 final class Config extends FrontendBaseConfig
 {
 }
-
-?>
 ```
 
 Because our widget doensn't have any configuration-stuff it is just an empty class, the functionality is extended from the base config-class.
@@ -230,8 +228,6 @@ class Stream extends FrontendBaseWidget
         }
     }
 }
-
-?>
 ```
 
 As you read through the code you'll see that we use a Twitter-class. Download this class [here](https://github.com/tijsverkoyen/fork_frontend_twitter_widget/blob/master/twitter.php) and save it under /library/external/twitter.php. We use this class to communicate with Twitter.
