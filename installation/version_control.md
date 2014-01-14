@@ -23,7 +23,7 @@ Instead of copying all code from other repositories, [Composer](http://getcompos
 In Terminal on Mac OS X or in Command Prompt on Windows, go to the root of your project folder and execute the command:
 
 ```
-composer install
+composer install -o
 ```
 
 All dependencies are now installed in the *vendors* folder.

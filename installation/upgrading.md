@@ -11,7 +11,7 @@ Each time the third number is increased, we call it a minor release. All changes
 
 ## Upgrading Fork CMS
 
-Minor versions are easy, you can just overwrite the changed files and everything will still work. You will have to clear the cache folders. The most important ones are: `/backend/cache/compiled_templates`, `/backend/cache/locale`,  `/backend/cache/minified_css`, `/backend/cache/minified_js`, `/frontend/cache/cached_templates`, `/frontend/cache/compiled_templates`, `/frontend/cache/locale`, `/frontend/cache/minified_css`, `/frontend/cache/minified_js`. Or you could run the tools/remove_cache which automatically cleans these folders.
+Minor versions are easy, you can just overwrite the changed files and everything will still work. You will have to clear the cache folders. The most important ones are: `/src/Backend/Cache/CompiledTemplates`, `/src/Backend/Cache/Locale`,  `/src/Backend/Cache/MinifiedCss`, `/src/Backend/Cache/MinifiedJs`, `/src/Frontend/Cache/CachedTemplates`, `/src/Frontend/Cache/CompiledTemplates`, `/src/Frontend/Cache/Locale`, `/src/Frontend/Cache/MinifiedCss`, `/src/Frontend/Cache/MinifiedJs`. Or you could run the tools/remove_cache which automatically cleans these folders.
 
 Upgrading to a new major release is a bit tricky. In some cases there will be database changes, so you will have to check and execute them manually. My advice would be to reinstall your Fork CMS setup.
 
