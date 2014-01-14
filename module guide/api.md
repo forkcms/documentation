@@ -5,21 +5,26 @@ We'll use an other, less complicated example to illustrate the principles of an 
 
 ## Engine
 
-First you create a file named "api.php" in the /backend/modules/module_name/engine folder. In this file you define a class called `BackendModuleNameAPI`.
+First you create a file named "api.php" in the /src/Backend/Modules/ModuleName/Engine folder. In this file you define a class called `Api`.
 
 Then, for every action external applications should be able to perform you define a public static method.
 
-In our case we'll just have one method, `show_top_awesome`. This method will return the most (number) awesome posts of the last (days) days.
+In our case we'll just have one method, `showTopAwesome`. This method will return the most (number) awesome posts of the last (days) days.
 
 ```
-class BackendMiniBlogAPI
+namespace Backend\Modules\MiniBlog\Engine;
+
+use Api\V1\Engine\Api as BaseAPI;
+use Backend\Modules\MiniBlog\Engine\Model as BackendMiniBlogModel;
+
+class Api
 {
 	public static function showTopAwesome()
 	{
-		$number = (int) SpoonFilter::getGetValue('number', null, 10);
-		$days = (int) SpoonFilter::getGetValue('days', null, 7);
+		$number = (int) \SpoonFilter::getGetValue('number', null, 10);
+		$days = (int) \SpoonFilter::getGetValue('days', null, 7);
 
-		API::output('200', BackendMiniBlogModel::getTopAwesome($number, $days));
+		BaseAPI::output('200', BackendMiniBlogModel::getTopAwesome($number, $days));
 	}
 }
 ```
@@ -29,7 +34,7 @@ As you can see we expect the data to be GET-variables but if you feel like worki
 ## Return
 
 When you want to use the method above, you need to call the following url:
-  /api/1.0/?method=mini_blog.showTopAwesome&format=json&number=10&days=7
+  /api/v1/?method=MiniBlog.showTopAwesome&format=json&number=10&days=7
 
 The first parameter is the name of the module and the name of the action separated with a dot. This action is the real method name, not the "reversed" camelCased name as it's used with class- and filenames.
 
