@@ -19,6 +19,12 @@ protected $pagination = array(
 Now it's time to get the data for the current page. To do this, we'll need the current page to calculate which item set we should get.
 
 ```
+use Frontend\Core\Engine\Navigation as FrontendNavigation;
+use Frontend\Core\Engine\Model as FrontendModel;
+use Frontend\Modules\MiniBlog\Engine\Model as FrontendMiniBlogModel;
+
+...
+
 // requested page
 $requestedPage = $this->URL->getParameter('page', 'int', 1);
 
@@ -56,7 +62,7 @@ $this->records = FrontendMiniBlogModel::getAll($this->pagination['limit'], $this
 
 To parse the data to your template, all you have to do is assign it in you parse function and call it in your template.
 
-**index.php**
+**Index.php**
 ``` 
 protected function parse()
 {
@@ -65,10 +71,10 @@ protected function parse()
 }
 ```
 
-**index.tpl**
+**Index.tpl**
 ```
 {option:items}
 	....
-	{include:{$FRONTEND_CORE_PATH}/layout/templates/pagination.tpl}
+	{include:{$FRONTEND_CORE_PATH}/Layout/Templates/Pagination.tpl}
 {/option:items}
 ```
