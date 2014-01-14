@@ -2,7 +2,7 @@
 
 Publish/subscribe (pub/sub in short) is a pattern where sender (publishers) trigger an event, whereon receivers (subscribers) can subscribe. With this mechanism modules can be linked and are able to interact on certain events.
 
-For instance, if you don't like the existing search module and like to implement [Solr](http://lucene.apache.org/solr/), this system could come in handy. You don't need to hack every module with some specific code. You can subscribe to events that are triggerd when a page is edited (after_edit), or when a blogpost is created (after_add), and execute the code to add/edit/delete the indexed data.
+For instance, if you don't like the existing search module and like to implement [Solr](http://lucene.apache.org/solr/), this system could come in handy. You don't need to hack every module with some specific code. You can subscribe to events that are triggered when a page is edited (after_edit), or when a blogpost is created (after_add), and execute the code to add/edit/delete the indexed data.
 
 ## Trigger an event (Publish)
 
