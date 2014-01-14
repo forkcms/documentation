@@ -1,6 +1,6 @@
 # Creating an installer
 
-To create an installer, you need some basic files. First of all, you need the installer file. This is located in the backend installer folder. For our module this would be /backend/modules/mini_blog/installer/installer.php.
+To create an installer, you need some basic files. First of all, you need the installer file. This is located in the backend installer folder. For our module this would be /src/Backend/Modules/MiniBlog/Installer/Installer.php.
 
 Next to this file, depending on the module, you can have some other files, mostly used are the install.sql file and the locale.xml file. We'll put these in the subdirectory /data. 
 
@@ -9,6 +9,10 @@ Next to this file, depending on the module, you can have some other files, mostl
 In the installer file we load the database tables (if required) and the locale (if required). Besides this, we also make sure our users have rights to access our module.
 
 ```
+namespace Backend\Modules\MiniBlog\Installer;
+
+use Backend\Core\Engine\ModuleInstaller;
+
 class MiniBlogInstaller extends ModuleInstaller
 {
 	/**
@@ -16,30 +20,30 @@ class MiniBlogInstaller extends ModuleInstaller
 	 */
 	public function install()
 	{
-		$this->importSQL(dirname(__FILE__) . '/data/install.sql');
+		$this->importSQL(dirname(__FILE__) . '/Data/install.sql');
 
-		$this->addModule('mini_blog');
+		$this->addModule('MiniBlog');
 
-		$this->importLocale(dirname(__FILE__) . '/data/locale.xml');
+		$this->importLocale(dirname(__FILE__) . '/Data/locale.xml');
 ```
 
 Now we want to make sure that our module can be accessed for the search module and for other users that aren't god users. We do this by adding some rules:
 
 ```
-$this->makeSearchable('mini_blog');
-$this->setModuleRights(1, 'mini_blog');
+$this->makeSearchable('MiniBlog');
+$this->setModuleRights(1, 'MiniBlog');
 
-$this->setActionRights(1, 'mini_blog', 'index');
-$this->setActionRights(1, 'mini_blog', 'add');
-$this->setActionRights(1, 'mini_blog', 'edit');
-$this->setActionRights(1, 'mini_blog', 'delete');
+$this->setActionRights(1, 'MiniBlog', 'index');
+$this->setActionRights(1, 'MiniBlog', 'add');
+$this->setActionRights(1, 'MiniBlog', 'edit');
+$this->setActionRights(1, 'MiniBlog', 'delete');
 ```
 
 After we've added our rights, we want to create an option so we can add our blog to the frontend. To do this, we need to create some extras. Since we also have a widget with the recent posts, we also need to create an extra for that. We do this by adding the following code:
 
 ```
-$miniBlogId = $this->insertExtra('mini_blog', 'block', 'MiniBlog');
-$this->insertExtra('mini_blog', 'widget', 'RecentPosts', 'recent_posts');
+$miniBlogId = $this->insertExtra('MiniBlog', 'block', 'MiniBlog');
+$this->insertExtra('MiniBlog', 'widget', 'RecentPosts', 'recent_posts');
 ```
 
 The first extra will allow us to show the overview and other actions. The second extra will allow us to add the widget on pages. For this method, the first three parameters are mandatory. Here is a list of parameters:
@@ -72,8 +76,8 @@ Fork already has a wide range of labels, messages, errors and actions pre instal
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <locale>
-  <backend>
-  	<mini_blog>
+  <Backend>
+    <MiniBlog>
       <item type="label" name="Introduction">
         <translation language="nl"><![CDATA[introductie]]></translation>
         <translation language="en"><![CDATA[introduction]]></translation>
@@ -82,16 +86,16 @@ Fork already has a wide range of labels, messages, errors and actions pre instal
         <translation language="nl"><![CDATA[nog niet gepubliceerd]]></translation>
         <translation language="en"><![CDATA[not yet published]]></translation>
       </item>
-  	</mini_blog>
-    <core>
+    </MiniBlog>
+    <Core>
       <item type="label" name="MiniBlog">
         <translation language="nl"><![CDATA[mini blog]]></translation>
         <translation language="en"><![CDATA[mini blog]]></translation>
       </item>
-    </core>
-  </backend>
+    </Core>
+  </Backend>
   <frontend>
-    <core>
+    <Core>
       <item type="label" name="IThinkThisIsAwesome">
         <translation language="nl"><![CDATA[dit is awesome!]]></translation>
         <translation language="en"><![CDATA[this is awesome!]]></translation>
@@ -100,7 +104,7 @@ Fork already has a wide range of labels, messages, errors and actions pre instal
         <translation language="nl"><![CDATA[mensen vinden dit awesome!]]></translation>
         <translation language="en"><![CDATA[people think this is awesome!]]></translation>
       </item>
-    </core>
+    </Core>
   </frontend>
 </locale>
 ```
@@ -109,7 +113,7 @@ As you can see, we specify 2 children in the main node. These are backend and fr
 
 ## Database
 
-To add the requried database files, we need to create a file called install.sql in the /backend/modules/mini_blog/install/data folder. For the rest, this is pretty basic. It's just a dump of your table.
+To add the requried database files, we need to create a file called install.sql in the /src/Backend/Modules/MiniBlog/Install/Data folder. For the rest, this is pretty basic. It's just a dump of your table.
 
 ```
 CREATE TABLE `mini_blog` (
@@ -135,7 +139,7 @@ We also provide a info.xml with each module. This allows us to see some informat
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <module>
-	<name>mini_blog</name>
+	<name>MiniBlog</name>
 	<version>1.1.0</version>
 	<requirements>
 		<minimum_version>3.5.0</minimum_version>
