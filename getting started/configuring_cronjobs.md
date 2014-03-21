@@ -18,6 +18,7 @@ Webserver:
 /usr/bin/wget -O - --quiet --timeout=1440 "http://mydomain.com/backend/cronjob.php?module=core&action=process_queued_hooks"
 /usr/bin/wget -O - --quiet --timeout=1440 "http://mydomain.com/backend/cronjob.php?module=core&action=send_queued_emails"
 ```
+If you provider cannot be of help in setting up a cron job, you can try to use a free service like Easycron.com.
 
 Some additional modules need extra cronjobs, check the details page on your modules overview to see which cronjobs need to be set for the module.
 
