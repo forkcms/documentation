@@ -185,7 +185,7 @@ For example: `foo.bar` will call the method bar() in the module foo. `foo.bar.is
 ```
 {
      // authorize
-     if(API::authorize())
+     if(API::isAuthorized())
      {
 ```
 
