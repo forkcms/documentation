@@ -1,6 +1,6 @@
 # How does pushToAppleApp() work
 
-If you browse through the code you will see we have methods that notify the admin. One of the methods that is called is pushtToAppleApp().
+If you browse through the code you will see we have methods that notify the admin. One of the methods that is called is pushToAppleApp().
 
 This method enables you to push notifications to the Fork Pocket App. This application is just a proof of concept, but it demonstrates Fork CMS is able to push data to the application.
 

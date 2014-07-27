@@ -24,5 +24,5 @@ Use your browser to surf to your domain (this should forward you to the Fork CMS
 
 ![Installation started](https://raw.github.com/forkcms/documentation/master/installation/assets/started_install.jpg)
 
-> Don't panic if you experience problems during the installation, start by taking a look in our
+> Don't panic if you experience problems during the installation. Start by taking a look in our
 [Frequently Asked Questions](faq).

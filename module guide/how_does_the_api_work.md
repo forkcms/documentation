@@ -189,8 +189,7 @@ use Api\V1\Engine\Api as BaseAPI;
 
 {
      // authorize
-     if(BaseApi::authorize())
-     {
+     if (BaseApi::isAuthorized()) {
 ```
 
 If the necessary authentication parameters are passed and they are valid, the method API:authorize() will return true, so at this point we are sure the user is authenticated. Adding the authorisation to your method only takes this 1 line.
