@@ -44,7 +44,7 @@ So for instance, if you would like to place the word "archive" in the template, 
 
 ### Locale in code
 
-In the code, there are some methods to retrieve locale. Each type of locale has it own method.
+In the code, there are some methods to retrieve locale. Each type of locale has it own method. They use the Frontend\Core\Engine\Language class. It's aliased here as FL.
 
 * `FL::act($key):` used for retrieving actions
 * `FL::err($key):` used for retrieving error messages
@@ -81,7 +81,8 @@ In the templates, it doesn't change a thing, the correct value will automaticall
 
 ### Locale in code
 
-In the backend there are some methods to retrieve locale. Each type of locale has it own method.
+In the backend there are some methods to retrieve locale. Each type of locale has it own method. They use the Backend\Core\Engine\Language class. It's aliased here as BL.
+
 * `BL::err($key, $module):` used for retrieving errors
 * `BL::lbl($key, $module):` used for retrieving labels
 * `BL::msg($key, $module):` used for retrieving messages

@@ -60,10 +60,10 @@ When adding translations for the backend however, you can select all the existin
 
 | module    | reference code | translation       |
 | --------- | -------------- | ----------------- |
-| blog      | NoItems        | no blog posts yet |
-| mini_blog | NoItems        | no articles yet   |
-| news      | NoItems        | no news yet       |
-| core      | NoItems        | no items yet      |
+| Blog      | NoItems        | no blog posts yet |
+| MiniBlog  | NoItems        | no articles yet   |
+| News      | NoItems        | no news yet       |
+| Core      | NoItems        | no items yet      |
 
 When editing a page, Fork CMS searches for a module specific translation, e.g. “no blog posts yet”. When the module specific translation was not supplied, Fork CMS searches for the “NoItems” translation for the “core” module, “no items yet” in our case.
 

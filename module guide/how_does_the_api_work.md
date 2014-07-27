@@ -18,14 +18,14 @@ A request to the API is done by calling a URL with some parameters. Depending on
 A typical url for a request would look like:
 
 ```
-http://<your-fork-url>/api/1.0/?method=blog.comments.getById&id=1&email=foo@example.com&nonce=1320136792&secret=ed533226259c3ce3382e352634cae0a004efd5b2
+http://<your-fork-url>/api/v1/?method=Blog.Comments.GetById&id=1&email=foo@example.com&nonce=1320136792&secret=ed533226259c3ce3382e352634cae0a004efd5b2
 ```
 
 Lets break this down:
 
 * *http://<your-fork-url>*: The URL to your Fork CMS install
-* */api/1.0/*: This is the API endpoint. The 1.0 is some kind of versioning, so if you ever need to throw around the concept of the API, it won't break existing API implementations.
-* *?method=blog.comments.getById*: The method parameter defines which method we will call. In this case we call the commentsGetById-method in the blog module. Each method will be prefaced with the module it lives in.
+* */api/v1/*: This is the API endpoint. The 1.0 is some kind of versioning, so if you ever need to throw around the concept of the API, it won't break existing API implementations.
+* *?method=Blog.Comments.GetById*: The method parameter defines which method we will call. In this case we call the commentsGetById-method in the blog module. Each method will be prefaced with the module it lives in.
 * *&id=1*: The parameters for the method, these parameters have the same name as the one used in PHP, see below for more information.
 * *&email=foo@example.com&nonce=1320136792&secret=ed533226259c3ce3382e352634cae0a004efd5b*: These 3 parameters are used for authenticating.
 
@@ -39,7 +39,7 @@ The system will then check if all required parameters are provided and if so, th
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
- <fork status_code="200" status="ok" version="3.0.0" endpoint="http://fork-cms.com/api/1.0">
+ <fork status_code="200" status="ok" version="3.0.0" endpoint="http://fork-cms.com/api/v1">
      <comments>
          <comment id="1" created_on="2011-10-31T17:40:00+01:00" status="published">
              <article id="1" lang="en">
@@ -65,7 +65,7 @@ If you provide the format parameter with a value of json (&format=json) the resp
          "status_code": 200,
          "status": "ok",
          "version": "3.0.0",
-         "endpoint": "http:\/\/fork-cms.com\/api\/1.0"
+         "endpoint": "http:\/\/fork-cms.com\/api\/v1"
      },
      "data": {
          "comments": [
@@ -112,7 +112,7 @@ Sometimes, an error is encountered when calling an API-method. To make it easy f
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
-<fork status_code="400" status="error" version="2.6.13" endpoint="http://fork-cms.com/api/1.0">
+<fork status_code="400" status="error" version="2.6.13" endpoint="http://fork-cms.com/api/v1">
     <message>No method parameter provided.</message>
 </fork>
 ```
@@ -128,7 +128,7 @@ Before you can make authenticated calls we need to grab an API-key. This key wil
 The URL should look like:
 
 ```
-http://<your-fork-url>/api/1.0/?method=core.getapikey&email=<your-email>&password=<your-password>
+http://<your-fork-url>/api/v1/?method=Core.GetApiKey&email=<your-email>&password=<your-password>
 ```
 
 If you open up the URL in your browser you will see an XML-response, which contain a api_key-tag. The value inside that tag is your secret API-key. Store this value in a secure place, because you will use this a lot.
@@ -159,7 +159,7 @@ All methods are placed in the backend-module, to respect the modular approach of
 
 As we stated above it is really important to document your methods because we will try to convert the given parameter into the correct datatype.
 
-Let's dissect the `blog.comments.get` method, which you can find under `/backend/modules/blog/engine/api.php`.
+Let's dissect the `Blog.Comments.Get` method, which you can find under `/src/Backend/Modules/Blog/Engine/Api.php`.
 
 ```
  /**
@@ -173,48 +173,56 @@ As you can see we expect the id-parameter to be an integer, so when it passes th
 ```
   * @return array
   */
- public static function  commentsGetById ($id )
+ public static function commentsGetById ($id )
 ```
  
-The URL we will request for this method is `http://<your-fork-url>/api/1.0/?method=blog.comments.getById&id=1&email=foo@example.com&nonce=1320136792&secret=ed533226259c3ce3382e352634cae0a004efd5b2` The parameter id and the parameter in the URL should have the same name, also the parameter is required, so it needs to be present in the request. If it is not present, an error will be thrown.
+The URL we will request for this method is `http://<your-fork-url>/api/v1/?method=Blog.Comments.GetById&id=1&email=foo@example.com&nonce=1320136792&secret=ed533226259c3ce3382e352634cae0a004efd5b2` The parameter id and the parameter in the URL should have the same name, also the parameter is required, so it needs to be present in the request. If it is not present, an error will be thrown.
 
 Another thing that should be noted is that we convert `comments.getById` into `commentsGetById`. All dots after the module are stripped and used as a word-separator for camel-casing the string into the method.
 
 For example: `foo.bar` will call the method bar() in the module foo. `foo.bar.is.a.wierd.method` will call the method `barIsAWierdMethod()` in the foo-module.
 
 ```
+use Api\V1\Engine\Api as BaseAPI;
+
+...
+
 {
      // authorize
-     if(API::authorize())
+     if(BaseApi::authorize())
      {
 ```
 
 If the necessary authentication parameters are passed and they are valid, the method API:authorize() will return true, so at this point we are sure the user is authenticated. Adding the authorisation to your method only takes this 1 line.
 
 ```
+use Backend\Modules\Blog\Engine\Model as BackendBlogModel;
+
+...
+
         // get comment
         $comment = (array) BackendBlogModel::getComment($id);
 ```
- 
+
 At this point, we start building the array that will be returned and used for the output. If you grab the response, which is included below, it will be much clearer.
 
 ```
         // init var
         $return = array('comments' => null);
- 
+
         // any comment found?
         if(empty($comment)) return $return;
- 
+
         // create array
         $item['comment'] = array();
- 
+
         // article meta data
         $item['comment']['article']['@attributes']['id'] = $comment['post_id'];
         $item['comment']['article']['@attributes']['lang'] = $comment['language'];
         $item['comment']['article']['title'] = $comment['post_title'];
         $item['comment']['article']['url'] = SITE_URL . BackendModel::getURLForBlock('blog', 'detail', $comment['language']) . '/' . $comment['post_url'];
 ```
- 
+
 At this point we add a sub-element, which will be converted to a sub-node in the output-XML.
 
 ```
@@ -258,7 +266,7 @@ The response will look like this:
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
- <fork status_code="200" status="ok" version="3.0.0" endpoint="http://fork-cms.com/api/1.0">
+ <fork status_code="200" status="ok" version="3.0.0" endpoint="http://fork-cms.com/api/v1">
      <comments>
          <comment id="1" created_on="2011-10-31T17:40:00+01:00" status="published">
              <article id="1" lang="en">
@@ -278,7 +286,7 @@ The response will look like this:
 
 ### Implement authentication
 
-Some methods, you don’t want to expose to everyone. Therefore, you can implement authentication. Which only takes one single line of code. On the first line of your method, add API::authorize();.
+Some methods, you don’t want to expose to everyone. Therefore, you can implement authentication. Which only takes one single line of code. On the first line of your method, add BaseApi::authorize();.
 
 The authorize-method will add authentication to your method as described above. This means your clients will need to send the 3 extra parameters. If your client is authenticated, the method will return true.
 
@@ -291,17 +299,17 @@ Not all clients will perform valid calls and you should validate incoming parame
 For example, when retrieving the comments you can’t set a limit that is larger then 10000. If you dig into the code, you will see:
 
 ```
-if($limit > 10000) API::output(API::ERROR, array('message' => 'Limit can\'t be
+if($limit > 10000) BaseApi::output(BaseApi::ERROR, array('message' => 'Limit can\'t be
  larger than 10000.'));
 ```
 
 This is a typical example of throwing an error. As you can see, we used a constant for the status-code. The available options are:
 
-* *API::OK*: which is 200, and indicates everything went fine.
-* *API::BAD_REQUEST*: which is 400, and means the call isn’t valid.
-* *API::FORBIDDEN*: which is 403 and indicates the client isn’t allowed to do that call.
-* *API::ERROR*: which is 500, and means something went wrong.
-* *API::NOT_FOUND*: which is 404, and indicates something (an item) isn’t found.
+* *BaseApi::OK*: which is 200, and indicates everything went fine.
+* *BaseApi::BAD_REQUEST*: which is 400, and means the call isn’t valid.
+* *BaseApi::FORBIDDEN*: which is 403 and indicates the client isn’t allowed to do that call.
+* *BaseApi::ERROR*: which is 500, and means something went wrong.
+* *BaseApi::NOT_FOUND*: which is 404, and indicates something (an item) isn’t found.
 
 As you can see we try to follow the HTTP-status codes.
 

@@ -32,6 +32,10 @@ The content of the tab.
 In add.php, in the `loadForm` function, you'll load all the form fields displayed on the tab by writing:
 
 ```
+use Backend\Core\Engine\Meta as BackendMeta;
+
+...
+
 $this->meta = new BackendMeta($this->frm, null, 'title', true);
 ```
 
@@ -46,6 +50,10 @@ The third arguments supplies the field name that should be used to generate the 
 To set the callback, we use the setUrlCallback method. The basic callback is the getURL function in the module model class. The third parameter is used when we're in an edit action and we want to overwrite the meta instead of adding a number (e.g. blog-article-2 instead of blog-article).
 
 ```
+use Backend\Modules\Blog\engine\Model as BackendBlogModel;
+
+...
+
 // set callback for generating an unique URL
 $this->meta->setUrlCallback('BackendBlogModel', 'getURL', array($this->record['id']));
 ```

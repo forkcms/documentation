@@ -3,7 +3,11 @@
 To enable the use of tags, we provided a tags interface. To use this, all you have to do is implement this into your model.
 
 ```
-class FrontendMiniBlogModel implements FrontendTagsInterface
+namespace Frontend\Modules\MiniBlog\Engine;
+
+use Frontend\Modules\Tags\Engine\TagsInterface as FrontendTagsInterface;
+
+class Model implements FrontendTagsInterface
 ```
 
 Now you're able to use the two functions provided by the Tags interface, getForTags(), which needs an array of ids and getIdForTags(), which needs the FrontendURL instance.
@@ -11,6 +15,11 @@ Now you're able to use the two functions provided by the Tags interface, getForT
 Now all you need to do is fetch the correct data for these tags/url. It is fairly easy to fetch the data for the getForTags() function. You just need to select the items that have an id that is in our array and that are visible.
 
 ```
+use Frontend\Core\Engine\Model as FrontendModel;
+use Frontend\Core\Engine\Navigation as FrontendNavigation;
+
+...
+
 public static function getForTags(array $ids)
 {
 	$items = (array) FrontendModel::getDB()->getRecords(
@@ -24,7 +33,7 @@ public static function getForTags(array $ids)
 
 	if(!empty($items))
 	{
-		$link = FrontendNavigation::getURLForBlock('mini_blog', 'detail');
+		$link = FrontendNavigation::getURLForBlock('MiniBlog', 'detail');
 		foreach($items as $key => $row) $items[$key]['full_url'] = $link . '/' . $row['url'];
 	}
 

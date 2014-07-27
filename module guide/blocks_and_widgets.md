@@ -16,11 +16,15 @@ As long as the selected template allows it, there can be as many widgets as you 
 When you check out other existing Fork modules, you will see that most actions use the same structure, using the same method names. Beneath you'll find the complete code of the detail-action of our mini blog.
 
 ```
-class FrontendMiniBlogDetail extends FrontendBaseBlock
+namespace Frontend\Modules\MiniBlog\Actions;
+
+use Frontend\Core\Engine\Base\Block as FrontendBaseBlock;
+
+class Detail extends FrontendBaseBlock
 {
 ```
 
-Again the classname needs the be exact ApplicationModuleAction, in our case FrontendMiniBlogDetail. Because our action is a Block, it extends FrontendBaseBlock. This class takes care of everything concerning URL-handling, breadcrumbs, ...
+The classname needs to be the exact same as the action name and the file name, in our case Detail. Because our action is a Block, it extends Frontend\Core\Engine\Base\Block. This class takes care of everything concerning URL-handling, breadcrumbs, ...
 
 ```
 /** 
@@ -53,13 +57,19 @@ public function execute()
 }
 ```
 
-The execute function is always present and is called by Fork CMS when opening any action. As you can see, the execute method of FrontendBaseBlock is called too. This makes sure that the js-files and css-files are autoloaded.
+The execute function is always present and is called by Fork CMS when opening any action. As you can see, the execute method of Frontend\Core\Engine\Base\Block is called too. This makes sure that the js-files and css-files are autoloaded.
 
 The line starting with "$this->tpl->assign(" ... assigns a variable to the template we'll be using to display the action.
 
-loadTemplate (also defined in FrontendBaseBlock) loads the template file in which we parse the data we'll be loading in our self defined method getData.
+loadTemplate (also defined in Frontend\Core\Engine\Base\Block) loads the template file in which we parse the data we'll be loading in our self defined method getData.
 
 ```
+use Frontend\Core\Engine\Navigation as FrontendNavigation;
+use Frontend\Modules\MiniBlog\Engine\Model as FrontendMiniBlogModel;
+use Frontend\Modules\Tags\Engine\Model as FrontendTagsModel;
+
+...
+
  /*
  * Load the data
  *

@@ -7,8 +7,19 @@ Fork has a built-in search system. This allows visitors to easily find items on 
 To enable the search engine to find your post, you have to add it. To do this, you need the code below.
 
 ```
+use Backend\Modules\Search\Engine\Model as BackendSearchModel;
+
+...
+
 // save searchindex
-BackendSearchModel::saveIndex('mini_blog', $item['id'], array('title' => $item['title'], 'introduction' => $item['introduction'], 'text' => $item['text']));
+BackendSearchModel::saveIndex(
+	$this->getModule(), $item['id'],
+	array(
+		'title' => $item['title'],
+		'introduction' => $item['introduction'],
+		'text' => $item['text']
+	)
+);
 ```
 
 The post will now be added to the search index so we can use this data later on.
@@ -25,6 +36,11 @@ The next thing it does, is check if there is a callback available to the fronten
 The search function for our mini blog module looks like this:
 
 ```
+use Frontend\Core\Engine\Model as FrontendModel;
+use Frontend\Core\Engine\Navigation as FrontendNavigation;
+
+...
+
 public static function search(array $ids)
 {
 	$items = (array) FrontendModel::getDB()->getRecords(

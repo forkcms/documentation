@@ -7,6 +7,11 @@ We'll be using the edit-form of an article. First we'll take a look at the execu
 > Note that the structure of action files in back- and frontend is practically the same.
 
 ```
+use Backend\Core\Engine\Model as BackendModel;
+use Backend\Modules\MiniBlog\Engine\Model as BackendMiniBlogModel;
+
+...
+
 public function execute()
 {
 	$this->id = $this->getParameter('id', 'int');
@@ -22,7 +27,7 @@ public function execute()
 		$this->parse();
 		$this->display();
 	}
-	else $this->redirect(BackendModel::createURLForAction('index') . '&error=non-existing');
+	else $this->redirect(BackendModel::createURLForAction('Index') . '&error=non-existing');
 }
 ```
 
@@ -31,6 +36,12 @@ public function execute()
 In contrast to the frontend/detail-action example we added two methods. The first is the `loadForm` method to create the form. It add fields and supplies the values, most of the time, values we fetched in the `getData` method.
 
 ```
+use Backend\Core\Engine\Form as BackendForm;
+use Backend\Core\Engine\Meta as BackendMeta;
+use Backend\Modules\Tags\Engine\Model as BackendTagsModel:
+
+...
+
 private function loadForm()
 {
 	$this->frm = new BackendForm('edit');
@@ -174,6 +185,11 @@ When the form is not filled in correctly, the page is opened like usual. But, Fo
 If the form is filled in correct, an array is build with all the submitted data, and perhaps some extra data. F.e. the "edited" field with the current date and time.
 
 ```
+use Backend\Core\engine\Authentication as BackendAuthentication;
+
+...
+
+
 		$item['id'] = $this->record['id'];
 
 		$item['title'] = $this->frm->getField('title')->getValue();
@@ -197,15 +213,18 @@ We typically call an update function we defined in our (backend) model which wil
 		$this->frm->getField('tags')->getValue(), $this->URL->getModule());
 
 		// add item to searchindex
-		BackendSearchModel::saveIndex('mini_blog', $item['id'],
+		BackendSearchModel::saveIndex($this->getModule(), $item['id'],
 		array( 'title' => $item['title'], 'introduction' => $item['introduction'], 
 			'text' => $item['text']));
+
+		// trigger an action
+		BackendModel::triggerEvent($this->getModule(), 'after_add');
 ```
 
 Very important is the next line.
 
 ```
-			$this->redirect(BackendModel::createURLForAction('index') .
+			$this->redirect(BackendModel::createURLForAction('Index') .
  						'&report=added&var=' . urlencode($item['title']) .
  						'&highlight=row-' . $item['id']);
 		}

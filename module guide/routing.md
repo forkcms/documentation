@@ -69,8 +69,8 @@ Which routes (URL's) are available is determined by the pages module. This modul
 cache file(s) containing all possible routes and which modules/actions are linked to that route. These
 cache file(s) are saved per language:
 
-* `frontend/cache/navigation/keys_en.php`
-* `frontend/cache/navigation/navigation_en.php`
+* `/src/Frontend/Cache/Navigation/keys_en.php`
+* `/src/Frontend/Cache/Navigation/navigation_en.php`
 
 These cache files are volatile and should never by modified manually.
 

@@ -8,13 +8,13 @@ A widget can only live in a module, so if you don't have a module yet, you shoul
 First we will insert a new module in the modules-table, which can be done by executing the query below
 
 ```
-INSERT INTO modules(name) VALUES ('twitter');
+INSERT INTO modules(name) VALUES ('Twitter');
 ```
 
 Use the translations-module to add the translation for your module. In the example we will need to add an label with the reference code "Twitter". Once that is done, we should set the permissions
 
 ```
-INSERT INTO groups_rights_modules(id, group_id, module) VALUES (NULL, '1', 'twitter');
+INSERT INTO groups_rights_modules(id, group_id, module) VALUES (NULL, '1', 'Twitter');
 ```
 
 So, all database stuff is done, so fire up your favorite PHP-editor.
@@ -27,10 +27,14 @@ Each modules has the same structure, that's part of Fork, so we need to create s
 
 Each module must have a configuration-file, it defines some options. The file look the same across the modules, except for the class-name.
 
-The class-name is always build like this: FrontendCamelCasedModuleNameConfig, in our example the class name will be FrontendTwitterConfig. You can copy/paste the code below.
+The class should live in the root of your module and should be called Config, in our example the class will be Frontend\Modules\Twitter\Config. You can copy/paste the code below.
 
 ```
  <?php
+
+namespace Frontend\Modules\Twitter;
+
+use Frontend\Core\Engine\Base\Config as FrontendBaseConfig;
 
 /**
  * This is the configuration-object
@@ -41,14 +45,10 @@ The class-name is always build like this: FrontendCamelCasedModuleNameConfig, in
  * @author        Tijs Verkoyen <tijs@sumocoders.com>
  * @since        2.6
  */
-final class FrontendTwitterConfig extends FrontendBaseConfig
+final class Config extends FrontendBaseConfig
 {
 }
-
-?>
 ```
-
-You can download the [file](https://github.com/tijsverkoyen/fork_frontend_twitter_widget/blob/master/config.php) at github.
 
 Because our widget doensn't have any configuration-stuff it is just an empty class, the functionality is extended from the base config-class.
 
@@ -56,14 +56,19 @@ Because our widget doensn't have any configuration-stuff it is just an empty cla
 
 Offcourse our widget will need some code to grab the tweets, or to authenticate if needed.
 
-In a module we have different types of code: actions, ajax, model, widgets. For this howto we just need widgets, so we will create a folder called widgets in the module.
+In a module we have different types of code: actions, ajax, model, widgets. For this howto we just need widgets, so we will create a folder called Widgets in the module.
 
-The name I choose for the widget is *stream*. I choose this name because in the future we can expand the module with new widgets, actions, ... So, the code for a widget is placed in a file with the same name as the widget. So create a file `stream.php`.
+The name I choose for the widget is *Stream*. I choose this name because in the future we can expand the module with new widgets, actions, ... So, the code for a widget is placed in a file with the same name as the widget. So create a file `Stream.php`.
 
 Copy/paste the code below. The code is documented inline.
 
 ```
 <?php
+
+namespace Frontend\Modules\Twitter\Widgets;
+
+use Frontend\Core\Engine\Base\Widget as FrontendBaseWidget;
+use Frontend\Core\Engine\Model as FrontendModel;
 
 /**
  * This is a widget with the twitter-stream
@@ -73,9 +78,10 @@ Copy/paste the code below. The code is documented inline.
  * @subpackage    twitter
  *
  * @author        Tijs Verkoyen <tijs@sumocoders.com>
+ * @author        Wouter Sioen <wouter@woutersioen.be>
  * @since        2.6
  */
-class FrontendTwitterWidgetStream extends FrontendBaseWidget
+class Stream extends FrontendBaseWidget
 {
     /**
      * The number of tweets to show
@@ -84,14 +90,12 @@ class FrontendTwitterWidgetStream extends FrontendBaseWidget
      */
     const NUMBER_OF_TWEETS = 5;
 
-
     /**
      * An array that will hold all tweets we grabbed from Twitter.
      *
      * @var    array
      */
     private $tweets = array();
-
 
     /**
      * Execute the extra
@@ -110,7 +114,6 @@ class FrontendTwitterWidgetStream extends FrontendBaseWidget
         $this->parse();
     }
 
-
     /**
      * Get the data from Twitter
      * This method is only executed if the template isn't cached
@@ -127,17 +130,17 @@ class FrontendTwitterWidgetStream extends FrontendBaseWidget
         $consumerSecret = 'tVQa9QYJiJifhWkhRZaGKSIaf1Keb4WvmmFloa6ClY';
 
         // grab the oAuth-tokens from the settings
-        $oAuthToken = FrontendModel::getModuleSetting('twitter', 'oauth_token_' . $id);
-        $oAuthTokenSecret = FrontendModel::getModuleSetting('twitter', 'oauth_token_secret_' . $id);
+        $oAuthToken = FrontendModel::getModuleSetting('Twitter', 'oauth_token_' . $id);
+        $oAuthTokenSecret = FrontendModel::getModuleSetting('Twitter', 'oauth_token_secret_' . $id);
 
         // grab the user if from the settings
-        $userId = FrontendModel::getModuleSetting('twitter', 'user_id_' . $id);
+        $userId = FrontendModel::getModuleSetting('Twitter', 'user_id_' . $id);
 
         // require the Twitter-class
         require_once PATH_LIBRARY . '/external/twitter.php';
 
         // create instance
-        $twitter = new Twitter($consumerKey, $consumerSecret);
+        $twitter = new \Twitter($consumerKey, $consumerSecret);
 
         // if the tokens aren't available we will start the oAuth-dance
         if($oAuthToken == '' || $oAuthTokenSecret == '')
@@ -154,14 +157,14 @@ class FrontendTwitterWidgetStream extends FrontendBaseWidget
                 $response = $twitter->oAuthAccessToken($_GET['oauth_token'], $_GET['oauth_verifier']);
 
                 // store the tokens in the settings
-                FrontendModel::setModuleSetting('twitter', 'oauth_token_' . $id, $response['oauth_token']);
-                FrontendModel::setModuleSetting('twitter', 'oauth_token_secret_' . $id, $response['oauth_token_secret']);
+                FrontendModel::setModuleSetting('Twitter', 'oauth_token_' . $id, $response['oauth_token']);
+                FrontendModel::setModuleSetting('Twitter', 'oauth_token_secret_' . $id, $response['oauth_token_secret']);
 
                 // store the user-id in the settings
-                FrontendModel::setModuleSetting('twitter', 'user_id_' . $id, $response['user_id']);
+                FrontendModel::setModuleSetting('Twitter', 'user_id_' . $id, $response['user_id']);
 
                 // redirect to the current page, at this point the oAuth-dance is finished
-                SpoonHTTP::redirect($url);
+                \SpoonHTTP::redirect($url);
             }
 
             // request a token
@@ -181,7 +184,6 @@ class FrontendTwitterWidgetStream extends FrontendBaseWidget
             $this->tweets = $twitter->statusesUserTimeline($userId, null);
         }
     }
-
 
     /**
      * Parse
@@ -226,19 +228,17 @@ class FrontendTwitterWidgetStream extends FrontendBaseWidget
         }
     }
 }
-
-?>
 ```
 
 As you read through the code you'll see that we use a Twitter-class. Download this class [here](https://github.com/tijsverkoyen/fork_frontend_twitter_widget/blob/master/twitter.php) and save it under /library/external/twitter.php. We use this class to communicate with Twitter.
 
-Just as in the configfile, the name of the class has some logic: Frontend*CamelCasedModuleName*Widget*CamelCasedWidgetName*, for our widget this will be: FrontendTwitterWidgetStream
+The class names and folder structure in Fork are PSR compliant. This means that the class names and namespaces have the exact same structure as the folder structure. This is necessary for autoloading.
 
 ### The layout
 
-Ok, the code is handled, now we need some layout. The layout folder contains the files that will be used to display what our code generates. Create a folder layou/widgets/ in the module.
+Ok, the code is handled, now we need some layout. The layout folder contains the files that will be used to display what our code generates. Create a folder Layout/Widgets/ in the module.
 
-And as for the code create a file with the same name as the widget, in our example: stream.tpl
+And as for the code create a file with the same name as the widget, in our example: Stream.tpl
 Copy/paste the code below. The code is documented inline.
 
 ```
@@ -266,7 +266,6 @@ Copy/paste the code below. The code is documented inline.
     {/option:widgetTwitterStream}
 {/cache:{$LANGUAGE}_twitterWidgetStreamCache}
 ```
-You can download the [file](https://github.com/tijsverkoyen/fork_frontend_twitter_widget/blob/master/layout/widgets/stream.tpl) at github.
 
 As you can see, we have the cache-tags in place with the same name (*{$LANGUAGE}*_twitterWidgetStreamCache) as we used in the code. This means the output will be cached. If there are tweets we will loop them en parse them in aan unordered list. als some meta-data is parsed.
 
@@ -275,7 +274,7 @@ As you can see, we have the cache-tags in place with the same name (*{$LANGUAGE}
 An extra is the item that will be linked to a block on a page. For the user to be able to choose our widget in the dropdownmenu we need to add it into the pages_extras.
 
 ```
-INSERT INTO modules_extras(id, module, type, label, action, data, hidden, sequence) VALUES (NULL, 'twitter', 'widget', 'Stream', 'stream', NULL, 'N', '10000');
+INSERT INTO modules_extras(id, module, type, label, action, data, hidden, sequence) VALUES (NULL, 'Twitter', 'widget', 'Stream', 'Stream', NULL, 'N', '10000');
 ```
 
 The action field needs to be the name of the widget, stream in our example.

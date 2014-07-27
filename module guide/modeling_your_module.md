@@ -5,10 +5,10 @@
 The easiest way to start developing a module is to make your mind up about what the module is supposed to be doing. You'll completely have to separate this for frontend and backend. In our example we'll talk about the frontend. The workflow for the backend would be identical, but we would do completely different things (delete, edit, add, ...) as we'll see later on.
 In the frontend of our mini-blog there will be 4 different functionalities:
 
-* View a list of our blogposts (index)
-* View the details of one blogpost (detail)
-* Get a list of the most recent posts (recent_posts)
-* Mark a blogpost as frikkin' awesome (this_is_awesome)
+* View a list of our blogposts (Index)
+* View the details of one blogpost (Detail)
+* Get a list of the most recent posts (RecentPosts)
+* Mark a blogpost as frikkin' awesome (ThisIsAwesome)
 
 For every functionality you'll create a .php file.
 
@@ -24,13 +24,13 @@ And how they will be presented
 * **action**: the most important part of a page
 * **widget**: just a smaller part of the page
 
-Depending on these choices, you'll place your .php files in either the actions, ajax or widget folder.
+Depending on these choices, you'll place your .php files in either the Actions, Ajax or Widgets folder.
 
 As discussed earlier, actions are url-aware. When a module is linked to a page, the exact action that will be executed depends upon the url.
 Given our previous example:
 
-* *http://myforksite.local/**en**/mini-blog* has no action defined and will load the default action (in this case the list of our examples: index.php)
-* *http://myforksite.local/**en**/mini-blog/detail/fork-cms-ftw* defines an action detail, so detail.php will be loaded. It is up to detail.php to determine what to do with the remaining fork-cms-ftw in the url.
+* *http://myforksite.local/**en**/mini-blog* has no action defined and will load the default action (in this case the list of our examples: Index.php)
+* *http://myforksite.local/**en**/mini-blog/detail/fork-cms-ftw* defines an action detail, so detail.php will be loaded. It is up to Detail.php to determine what to do with the remaining fork-cms-ftw in the url.
 
 For this reason, only 1 module can be linked to a page whereas several widgets (which are url-independent) can be linked to 1 page. Usually, widgets are lesser important parts that exist mainly to inform or attract users to actions.
 
@@ -59,7 +59,7 @@ If the different actions of your module will be using the same page layout you c
 
 | Column   | Value     | Additional information |
 | -------- | --------- | ---------------------- |
-| module   | mini_blog | The module name        |
+| module   | MiniBlog  | The module name        |
 | type     | block     | Either block or widget, depending on the choices made above
 | label    | MiniBlog  | The label used to display the name of this page extra, this will call  lblMiniBlog - more on that in Chapter 10: Translations |
 | action   | NULL      | Insert the exact name of the action (e.g. index, detail) if you only want this exact action to be shown when this is linked to a page (generally not advised, as every action will then have to be linked to another page). Insert NULL to let Fork CMS define the action based upon the url (advised, this way it is possible to make all actions of 1 module accessible through 1 page where this extra is linked to) |
@@ -73,10 +73,10 @@ For our widget we need to add a record like this:
 
 | Column   | Value        |
 | -------- | ------------ |
-| module   | mini_blog    |
+| module   | MiniBlog     |
 | type     | widget       |
 | label    | RecentPosts  |
-| action   | recent_posts |
+| action   | RecentPosts  |
 | data     | NULL         |
 | hidden   | N            |
 | sequence | 7000         |
@@ -100,7 +100,7 @@ Note: as described above, we strongly recommend using the built-in Group Permiss
 
 The action- & widget-files are controllers that will handle and manipulate the data, but do not contain any visual representation. For every action that has a visual representation we need to create a template.
 
-As you might have already noticed, all the actions except the this_is_awesome action have a template-file (.tpl). They can all be found in the layout/templates folder, except the template for the recent_posts widget. This can be found in the layout/widgets folder.
+As you might have already noticed, all the actions except the ThisIsAwesome action have a template-file (.tpl). They can all be found in the Layout/Templates folder, except the template for the RecentPosts widget. This can be found in the Layout/Widgets folder.
 
 Templates files are regular .html-files but contain placeholders for the data the actionfiles will fetch from the database. More about these templates we'll see in Chapter 9: Templates.
 
@@ -109,9 +109,9 @@ If for any reason, you need to use a template that does not follow these naming 
 
 ## Config
 
-In the root folder of every module, there will be a config.php. This is the starting point when the module is executed. Here you define which action is the default action (in case of no action is provided in the URL as we saw in the routing chapter), and which actions should be disabled.
+In the root folder of every module, there will be a Config.php. This is the starting point when the module is executed. Here you define which action is the default action (in case of no action is provided in the URL as we saw in the routing chapter), and which actions should be disabled.
 > Why write disabled actions?
-> You can disable actions in config.php, but why would you write them in the first place?
+> You can disable actions in Config.php, but why would you write them in the first place?
 > When you are writing your own modules, perhaps one day you'll find yourself in the situation where you can re-use an earlier written module (or use a module shared by someone else) but you don't need all it's actions. In that case, in the config file, you can disable these actions.
 > Another plausible scenario is when you create actions that do bulk operations on the database, like populating the database with dummy content or removing all existing entries. You do not want the actions to accidently be called upon once the website goes live, but neither do you want to completely remove them (because you never know some day they might come in handy.)
 
@@ -132,4 +132,4 @@ For the mini-blog module, you'll want to add the following array to the element 
 | selected_for | a:2:{i:0;s:13:"mini_blog/add";i:1;s:14:"mini_blog/edit";} |
 | sequence     | 9                                                         |
 
-Afterwards you'll have to delete the navigation cache file (backend/cache/navigation/navigation.php) to see the changes. And add a label `MiniBlog` to the backend core to have a nice text in your menu.
+Afterwards you'll have to delete the navigation cache file (/src/Backend/Cache/Navigation/navigation.php) to see the changes. And add a label `MiniBlog` to the backend core to have a nice text in your menu.

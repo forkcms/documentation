@@ -6,19 +6,20 @@ Before we start writing our first lines of code, a word about the naming of your
 
 ### camelCasing
 
-All your classes, variables, id's... in your php, js and css-files, should be named using camelCasing. Names will exists only out of letters and numbers (there are no spaces) but every new word starts with an uppercase letter. Some examples:
+All your variables, id's... in your php, js and css-files, should be named using camelCasing. Names will exists only out of letters and numbers (there are no spaces) but every new word starts with an uppercase letter. Some examples:
 
 * *new message* becomes *newMessage*
 * *a great class* becomes *aGreatClass*
 * *variable* becomes *variable*
 * *mini blog* becomes *miniBlog*
 
-Your files and tables & columns in the database however, should never be written in camelCasing, but always in lowercase and an underscore instead of a space. The examples above become:
+Your tables & columns in the database however, should never be written in camelCasing, but always in lowercase and an underscore instead of a space. The examples above become:
 
 * *new message* becomes *new_message*
-* *a great class* becomes *a_great_class*
 * *variable* becomes *variable*
 * *mini blog* becomes mini_blog*
+
+Our php files follow the PSR conventions. This way, our folder structure and file names are always camel cased. Our class names are always the same as our file names. We start each class with the namespace it lives in.
 
 ### Javascript
 
@@ -32,12 +33,12 @@ Should a certain peace of js-code only be used on one action, then you give it t
 
 As you have have seen in our example, the module folder contains a layout folder which contains the templates and widgets to display the pages. These templates can be considered a default. When a new theme is applied to the website, the template for every module can be overwritten to better match the theme's style.
 
-To avoid altering files in the module folder (so you can re-use it later without having to think about altered code), you can create your own theme which will have a folder in the themes folder: /frontend/themes/the_a_theme/modules/. Here you put a folder with the module name (mini_blog) which contains the templates, widgets, css, ... folders, which in turn contain the custom files.
+To avoid altering files in the module folder (so you can re-use it later without having to think about altered code), you can create your own theme which will have a folder in the themes folder: /src/Frontend/Themes/the_a_theme/Modules/. Here you put a folder with the module name (MiniBlog) which contains the Templates, Widgets, css, ... folders, which in turn contain the custom files.
 
-When Fork CMS opens a webpage, it first searches for the requested template in the /frontend/themes/<selected_theme_in_fork_cms>/modules/modulename/layout/templates folder. If a template with the correct name (e.g. detail.tpl) is not found, Fork CMS falls back to the template in the default folder, frontend/modules/modulename/layout/templates.
+When Fork CMS opens a webpage, it first searches for the requested template in the /src/Frontend/Themes/<selected_theme_in_fork_cms>/Modules/ModuleName/Layout/Templates folder. If a template with the correct name (e.g. Detail.tpl) is not found, Fork CMS falls back to the template in the default folder, src/Frontend/Modules/ModuleName/Layout/Templates.
 
 > Backend templates
-> In contrast to the frontend, the templates for the backend actions are always located in “backend/modules/modulename/layout/templates”. Themes can only be applied to the frontend, so the overwrite rules don't apply to the backend.
+> In contrast to the frontend, the templates for the backend actions are always located in “src/Backend/Modules/ModuleName/Layout/Templates”. Themes can only be applied to the frontend, so the overwrite rules don't apply to the backend.
 
 ## Model
 
@@ -47,10 +48,15 @@ This file contains all the generic functions, most of the time functions that ma
 
 A rule of thumb should be that every line of (parametrized!) SQL you'll write, has to be written in a model.php file.
 
-Beneath you'll find some lines of the model.php file of the mini blog module. We'll use this example to illustrate some conventions.
+Beneath you'll find some lines of the Model.php file of the mini blog module. We'll use this example to illustrate some conventions.
 
 ```
-class FrontendMiniBlogModel implements FrontendTagsInterface
+namespace Frontend\Modules\MiniBlog\Engine;
+
+use Frontend\Core\Engine\Model as FrontendModel;
+use Frontend\Modules\Tags\Engine\TagsInterface as FrontendTagsInterface;
+
+class Model implements FrontendTagsInterface
 {
     ...
 
@@ -78,23 +84,19 @@ class FrontendMiniBlogModel implements FrontendTagsInterface
 }
 ```
 
-First we encounter the naming of the class. We can split this in three parts. Mind that classnames always begin with an uppercase and the rest follows the general in camelCasing.
+First we encounter the naming of the class. Our class and namespace follow the PSR standards. The class name is the same as the filename, minus the extension. The namespace is the path to the file, from the base namespace (Frontend).
 
-1. The application, because we'll have a Backend model too (*Frontend*)
-2. The module (*MiniBlog*)
-3. The action/name of the file (*Model*)
+It can be a good idea to write your Model.php first. The first thing you have to do is figure out what exactly every action has to be able to do.
 
-It can be a good idea to write your model.php first. The first thing you have to do is figure out what exactly every action has to be able to do.
-
-* detail
+* Detail
 	* get all the details of one article
 	* get the previous and next article (for navigation)
-* index
+* Index
 	* get a list of items, ordered by date, grouped by a given number and offset
 	* get the total amount of articles (for navigation)
-* recent_posts
+* RecentPosts
 	* get a list of items, ordered by date, grouped by a given number
-* this_is_awesome
+* ThisIsAwesome
 	* check if an article exists
 	* add 1 to the number of reports of the article
 
@@ -102,7 +104,7 @@ As you are a programmer you'll probably have seen that we want to fetch a list o
 
 Notice that the tags interface got implemented to make sure you create the propper functions that are used by the tags module.
 
-> If you check the code in model.php, you'll see we have some other methods too concerning implementing tags and searching, ... we'll discuss these later.
+> If you check the code in Model.php, you'll see we have some other methods too concerning implementing tags and searching, ... we'll discuss these later.
 
 ## Config
 
@@ -110,14 +112,19 @@ Another required file is the config, place it in the root of your backend and fr
 
 ```
 <?php
-class FrontendMiniBlogConfig extends FrontendBaseConfig
+
+namespace Frontend\Modules\MiniBlog;
+
+use Frontend\Core\Engine\Base\Config as FrontendBaseConfig;
+
+class Config extends FrontendBaseConfig
 {
 	/**
 	 * The default action
 	 *
 	 * @var	string
 	 */
-	protected $defaultAction = 'index';
+	protected $defaultAction = 'Index';
 
 	/**
 	 * The disabled actions

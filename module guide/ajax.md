@@ -6,7 +6,7 @@ Before you continue, be sure to have taken a good look at the previous javascrip
 ```
 data: 
 { 
-	fork: { module: 'mini_blog', action: 'this_is_awesome' }, 
+	fork: { module: 'MiniBlog', action: 'ThisIsAwesome' }, 
 	post_id: arg 
 },
 ```
@@ -27,11 +27,16 @@ Other arguments are action depended. In case of the this_is_awesome action, we n
 The action file itself is a .php file located in the ajax-folder. The structure of an Ajax action is the same as an other action file, meaning, there has to be a public “execute” function.
 
 ```
-class FrontendMiniBlogAjaxThisIsAwesome extends FrontendBaseAJAXAction
+namespace Frontend\Modules\MiniBlog\Ajax;
+
+use Frontend\Core\Engine\Base\AjaxAction as FrontendBaseAJAXAction;
+use Frontend\Modules\MiniBlog\Engine\Model as FrontendMiniBlogModel;
+
+class ThisIsAwesome extends FrontendBaseAJAXAction
 {
 	public function execute()
 	{
-		$post_id = (int) SpoonFilter::getPostValue('post_id', null, '', 'int');
+		$post_id = (int) \SpoonFilter::getPostValue('post_id', null, '', 'int');
 
 		if($post_id == 0)
 		{
@@ -50,6 +55,6 @@ The difference with other types of actions can be found when given special atten
 
 *ApplicationModule**Ajax**Action*
 
-Also note that the class extends FrontendBaseAJAXAction. This is necessary do define constants such as "self::OK" and the output-method.
+Also note that the class extends Frontend\Core\Engine\Base\AjaxAction. This is necessary to define constants such as "self::OK" and the output-method.
 
 Depending on the post_id being valid or not, the addAwesomeness method defined in the model is called, and the output-method is called. This function outputs JSON data which is read by the Javascript success-function we saw earlier.

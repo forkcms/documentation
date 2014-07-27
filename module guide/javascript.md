@@ -34,7 +34,7 @@ jsFrontend =
 		// set defaults for AJAX
 		$.ajaxSetup(
 		{
-			url: '/frontend/ajax.php',
+			url: '/src/Frontend/Ajax.php',
 			cache: false,
 			type: 'POST',
 			dataType: 'json',
@@ -52,7 +52,7 @@ $(jsFrontend.init);
 At the end of the file, we tell jQuery to call the init function we declared in jsFrontend. This function will then call all the other functions that need to be executed.
 
 > **backend.js**
-> There is equivalent for the frontend.js in the backend. You can find it in /default_www/backend/core/js/backend.js.
+> There is equivalent for the Frontend.js in the backend. You can find it in /src/Backend/Core/Js/Backend.js.
 
 ## module.js and action.js
 

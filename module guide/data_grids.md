@@ -8,13 +8,15 @@ The first thing you have to define is an SQL statement you'll use to fetch your 
 Typically you'll do this is the backend model.php of your module:
 
 ```
-class BackendMiniBlogModel
+namespace Backend\Modules\MiniBlog\Engine;
+
+class Model
 {
 	const QRY_DATAGRID_BROWSE = 
 		'SELECT i.id, i.title, UNIX_TIMESTAMP(i.created) AS created, i.user_id 
 		 FROM mini_blog AS i WHERE i.publish = ? AND i.language = ?';
 ```
-		 
+
 As you can see it's as always a nice piece of parametrized SQL. Mind that there is no ORDER BY clause. This will be provided by the datagrid.
 
 ## Define
@@ -22,12 +24,17 @@ As you can see it's as always a nice piece of parametrized SQL. Mind that there 
 In the index-action, we define a variable to save our data grid
 
 ```
-class BackendMiniBlogIndex extends BackendBaseActionIndex
+namespace Backend\Modules\MiniBlog\Actions;
+
+use Backend\Core\Engine\Base\Action as BackendBaseActionIndex;
+use Backend\Core\Engine\Datagrid as BackendDataGrid;
+
+class Index extends BackendBaseActionIndex
 {
 	/**
 	 * datagrid with published items
 	 *
-	 * @var	SpoonDataGrid
+	 * @var	BackendDataGrid
 	 */
 	private $dgPublished;
 
@@ -35,7 +42,7 @@ class BackendMiniBlogIndex extends BackendBaseActionIndex
 	/**
 	 * datagrid with unpublished items
 	 *
-	 * @var	SpoonDataGrid
+	 * @var	BackendDataGrid
 	 */
 	private $dgNotYetPublished;
 ```
@@ -62,6 +69,10 @@ public function execute()
 As you can see the loadDataGrid function uses the SQL-statement we defined in the model and passes two arguments.
 
 ```
+use Backend\Core\Engine\DatagridDB as BackendDataGridDB;
+
+...
+
 private function loadDataGrid($published)
 {
 	$dg = new BackendDataGridDB(BackendMiniBlogModel::QRY_DATAGRID_BROWSE,
@@ -85,24 +96,36 @@ The last argument of the setSortingColumns functions is the default column, whic
 You can make a field in clickable per column. In our case, we want to go to the edit page of the clicked article when the users clicks the title column
 
 ```
+use Backend\Core\Engine\Model as BackendModel;
+
+...
+
 $dg->setColumnURL('title', BackendModel::createURLForAction('edit') . '&amp;id=[id]');
 ```
 
 The same way you can add modifiers to variables in templates, you can apply functions to the data grids. In this example we transfer our datetime value to a nice readable date and instead of the user-id we print the username.
 
 ```
-$dg->setColumnFunction(array('BackendDatagridFunctions', 'getLongDate'),
+use Backend\Core\Engine\DatagridFunctions as BackendDataGridFunctions;
+
+...
+
+$dg->setColumnFunction(array(new BackendDatagridFunctions(), 'getLongDate'),
 				array('[created]'), 'created', true);
 
-$dg->setColumnFunction(array('BackendDatagridFunctions', 'getUser'),
+$dg->setColumnFunction(array(new BackendDatagridFunctions(), 'getUser'),
 				array('[user_id]'), 'user_id', true);
 ```
 
 You can add extra columns as well. There are different types of columns you can add. Here we add an edit and delete column. By adding it this way, they automagically get a different layout.
 
 ```
+use Backend\Core\Engine\Model as BackendModel;
+
+...
+
 	$dg->addColumn('edit', null, BL::lbl('Edit'), BackendModel::createURLForAction('edit') .
- 				'&amp;id=[id]', BL::lbl('Edit'));
+				'&amp;id=[id]', BL::lbl('Edit'));
 
 	$dg->addColumn('delete', null, BL::lbl('Delete'), 		
 		BackendModel::createURLForAction('delete') . '&amp;id=[id]', BL::lbl('Delete'));
