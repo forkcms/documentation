@@ -18,13 +18,13 @@ A request to the API is done by calling a URL with some parameters. Depending on
 A typical url for a request would look like:
 
 ```
-http://<your-fork-url>/api/v1/?method=Blog.Comments.GetById&id=1&email=foo@example.com&nonce=1320136792&secret=ed533226259c3ce3382e352634cae0a004efd5b2
+http://<your-fork-url>/api/v1?method=Blog.Comments.GetById&id=1&email=foo@example.com&nonce=1320136792&secret=ed533226259c3ce3382e352634cae0a004efd5b2
 ```
 
 Lets break this down:
 
 * *http://<your-fork-url>*: The URL to your Fork CMS install
-* */api/v1/*: This is the API endpoint. The 1.0 is some kind of versioning, so if you ever need to throw around the concept of the API, it won't break existing API implementations.
+* */api/v1*: This is the API endpoint. The 1.0 is some kind of versioning, so if you ever need to throw around the concept of the API, it won't break existing API implementations.
 * *?method=Blog.Comments.GetById*: The method parameter defines which method we will call. In this case we call the commentsGetById-method in the blog module. Each method will be prefaced with the module it lives in.
 * *&id=1*: The parameters for the method, these parameters have the same name as the one used in PHP, see below for more information.
 * *&email=foo@example.com&nonce=1320136792&secret=ed533226259c3ce3382e352634cae0a004efd5b*: These 3 parameters are used for authenticating.
@@ -128,7 +128,7 @@ Before you can make authenticated calls we need to grab an API-key. This key wil
 The URL should look like:
 
 ```
-http://<your-fork-url>/api/v1/?method=Core.GetApiKey&email=<your-email>&password=<your-password>
+http://<your-fork-url>/api/v1?method=Core.GetApiKey&email=<your-email>&password=<your-password>
 ```
 
 If you open up the URL in your browser you will see an XML-response, which contain a api_key-tag. The value inside that tag is your secret API-key. Store this value in a secure place, because you will use this a lot.
@@ -176,7 +176,7 @@ As you can see we expect the id-parameter to be an integer, so when it passes th
  public static function commentsGetById ($id )
 ```
  
-The URL we will request for this method is `http://<your-fork-url>/api/v1/?method=Blog.Comments.GetById&id=1&email=foo@example.com&nonce=1320136792&secret=ed533226259c3ce3382e352634cae0a004efd5b2` The parameter id and the parameter in the URL should have the same name, also the parameter is required, so it needs to be present in the request. If it is not present, an error will be thrown.
+The URL we will request for this method is `http://<your-fork-url>/api/v1?method=Blog.Comments.GetById&id=1&email=foo@example.com&nonce=1320136792&secret=ed533226259c3ce3382e352634cae0a004efd5b2` The parameter id and the parameter in the URL should have the same name, also the parameter is required, so it needs to be present in the request. If it is not present, an error will be thrown.
 
 Another thing that should be noted is that we convert `comments.getById` into `commentsGetById`. All dots after the module are stripped and used as a word-separator for camel-casing the string into the method.
 
