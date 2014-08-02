@@ -7,7 +7,7 @@
 * MySQL 5.0 or higher
 * Apache 2.0 with .htaccess, mod_rewrite, mod_expires (optional but recommended), mod_deflate (optional) enabled. A guide for alternative webservers is also [available](webservers).
 
-If you're uncertain if your server matches these requirements you can execute the [`php_info()`](http://php.net/phpinfo) function.
+If you're uncertain if your server matches these requirements you can execute the [`phpinfo()`](http://php.net/phpinfo) function.
 
 > Please note that Fork can not be installed in [subdirectories](faq).
 
