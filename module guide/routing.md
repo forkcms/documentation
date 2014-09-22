@@ -34,7 +34,7 @@ language indicator will be present in the url.
 
 > Multilanguage
 > If you made a mistake while installing Fork as a multilingual site, you can simply change this by
-> altering the SITE_MULTILANGUAGE -global in the globals.php file.
+> altering the SITE_MULTILANGUAGE -global in the `app/config/parameters.yml` file.
 > Caution: this will alter the generated urls, so pages indexed by search engines may result in a 404.
 
 > Active languages
