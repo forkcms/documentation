@@ -65,7 +65,7 @@ Before you install the action as a cronjob you'll want to test it manually. You'
 
 ## How to install the action as a cronjob
 
-[Configuring cronjobs](../getting started/configuring_cronjobs.md)
+[Configuring cronjobs](../getting-started/configuring_cronjobs)
 
 ## Problems when coding
 
