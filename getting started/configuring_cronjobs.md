@@ -15,8 +15,8 @@ php http://mydomain.com/src/Backend/Cronjob.php?module=Core&action=SendQueuedEma
 Webserver: 
 
 ```
-/usr/bin/wget -O - --quiet --timeout=1440 "http://mydomain.com/src/Backend/Cronjob?module=Core&action=ProcessQueuedHooks"
-/usr/bin/wget -O - --quiet --timeout=1440 "http://mydomain.com/src/Backend/Cronjob.php?module=Core&action=SendQueuedEmails"
+/usr/bin/wget -O - --quiet --timeout=1440 "http://mydomain.com/backend/cronjob?module=Core&action=ProcessQueuedHooks"
+/usr/bin/wget -O - --quiet --timeout=1440 "http://mydomain.com/backend/cronjob?module=Core&action=SendQueuedEmails"
 ```
 
 Some additional modules need extra cronjobs, check the details page on your modules overview to see which cronjobs need to be set for the module.
