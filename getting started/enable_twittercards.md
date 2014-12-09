@@ -1,7 +1,8 @@
 # Enable Twitter Cards
 
 When you want to start using Twitter cards you have to whitelist your domain through the Twitter cards validator. Once your domain is validated you are all set.
-** Note: ** when you change your cardtype, you have to revalidate.
+
+**Note:** when you change your cardtype, you have to revalidate.
 
 ## Validate your domain
 
@@ -10,5 +11,5 @@ When you want to start using Twitter cards you have to whitelist your domain thr
 * Fill out the form and submit.
 * You will receive an e-mail when Twitter has completed your validation.
 
-Once you have completed to steps above you will be able to use Twitter cards on your website. With Twitter cards you can give your followers a richer Twitter experience with
+Once you have completed the steps above you will be able to use Twitter cards on your website. With Twitter cards you can give your followers a richer Twitter experience with
 fully detailed sharing of your pages.
