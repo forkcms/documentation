@@ -15,6 +15,7 @@
 	- [Spam protection](getting started/spam_protection.md)
 	- [Linking a Google analytics account](getting started/linking_a_google_analytics_account.md)
 	- [Linking Facebook](getting started/linking_facebook.md)
+	- [Enable Twitter cards](getting started/enable_twittercards)
 	- [Configuring cronjobs](getting started/configuring_cronjobs.md)
 	- [Publish your website](getting started/publish_your_website.md)
 
@@ -56,6 +57,7 @@
 	- [How does pushToAppleApp() work](module guide/how_does_pushtoappleapp_work.md)
 	- [Creating an installer](module guide/creating_an_installer.md)
 	- [Creating a module.zip file](module guide/creating_a_module_zip_file.md)
+	- [Implementing Twitter Cards](module guide/twittercards.md)
 
 * [Theming guide](theming guide/what_is_a_theme_within_fork.md)
 	- [What is a theme within fork?](theming guide/what_is_a_theme_within_fork.md)
