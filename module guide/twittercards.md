@@ -15,4 +15,4 @@ in `src/Frontend/Core/Engine/Header.php`.
 * [Cards markup tag reference](https://dev.twitter.com/cards/markup)
 * [Cards validator](https://cards-dev.twitter.com/validator)
 
-** Note:** Don't forget to revalidate your page after you changed the cardtype.
+**Note:** Don't forget to revalidate your page after you changed the cardtype.
