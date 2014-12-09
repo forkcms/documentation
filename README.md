@@ -15,7 +15,7 @@
 	- [Spam protection](getting started/spam_protection.md)
 	- [Linking a Google analytics account](getting started/linking_a_google_analytics_account.md)
 	- [Linking Facebook](getting started/linking_facebook.md)
-	- [Enable Twitter cards](getting started/enable_twittercards)
+	- [Enable Twitter cards](getting started/enable_twittercards.md)
 	- [Configuring cronjobs](getting started/configuring_cronjobs.md)
 	- [Publish your website](getting started/publish_your_website.md)
 
