@@ -11,20 +11,17 @@ In the installer file we load the database tables (if required) and the locale (
 ```
 namespace Backend\Modules\MiniBlog\Installer;
 
-use Backend\Core\Engine\ModuleInstaller;
+use Backend\Core\Installer\ModuleInstaller;
 
-class MiniBlogInstaller extends ModuleInstaller
+class Installer extends ModuleInstaller
 {
-	/**
-	 * Install the module
-	 */
-	public function install()
-	{
-		$this->importSQL(dirname(__FILE__) . '/Data/install.sql');
+    public function install()
+    {
+        $this->importSQL(dirname(__FILE__) . '/Data/install.sql');
 
-		$this->addModule('MiniBlog');
+        $this->addModule('MiniBlog');
 
-		$this->importLocale(dirname(__FILE__) . '/Data/locale.xml');
+        $this->importLocale(dirname(__FILE__) . '/Data/locale.xml');
 ```
 
 Now we want to make sure that our module can be accessed for the search module and for other users that aren't god users. We do this by adding some rules:
@@ -33,17 +30,17 @@ Now we want to make sure that our module can be accessed for the search module a
 $this->makeSearchable('MiniBlog');
 $this->setModuleRights(1, 'MiniBlog');
 
-$this->setActionRights(1, 'MiniBlog', 'index');
-$this->setActionRights(1, 'MiniBlog', 'add');
-$this->setActionRights(1, 'MiniBlog', 'edit');
-$this->setActionRights(1, 'MiniBlog', 'delete');
+$this->setActionRights(1, 'MiniBlog', 'Index');
+$this->setActionRights(1, 'MiniBlog', 'Add');
+$this->setActionRights(1, 'MiniBlog', 'Edit');
+$this->setActionRights(1, 'MiniBlog', 'Delete');
 ```
 
 After we've added our rights, we want to create an option so we can add our blog to the frontend. To do this, we need to create some extras. Since we also have a widget with the recent posts, we also need to create an extra for that. We do this by adding the following code:
 
 ```
-$miniBlogId = $this->insertExtra('MiniBlog', 'block', 'MiniBlog');
-$this->insertExtra('MiniBlog', 'widget', 'RecentPosts', 'recent_posts');
+$this->insertExtra('MiniBlog', 'block', 'MiniBlog');
+$this->insertExtra('MiniBlog', 'widget', 'RecentPosts', 'recentposts');  
 ```
 
 The first extra will allow us to show the overview and other actions. The second extra will allow us to add the widget on pages. For this method, the first three parameters are mandatory. Here is a list of parameters:
@@ -58,7 +55,7 @@ Last but not least, we want to be able to manage our blog. To do this, we need t
 ```
 // set navigation
 $navigationModulesId = $this->setNavigation(null, 'Modules');
-$navigationBlogId = $this->setNavigation($navigationModulesId, 'MiniBlog', 'mini_blog/index', array('mini_blog/add',	'mini_blog/edit'));
+$this->setNavigation($navigationModulesId, 'MiniBlog', 'MiniBlog/Index', array('MiniBlog/Add', 'MiniBlog/Edit'));
 ```
 
 At first, we fetch the id for the Modules navigation that you can see at the top of your backend. We do this because we want our module to come in that navigation tree.
@@ -76,36 +73,48 @@ Fork already has a wide range of labels, messages, errors and actions pre instal
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <locale>
-  <Backend>
-    <MiniBlog>
-      <item type="label" name="Introduction">
-        <translation language="nl"><![CDATA[introductie]]></translation>
-        <translation language="en"><![CDATA[introduction]]></translation>
-      </item>
-      <item type="label" name="NotYetPublished">
-        <translation language="nl"><![CDATA[nog niet gepubliceerd]]></translation>
-        <translation language="en"><![CDATA[not yet published]]></translation>
-      </item>
-    </MiniBlog>
-    <Core>
-      <item type="label" name="MiniBlog">
-        <translation language="nl"><![CDATA[mini blog]]></translation>
-        <translation language="en"><![CDATA[mini blog]]></translation>
-      </item>
-    </Core>
-  </Backend>
-  <frontend>
-    <Core>
-      <item type="label" name="IThinkThisIsAwesome">
-        <translation language="nl"><![CDATA[dit is awesome!]]></translation>
-        <translation language="en"><![CDATA[this is awesome!]]></translation>
-      </item>
-      <item type="label" name="PeopleThinkThisPostIsAwesome">
-        <translation language="nl"><![CDATA[mensen vinden dit awesome!]]></translation>
-        <translation language="en"><![CDATA[people think this is awesome!]]></translation>
-      </item>
-    </Core>
-  </frontend>
+    <Backend>
+        <MiniBlog>
+            <item type="label" name="Introduction">
+                <translation language="nl"><![CDATA[introductie]]></translation>
+                <translation language="en"><![CDATA[introduction]]></translation>
+            </item>
+            <item type="label" name="NotYetPublished">
+                <translation language="nl"><![CDATA[nog niet gepubliceerd]]></translation>
+                <translation language="en"><![CDATA[not yet published]]></translation>
+            </item>
+        </MiniBlog>
+        <Core>
+            <item type="label" name="MiniBlog">
+                <translation language="nl"><![CDATA[mini blog]]></translation>
+                <translation language="en"><![CDATA[mini blog]]></translation>
+            </item>
+            <item type="message" name="AwesomenessTopFive">
+                <translation language="nl"><![CDATA[awesomeness top vijf]]></translation>
+                <translation language="en"><![CDATA[awesomeness top five]]></translation>
+            </item>
+            <item type="message" name="MiniBlogNotificationAwesomeness">
+                <translation language="nl"><![CDATA[MiniBlog mededeling: awesomeness top 5]]></translation>
+                <translation language="en"><![CDATA[MiniBlog notification: awesomeness top 5]]></translation>
+            </item>
+            <item type="label" name="RecentPosts">
+                <translation language="nl"><![CDATA[recente posts]]></translation>
+                <translation language="en"><![CDATA[recent posts]]></translation>
+            </item>
+        </Core>
+    </Backend>
+    <Frontend>
+        <Core>
+            <item type="label" name="IThinkThisIsAwesome">
+                <translation language="nl"><![CDATA[dit is awesome!]]></translation>
+                <translation language="en"><![CDATA[this is awesome!]]></translation>
+            </item>
+            <item type="label" name="PeopleThinkThisPostIsAwesome">
+                <translation language="nl"><![CDATA[mensen vinden dit awesome!]]></translation>
+                <translation language="en"><![CDATA[people think this is awesome!]]></translation>
+            </item>
+        </Core>
+    </Frontend>
 </locale>
 ```
 
@@ -139,30 +148,30 @@ We also provide a info.xml with each module. This allows us to see some informat
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <module>
-	<name>MiniBlog</name>
-	<version>1.1.0</version>
-	<requirements>
-		<minimum_version>3.5.0</minimum_version>
-	</requirements>
-	<description>
-		<![CDATA[
-			This is a mini blog system used to demonstrate how to create a module.
-		]]>
-	</description>
-	<authors>
-		<author>
-			<name><![CDATA[Jelmer Snoeck]]></name>
-			<url><![CDATA[http://www.jelmersnoeck.com]]></url>
-		</author>
-	</authors>
-	<events>
-		<event application="backend" name="after_add"><![CDATA[Triggered when a post is added.]]></event>
-		<event application="backend" name="after_delete"><![CDATA[Triggered when a post is deleted.]]></event>
-		<event application="backend" name="after_edit"><![CDATA[Triggered when a post is edited.]]></event>
-	</events>
-	<cronjobs>
-		<cronjob minute="42" hour="*" day-of-month="*" month="*" day-of-week="*" action="send_most_awesome"><![CDATA[Sends the most awesome posts to the administrator.]]></cronjob>
-	</cronjobs>
+  <name>MiniBlog</name>
+  <version>2.0.0</version>
+  <requirements>
+    <minimum_version>3.8.7</minimum_version>
+  </requirements>
+  <description>
+    <![CDATA[
+      This is a mini blog system used to demonstrate how to create a module.
+    ]]>
+  </description>
+  <authors>
+    <author>
+      <name><![CDATA[Lander Vanderstraeten]]></name>
+      <url><![CDATA[mailto:lander.vanderstraeten@wijs.be]]></url>
+    </author>
+  </authors>
+  <events>
+    <event application="backend" name="after_add"><![CDATA[Triggered when a post is added.]]></event>
+    <event application="backend" name="after_delete"><![CDATA[Triggered when a post is deleted.]]></event>
+    <event application="backend" name="after_edit"><![CDATA[Triggered when a post is edited.]]></event>
+  </events>
+  <cronjobs>
+    <cronjob minute="42" hour="*" day-of-month="*" month="*" day-of-week="*" action="send_most_awesome"><![CDATA[Sends the most awesome posts to the administrator.]]></cronjob>
+  </cronjobs>
 </module>
 ```
 

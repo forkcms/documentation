@@ -4,10 +4,9 @@
 Before you continue, be sure to have taken a good look at the previous javascript code. Mind the parameters we're calling:
 
 ```
-data: 
-{ 
-	fork: { module: 'MiniBlog', action: 'ThisIsAwesome' }, 
-	post_id: arg 
+data: {
+    fork: { module: 'MiniBlog', action: 'ThisIsAwesome' },
+    post_id: arg
 },
 ```
 
@@ -34,19 +33,18 @@ use Frontend\Modules\MiniBlog\Engine\Model as FrontendMiniBlogModel;
 
 class ThisIsAwesome extends FrontendBaseAJAXAction
 {
-	public function execute()
-	{
-		$post_id = (int) \SpoonFilter::getPostValue('post_id', null, '', 'int');
+    public function execute()
+    {
+        $post_id = (int)\SpoonFilter::getPostValue('post_id', null, '', 'int');
 
-		if($post_id == 0)
-		{
-			$this->output(self::BAD_REQUEST, null, 'invalid post_id-parameter.');
-		}
+        if ($post_id == 0) {
+            $this->output(self::BAD_REQUEST, null, 'invalid post_id-parameter.');
+        }
 
-		FrontendMiniBlogModel::addAwesomeness($post_id);
+        FrontendMiniBlogModel::addAwesomeness($post_id);
 
-		$this->output(self::OK);
-	}
+        $this->output(self::OK);
+    }
 }
 ```
 

@@ -6,12 +6,12 @@ Fork CMS exists out of three applications. The first, perhaps the most important
 
 ## Backend
 
-From a user's perspective, this part of a Fork CMS website can be found at http://myforksite.local/private. It's here where you login with the username and password you entered during the installation.
+From a user's perspective, this part of a Fork CMS website can be found at http://myforksite.dev/private. It's here where you login with the username and password you entered during the installation.
 In the filesystem, everything concerning the backend is located in the /backend folder.
 
 ## Frontend
 
-The frontend is where the actual website is located. From a user's perspective the location is of course http://myforksite.local. The files for the webdeveloper however are located in /frontend folder.
+The frontend is where the actual website is located. From a user's perspective the location is of course http://myforksite.dev. The files for the webdeveloper however are located in /frontend folder.
 
 ## API
 

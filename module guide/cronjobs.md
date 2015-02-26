@@ -1,6 +1,6 @@
 # Cronjobs
 
-If a certain action needs to be executed at a certain interval (ones a day, hour, …) you'll be defining a cronjob. The first thing you have to do is write a cronjob action. For our example we want an action that sends the administrator, ones a week, the overview of the most awesome blog_posts. (ok, a bit far fetched, ...)
+If a certain action needs to be executed at a certain interval (ones a day, hour, …) you'll be defining a cronjob. The first thing you have to do, is write a cronjob action. For our example we want an action that sends the administrator, ones a week, the overview of the most awesome blog_posts.
 
 ## Action
 
@@ -11,37 +11,46 @@ Our class extends `BackendBaseCronjob`.
 namespace Backend\Modules\MiniBlog\Cronjobs;
 
 use Backend\Core\Engine\Base\Cronjob as BackendBaseCronjob;
-use Backend\Core\Engine\Mailer as BackendMailer;
-use Backend\Core\Engine\Model as BackendModel;
 use Backend\Modules\MiniBlog\Engine\Model as BackendMiniBlogModel;
+use Backend\Core\Engine\Model as BackendModel;
+use Backend\Core\Engine\Language as BL;
 
 class SendMostAwesome extends BackendBaseCronjob
 {
-	public function execute()
-	{
-		$this->setBusyFile();
+    public function execute()
+    {
+        $this->setBusyFile();
 
-		$items = BackendMiniBlogModel::getTopAwesome();
+        // get all top awesome items
+        $items = BackendMiniBlogModel::getTopAwesome();
+        $str = '';
+        // create a link for each item containing the title and #awesomeness
+        foreach ((array)$items as $item) {
+            $str .= '<p><a href="' . SITE_URL . $item['full_url'] . '">' .
+                $item['title'] . ' (' . $item['awesomeness'] . ')</a></p>';
+        }
+        $variables['data'] = $str;
 
-		$str = '';
+        // build our message
+        $to = BackendModel::getModuleSetting('Core', 'mailer_to');
+        $from = BackendModel::getModuleSetting('Core', 'mailer_from');
+        $replyTo = BackendModel::getModuleSetting('Core', 'mailer_reply_to');
+        $tpl = BACKEND_MODULES_PATH . '/MiniBlog/Layout/Templates/Mails/Send_top_awesome.tpl';
 
-		foreach((array) $items as $item)
-		{
-			$str .= '<p><a href="' . SITE_URL . $item['full_url'] . '">' .
-							$item['title'] . ' (' . $item['awesomeness'] . ')</a></p>';
-		}
+        $message = \Common\Mailer\Message::newInstance(
+            BL::msg('NotificationAwesomeness'))
+            ->setFrom(array($from['email'] => $from['name']))
+            ->setTo(array($to['email'] => $to['name']))
+            ->setReplyTo(array($replyTo['email'] => $replyTo['name']))
+            ->parseHtml(
+                $tpl,
+                $variables,
+                true
+            );
+        $this->get('mailer')->send($message);
 
-		$variables['data'] = $str;
-
-		BackendMailer::addEmail(
-			ucfirst(BL::getMessage('AwesomenessTopFive')), 
-			BACKEND_MODULES_PATH . '/MiniBlog/Layout/Templates/mails/send_top_awesome.tpl', 
-			$variables, 
-			BackendModel::getModuleSetting('Core', 'admin_email', 'mail@fork-cms.com')
-		);
-
-		$this->clearBusyFile();
-	}
+        $this->clearBusyFile();
+    }
 }
 ```
 
@@ -60,7 +69,7 @@ You'll use cronjob often for quite intensive tasks that might take a while. To a
 Before you install the action as a cronjob you'll want to test it manually. You'll do this by calling the following url:
 
 ```
-/src/Backend/Cronjob.php?module=MODULENAME&action=ACTIONNAME
+/src/Backend/Cronjob?module=MODULENAME&action=ACTIONNAME
 ```
 
 ## How to install the action as a cronjob
