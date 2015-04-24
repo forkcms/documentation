@@ -47,7 +47,7 @@ The xml:
 	</authors>
 	<metanavigation supported="false" />
 	<templates>
-		<template label="Default" path="core/layout/templates/default.tpl">
+		<template label="Default" path="Core/Layout/Templates/default.tpl">
 			<positions>
 				<position name="main" />
 				<position name="left" />
@@ -57,7 +57,7 @@ The xml:
 				[left,main,main,right]
 			</format>
 		</template>
-		<template label="Home" path="core/layout/templates/home.tpl">
+		<template label="Home" path="Core/Layout/Templates/home.tpl">
 			<positions>
 				<position name="main" />
 				<position name="right" />
@@ -84,7 +84,7 @@ If the info.xml isn't a valid XML file, your theme won't work and won't show up 
 
 ## The templates
 
-The next step is updating the copied templates (theme_folder/core/layout/templates) to make sure they contain the right positions. You can delete the positions that don't exist, add new positions or change the names of the positions in the file to the names of the positions in your info.xml. You'll probably need to remove and add some html tags to make sure the structure of your template is the same as the structure of your sliced html without the content. For the day two example, some divs where added (divs with id mainColumn, column, class sidebar,..) and a lot of overhead was removed.
+The next step is updating the copied templates (theme_folder/Core/Layout/Templates) to make sure they contain the right positions. You can delete the positions that don't exist, add new positions or change the names of the positions in the file to the names of the positions in your info.xml. You'll probably need to remove and add some html tags to make sure the structure of your template is the same as the structure of your sliced html without the content. For the day two example, some divs where added (divs with id mainColumn, column, class sidebar,..) and a lot of overhead was removed.
 
 ### Positions
 
@@ -155,7 +155,7 @@ Another thing you should include in the head is the {$meta} and {$metaCustom} ta
 
 ## The CSS
 
-When you have these templates ready, it's time for the styles! This is easy, just copy paste the css of your slice to the core css folder of your theme (theme_folder/core/layout/css) and rename it to screen.css. If you have multiple css files, it is easiest to combine them all in one file. The link to the screen.css file is added in a template with:
+When you have these templates ready, it's time for the styles! This is easy, just copy paste the css of your slice to the core css folder of your theme (theme_folder/Core/Layout/css) and rename it to screen.css. If you have multiple css files, it is easiest to combine them all in one file. The link to the screen.css file is added in a template with:
 
 ```
 {iteration:cssFiles}
@@ -167,18 +167,18 @@ If you don't want to combine them in one file, you should make an imports folder
 
 ## Images, fonts and javascript
 
-The images, fonts and javascript should go in the folders theme_folder/core/layout/images, theme_folder/core/layout/fonts and theme_folder/core/js. When you used another folder structure for the slice, you'll need to change paths in the css file for background-images and @font-face.
+The images, fonts and javascript should go in the folders theme_folder/Core/Layout/images, theme_folder/Core/Layout/fonts and theme_folder/Core/Js. When you used another folder structure for the slice, you'll need to change paths in the css file for background-images and @font-face.
 
 You can include scripts in your templates with the variable THEME_URL.
 
 ```
-<script src="{$THEME_URL}/core/js/html5.js"></script>
+<script src="{$THEME_URL}/Core/Js/html5.js"></script>
 ```
 
 Include the following code in your template to use the core js files (including jQuery, necessary for some things to work):
 
 ```
-{* This loads all frontend core javascript files (fork_folder/frontend/core/js/
+{* This loads all frontend core javascript files (fork_folder/Frontend/Core/Js/
 Don't add your specific js files in this folder *}
 {iteration:jsFiles}
 	<script src="{$jsFiles.file}"></script>
@@ -189,7 +189,7 @@ When this is done, the basic layout of your website should be ok. If the modules
 
 ## Modules
 
-If you want to change the structure of a module, you'll need to add a modules folder directly in your theme folder. If you copied the Triton theme, this folder is already present. Everything in this folder should follow the same structure as the frontend/modules folder. The files in your theme modules folder will overwrite the file in the exact same position in the frontend/modules folder. If you want to change the index page for the blog module, you'll need to add "blog/layout/templates/index.tpl" in your modules folder. This is the same for every module/widget you want to style. It's easiest to copy the core files you want to overwrite in your own folder and edit them. This way you start from a working module that hasa basic structure. You'll also see all the variables that where already used. 
+If you want to change the structure of a module, you'll need to add a modules folder directly in your theme folder. If you copied the Triton theme, this folder is already present. Everything in this folder should follow the same structure as the Frontend/Modules folder. The files in your theme modules folder will overwrite the file in the exact same position in the Frontend/Modules folder. If you want to change the index page for the blog module, you'll need to add "Blog/Layout/Templates/Index.tpl" in your modules folder. This is the same for every module/widget you want to style. It's easiest to copy the core files you want to overwrite in your own folder and edit them. This way you start from a working module that hasa basic structure. You'll also see all the variables that where already used. 
 
 When changing module themes, a very useful modifier is dump. This modifier shows all the children of a variable. In the blog index the code {$items|dump} gives this:
 
