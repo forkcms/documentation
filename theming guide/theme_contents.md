@@ -22,7 +22,7 @@ These are page templates. These templates are used by the CMS to define the diff
 ## head.tpl & footer.tpl
 
 These two templates are included in the above-mentionned page templates (home.tpl & default.tpl) via following code: {include:core/layout/templates/head.tpl} & {include:core/layout/templates/footer.tpl}.
-Using this method, we avoid duplicate code in the page templates. So if you change footer.tpl it changes in all templates where it is included (huge timesaver for larger sites with a lot of page templates that contain recurring code like the <head> tag.)
+Using this method, we avoid duplicate code in the page templates. So if you change footer.tpl it changes in all templates where it is included (huge timesaver for larger sites with a lot of page templates that contain recurring code like the `<head>` tag.)
 
 ## html5.js
 
