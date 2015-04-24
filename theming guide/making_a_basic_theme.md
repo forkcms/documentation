@@ -84,7 +84,7 @@ If the info.xml isn't a valid XML file, your theme won't work and won't show up 
 
 ## The templates
 
-The next step is updating the copied templates (theme_folder/core/layout/templates) to make sure they contain the right positions. You can delete the positions that don't exist, add new positions or change the names of the positions in the file to the names of the positions in your info.xml. You'll probably need to remove and add some html tags to make sure the structure of your template is the same as the structure of your sliced html without the content. For the day two example, some divs where added (divs with id mainColumn, column, clas sidebar,..) and a lot of overhead was removed.
+The next step is updating the copied templates (theme_folder/core/layout/templates) to make sure they contain the right positions. You can delete the positions that don't exist, add new positions or change the names of the positions in the file to the names of the positions in your info.xml. You'll probably need to remove and add some html tags to make sure the structure of your template is the same as the structure of your sliced html without the content. For the day two example, some divs where added (divs with id mainColumn, column, class sidebar,..) and a lot of overhead was removed.
 
 ### Positions
 
