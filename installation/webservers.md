@@ -65,8 +65,8 @@ server {
   	try_files $uri $uri/ /index.php?$args;
   }
   
-  location ~ ^/(backend|install|api(\/\d.\d)?(\/client)?).*\.php$ {
-  	# backend/install/api are existing dirs, but should all pass via the front
+  location ~ ^/(frontend|backend|install|api(\/\d.\d)?(\/client)?).*\.php$ {
+  	# frontend/backend/install/api are existing dirs, but should all pass via the front
   	try_files $uri $uri/ /index.php?$args;
   }
   
