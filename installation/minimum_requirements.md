@@ -14,6 +14,6 @@ If you're uncertain if your server matches these requirements you can execute th
 
 ## Browser versions
 
-The administration interface of Fork CMS is compatible with Internet Explorer 8 and later. Chrome, Firefox, Opera and Safari have an automatic update system. Therefore we only support the latest versions for those browsers.
+The administration interface of Fork CMS is compatible with Internet Explorer 8 and later. Chrome, Firefox, Opera, and Safari have an automatic update system. Therefore we only support the latest versions for those browsers.
 
-The browser support for the frontend is depending on the theme you choose. We ask theme developers to document known issues for browsers in the description of their theme.
+The browser support for the frontend is dependent on the theme you choose. We ask theme developers to document known issues for browsers in the description of their themes.
