@@ -11,9 +11,11 @@ Each time the third number is increased, we call it a minor release. All changes
 
 ## Upgrading Fork CMS
 
-Minor versions are easy, you can just overwrite the changed files and everything will still work. You will have to clear the cache folders. The most important ones are: `/src/Backend/Cache/CompiledTemplates`, `/src/Backend/Cache/Locale`,  `/src/Backend/Cache/MinifiedCss`, `/src/Backend/Cache/MinifiedJs`, `/src/Frontend/Cache/CachedTemplates`, `/src/Frontend/Cache/CompiledTemplates`, `/src/Frontend/Cache/Locale`, `/src/Frontend/Cache/MinifiedCss`, `/src/Frontend/Cache/MinifiedJs`. Or you could run the tools/remove_cache which automatically cleans these folders.
+**Upgrading a minor version** is easy. You can simply overwrite the changed files and everything will still work. You will, however, need to clear the cache folders.
 
-Upgrading to a new major release is a bit tricky. In some cases there will be database changes, so you will have to check and execute them manually. My advice would be to reinstall your Fork CMS setup.
+The most important cache folders are: `/src/Backend/Cache/CompiledTemplates`, `/src/Backend/Cache/Locale`,  `/src/Backend/Cache/MinifiedCss`, `/src/Backend/Cache/MinifiedJs`, `/src/Frontend/Cache/CachedTemplates`, `/src/Frontend/Cache/CompiledTemplates`, `/src/Frontend/Cache/Locale`, `/src/Frontend/Cache/MinifiedCss`, `/src/Frontend/Cache/MinifiedJs`. Alternatively, you can run the tools/remove_cache which automatically cleans these folders.
+
+**Upgrading to a new major release** is a bit tricky, so we recommend you simply reinstall Fork CMS. If you choose instead to upgrade your installation, you will have to check for database changes and execute them manually. 
 
 After upgrading, you should check if there is any missing locale (http://yoursetup/private/en/locale/analyse). If there is missing locale you can import the changed XML-files through the backend (http://yoursetup/private/en/locale/import).
 
@@ -33,13 +35,13 @@ Or if you don't have a local copy, you can use https://github.com/forkcms/forkcm
 1. Open up a terminal and navigate to your project
 2. Execute the following command: `patch -p0 < updates.patch`
 
-<small>Same logic applies here, if it is a major release, some stuff can be non-backwards-compatible.</small>
+<small>Same logic applies here: if it is a major release, some stuff can be non-backwards-compatible.</small>
 
 ## Keeping track of changes <small>(untested)</small>
 
-Another approach is to keep track of the changes through Git. I'm going to assume you are working with the Git-version-control system.
+Another approach is to keep track of the changes through version control. For the purposes of this documentation we will assume you're working with the Git version control system.
 
-In your local project, you add an extra remote to the Fork CMS repository. When a new version is released you can pull the changes from the remote and merge them into your own project.
+In your local project, you will add an extra remote to the Fork CMS repository. When a new version is released you can pull the changes from the remote and merge them into your own project.
 
 ### Adding the remote
 
@@ -56,4 +58,4 @@ In your local project, you add an extra remote to the Fork CMS repository. When 
 1. Go back to your master/branch you are working on: `git co master`
 2. Merge the changes from to tracking branch, replace 3.2.7, with the latest version: `git merge fork_upstream/3.2.7`
 
-<small>Same logic applies here, if it is a major release, some stuff can be non-backwards-compatible.</small>
+<small>Same logic applies here: if it is a major release, some stuff can be non-backwards-compatible.</small>
