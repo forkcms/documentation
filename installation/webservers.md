@@ -1,16 +1,16 @@
 # Alternative webservers
 
-To be a lean, mean, SEO-machine, Fork CMS uses url-rewriting to form a proper url-structure for your website. Fork CMS has been configured to work just fine with Apache out of the box, but it can perfectly run on other servers as well, such as Lighttpd and Nginx.
+To be a lean, mean, SEO-machine, Fork CMS uses url-rewriting to form a proper url-structure for your website. Fork CMS has been configured to work well with Apache out of the box, but it can run perfectly on other servers as well (such as Lighttpd and Nginx).
 
 ## Apache
 
-Even though Fork CMS should run just fine on Apache without additional configuration, during the installation you might get a warning that something's wrong. If that is the case, you may want to doublecheck if the ".htaccess" file is present in the root of your Fork CMS setup.
+Although Fork CMS should run fine on Apache without additional configuration, during installation you may receive a warning message. If you do, you should verify that the ".htaccess" file is present in the root of your Fork CMS folder.
 
-This .htaccess-file is the Apache configuration-file and is a hidden file on Unix-based systems and may not have been unpacked. Please make sure that this **.htaccess** file is present in your document root and contains [this content](https://github.com/forkcms/forkcms/blob/master/.htaccess#L1). If it is not present, you can manually create it.
+The .htaccess-file is the Apache configuration file and is a hidden file on Unix-based systems; as such it may not have been unpacked. Please make sure that the **.htaccess** file is present in your document root and contains [this content](https://github.com/forkcms/forkcms/blob/master/.htaccess#L1). If it is not present, you can manually create it.
 
-Alternatively, it could be possible that your webserver does not allow the server's configuration to be overridden through a .htaccess-file. In that case, contact your hosting provider and ask him to change the **AllowOverride** directive. Another common problem is that the **mod_rewrite** module is not enabled on your webserver, in which case you'll also have to turn to your hosting provider to have him enable this Apache module.
+Alternatively, it is possible that your webserver does not allow the server's configuration to be overridden through a .htaccess-file. In that case, contact your hosting provider and ask them to change the **AllowOverride** directive. Another common problem is that the **mod_rewrite** module is not enabled on your webserver, in which case you'll also have to turn to your hosting provider to have them enable this Apache module.
 
-If you see an internal server error, it could be possible that your webserver does not allow the first 2 directives of the Fork CMS .htaccess to be set. In that case, you can simple remove the line that says:
+If you see an internal server error, it is possible that your webserver does not allow the first 2 directives of the Fork CMS .htaccess to be set. In this case you can simple remove the line that says:
 
 ```
 Options +FollowSymlinks -Indexes
@@ -18,7 +18,7 @@ Options +FollowSymlinks -Indexes
 
 ## Lighttpd
 
-On Apache, the .htaccess-file instructs all incoming urls should be parsed by index.php. The Lighttpd-config should reflect this. Here's a sample configuration example:
+On Apache the .htaccess-file instructs all incoming urls to be parsed by index.php. The Lighttpd-config should reflect this. Here's a sample configuration example:
 
 ```
 server.modules = (
@@ -41,15 +41,15 @@ url.rewrite-if-not-file = ( "^/?$" => "$0",
 }
 ```
 
-In this sample configuration, Fork CMS needs to rewrite its urls. This rewrite rule is based on the Apache .htaccess file and should work with the latest lighttpd 1.4.x without causing a redirect loop.
+In this sample configuration, Fork CMS needs to rewrite its urls. This rewrite rule is based on the Apache .htaccess-file and should work with the latest lighttpd 1.4.x without causing a redirect loop.
 
-These are the minimal requirements to have Fork CMS set up and functioning properly as it’s supposed to with regards to configuring Lighttpd as your webserver.
+These are the minimal requirements for Fork CMS to function properly with regards to configuring Lighttpd as your webserver.
 
-Additional configuration options can be added to Lighttpd's configuration file to approximate the behaviour under Apache with regards to caching and compressing and so on.
+Additional configuration options can be added to Lighttpd's configuration file to approximate the behaviour under Apache with regards to caching, compression, and so on.
 
 ## Nginx
 
-Another popular lightweight webserver is Nginx. The configuration of this server for Fork CMS is similar to the configuration on a Lighttpd server. Below, you can find an example configuration.
+Another popular lightweight webserver is Nginx. The configuration of this server for Fork CMS is similar to the configuration on a Lighttpd server. Below you can find an example configuration.
 
 ```
 server {
