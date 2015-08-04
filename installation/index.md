@@ -1,6 +1,6 @@
 ## Step 1: Download
 
-PHP Developers using composer could use this command to install the latest stable release for Fork from the command line:
+PHP Developers using Composer can use this command to install the latest stable release of Fork from the command line:
 
     composer create-project forkcms/forkcms .
 
@@ -29,5 +29,5 @@ Use your browser to surf to your domain (this should forward you to the Fork CMS
 
 ![Installation started](https://raw.github.com/forkcms/documentation/master/installation/assets/started_install.jpg)
 
-> Don't panic if you experience problems during the installation. Start by taking a look in our
+> Don't panic if you experience problems during the installation. Start by taking a look at our
 [Frequently Asked Questions](faq).
