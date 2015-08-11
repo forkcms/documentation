@@ -4,17 +4,17 @@ The [analytics module](http://www.fork-cms.com/extensions/detail/analytics) requ
 
 ## Register domain
 
-A detailed guide can be found on the official google [documentation](https://developers.google.com/accounts/docs/RegistrationForWebAppsAuto).
+A detailed guide can be found on the official Google [documentation](https://developers.google.com/accounts/docs/RegistrationForWebAppsAuto).
 
 ### Add your domain
 
-On the [Manage Your Domains](https://accounts.google.com/ManageDomains) page, enter the url of your website and click on the *Add Domain* button.
+On the [Manage Your Domains](https://accounts.google.com/ManageDomains) page, enter the URL of your website and click on the *Add Domain* button.
 
 ![Add Domain](https://raw.github.com/forkcms/documentation/master/getting%20started/assets/settings_analytics_add_domain.png)
 
 ### Verify your domain
 
-The easiest way to verify your domain is by uploading the html file through (s)ftp.
+The easiest way to verify your domain is by uploading the HTML file through FTP (or SFTP).
 
 ### Provide domain information
 
@@ -26,11 +26,11 @@ The target URL path prefix is just your domain because Fork CMS isn't installabl
 
 ### Creating an API key
 
-Go to the [Google API's console](https://code.google.com/apis/console/). If it is the first time, you will need to create a project.
+Go to the [Google API's console](https://code.google.com/apis/console/). If this is your first time, you will need to create a project.
 
 ![Start using the Google APIs console](https://raw.github.com/forkcms/documentation/master/getting%20started/assets/settings_analytics_create_project.png)
 
-Go to the *Services* page and activate the *Analytics API* by changing the status to "ON". You might need to agree with the terms of service.
+Go to the *Services* page and activate the *Analytics API* by changing the status to "ON". You may need to agree to the Terms of Service.
 
 ![Google APIs activate service](https://raw.github.com/forkcms/documentation/master/getting%20started/assets/settings_analytics_activate_service.png)
 
@@ -38,17 +38,17 @@ After activating the service go the *API access* page. Under *Simple API Access*
 
 ![Google APIs create API key](https://raw.github.com/forkcms/documentation/master/getting%20started/assets/settings_analytics_create_key.png)
 
-This will open up a dialog, asking you to specify which URL's can use this API key. Leave this empty, this will allow the API key to be used by any domain.
+This will open up a dialog asking you to specify which URL's can use this API key. Leave this empty; this will allow the API key to be used by any domain.
 
 ![Google APIs configure API key](https://raw.github.com/forkcms/documentation/master/getting%20started/assets/settings_analytics_configure_api.png)
 
-After creating, the API key will be available on the API Access page under "Simple API Access".
+After creation the API key will be available on the API Access page under "Simple API Access".
 
 ![Google APIs copy API key](https://raw.github.com/forkcms/documentation/master/getting%20started/assets/settings_analytics_key.png)
 
 ### Link to the analytics module
 
-Login in to your Fork and go to *Settings -> Modules -> Analytics*. You should see a text field asking you for an API key. Fill in the API key created in the previous step.
+Login in to your Fork dashboard and go to *Settings -> Modules -> Analytics*. You should see a text field asking you for an API key. Fill in the API key created in the previous step.
 
 ![Analytics API key](https://raw.github.com/forkcms/documentation/master/getting%20started/assets/settings_analytics_api_key.png)
 
@@ -56,7 +56,7 @@ After clicking *Link your Google account*, you will be redirected to a Google ac
 
 ![Analytics grant access](https://raw.github.com/forkcms/documentation/master/getting%20started/assets/settings_analytics_grant_access.png)
 
-After granting access you will be redirected back to Fork. You will now be asked to select a profile. This is the profile for which the analytics module will be fetch results.
+After granting access you will be redirected back to Fork. You will now be asked to select a profile. This is the profile for which the analytics module will fetch results.
 
 ![Select profile](https://raw.github.com/forkcms/documentation/master/getting%20started/assets/settings_analytics_link_profile.png)
 
@@ -66,6 +66,6 @@ Thats it! After linking a profile you will be able to see statistics in the anal
 
 ### Known issue: No profiles found
 
-Sometimes your profiles won't show, even if your account is connected succesfully. Google stops sending profiles through their API when one property (web or app) has no specific profile but instead uses All Web Site Data. So make sure that all your properties have profiles.
+Sometimes your profiles won't show even if your account is connected succesfully. Google stops sending profiles through their API when one property (web or app) has no specific profile but instead uses All Web Site Data. So make sure that all your properties have profiles.
 
 ![All website data](https://raw.github.com/forkcms/documentation/master/getting%20started/assets/settings_analytics_allwebsitedata.png)
