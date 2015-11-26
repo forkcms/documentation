@@ -2,7 +2,7 @@
 
 ## Server
 
-* PHP 5.3.3 or higher
+* PHP 5.5 or higher
 * The following PHP extensions should be installed and enabled: [cURL](http://php.net/curl), [libxml](http://php.net/libxml), [DOM](http://php.net/dom), [SimpleXML](http://php.net/simplexml), [SPL](http://php.net/manual/en/book.spl.php), [PDO](http://php.net/pdo) (with MySQL driver), [mb_string](http://php.net/mb_string), [iconv](http://php.net/iconv), [GD2 graphics library](http://php.net/manual/en/book.image.php), [json](http://php.net/json), [PCRE](http://php.net/pcre).
 * MySQL 5.0 or higher
 * Apache 2.0 with .htaccess, mod_rewrite, mod_expires (optional but recommended), mod_deflate (optional) enabled. A guide for alternative webservers is also [available](webservers).
