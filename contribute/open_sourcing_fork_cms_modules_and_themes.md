@@ -1,10 +1,10 @@
-# Open Sourcen Fork CMS Modules and Themes
+# Open Sourcing Fork CMS Modules and Themes
 
 ## Git repository names
 
 ### Modules
 
-If you want to open-source a module called "blog",
+If you want to open source a module called "blog",
 we recommend the following git repository name:
 
 ```
