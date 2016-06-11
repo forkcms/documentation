@@ -38,7 +38,7 @@ In several occasions it will be necesary to check if the data is available, this
 The data you passed through PHP is handled as JSON, so you should be able to have keys like: `location.settings.zoom.level`, therefore you will need to add it in PHP like:
 
 ```
-$this->header->addJsData('settings', array('zoom' => array('level' => 12)));
+$this->header->addJsData($this->getModule(), 'settings', array('zoom' => array('level' => 12)));
 ```
 
 In JS you can retrieve this value by using:
