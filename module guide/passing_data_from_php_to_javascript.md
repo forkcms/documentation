@@ -29,7 +29,7 @@ If the locale data is loaded we can retrieve the correct value. If it doesn't ex
 
 Passing data to JS from within PHP can be tricky, there are several pitfalls. For instance you have to make sure the data is available when the jsFiles are loaded. Therefore we added a proper way:
 
-From within PHP you can use the method `$this->header->addJsData(<key>, <value>)`, so basically it is a key value-store, you give it a unique name and we will take care of it.
+From within PHP you can use the method `$this->header->addJsData(<module>, <key>, <value>)`, so basically it is a key value-store, you give it a unique name and we will take care of it.
 
 In JS you can grab the data by using the `jsFrontend.data.get(<module>.<key>)`-method. As you can see each key will be prefixed with the module wherin the action or widget lives, we added this to handle scope-problems.
 
