@@ -43,10 +43,10 @@ As we said before, translations are added/edited in the backend. Here you see a 
 
 The **reference code** is the name of the translation (Add, NoItems, ...). This code is always written in camelCasing with **an uppercase first letter**. This is because we'll be using a prefix depending on the type of translation when we're calling the translation in the templates.
 
-* labels => `{$lblNameOfTheTranslation}`
-* messages => `{$msgNameOfTheTranslation}`
-* actions => `{$actNameOfTheTranslation}`
-* errors => `{$errNameOfTheTranslation}`
+* labels => `{{ 'lbl.NameOfTheTranslation'|trans }}`
+* messages => `{{ 'msg.NameOfTheTranslation'|trans }}`
+* actions => `{{ 'act.NameOfTheTranslation'|trans }}`
+* errors => `{{ 'err.NameOfTheTranslation'|trans }}`
 
 As you see, now it's “real” camelCasing.
 

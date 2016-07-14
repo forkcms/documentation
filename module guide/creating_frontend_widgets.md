@@ -116,7 +116,6 @@ class Stream extends FrontendBaseWidget
 
     /**
      * Get the data from Twitter
-     * This method is only executed if the template isn't cached
      *
      * @return    void
      */
@@ -192,40 +191,33 @@ class Stream extends FrontendBaseWidget
      */
     private function parse()
     {
-        // we will cache this widget for 10 minutes, so we don't have to call Twitter each time a visitor enters a page with this widget.
-        $this->tpl->cache(FRONTEND_LANGUAGE . '_twitterWidgetStreamCache', (10 * 60 * 60));
+        // get data from Twitter
+        $this->getData();
 
-        // if the widget isn't cached, we should grab the data from Twitter
-        if(!$this->tpl->isCached(FRONTEND_LANGUAGE . '_twitterWidgetStreamCache'))
+        // init var
+        $tweets = array();
+
+        // build nice array which can be used in the template-engine
+        foreach($this->tweets as $tweet)
         {
-            // get data from Twitter
-            $this->getData();
+            // we don't want to show @replies, so skip tweets that have in_reply_to_user_id set.
+            if($tweet['in_reply_to_user_id'] != '') continue;
 
             // init var
-            $tweets = array();
+            $item = array();
 
-            // build nice array which can be used in the template-engine
-            foreach($this->tweets as $tweet)
-            {
-                // we don't want to show @replies, so skip tweets that have in_reply_to_user_id set.
-                if($tweet['in_reply_to_user_id'] != '') continue;
+            // add values we need
+            $item['user_name'] = $tweet['user']['name'];
+            $item['url'] = 'http://twitter.com/' . $tweet['user']['screen_name'] . '/status/' . $tweet['id'];
+            $item['text'] = $tweet['text'];
+            $item['created_at'] = strtotime($tweet['created_at']);
 
-                // init var
-                $item = array();
-
-                // add values we need
-                $item['user_name'] = $tweet['user']['name'];
-                $item['url'] = 'http://twitter.com/' . $tweet['user']['screen_name'] . '/status/' . $tweet['id'];
-                $item['text'] = $tweet['text'];
-                $item['created_at'] = strtotime($tweet['created_at']);
-
-                // add the twee
-                $tweets[] = $item;
-            }
-
-            // get the numbers
-            $this->tpl->assign('widgetTwitterStream', array_slice($tweets, 0, self::NUMBER_OF_TWEETS));
+            // add the twee
+            $tweets[] = $item;
         }
+
+        // get the numbers
+        $this->tpl->assign('widgetTwitterStream', array_slice($tweets, 0, self::NUMBER_OF_TWEETS));
     }
 }
 ```
@@ -238,36 +230,31 @@ The class names and folder structure in Fork are PSR compliant. This means that 
 
 Ok, the code is handled, now we need some layout. The layout folder contains the files that will be used to display what our code generates. Create a folder Layout/Widgets/ in the module.
 
-And as for the code create a file with the same name as the widget, in our example: Stream.tpl
+And as for the code create a file with the same name as the widget, in our example: Stream.html.twig
 Copy/paste the code below. The code is documented inline.
 
 ```
-{* We use the templates caching-feature as a way to limit the calls to the Twitter API *}
-{cache:{$LANGUAGE}_twitterWidgetStreamCache}
-    {* Only show the stream if there are tweets *}
-    {option:widgetTwitterStream}
-        <ul>
-            {* Loop the tweets *}
-            {iteration:widgetTwitterStream}
-                <li>
-                    {* By using the cleanupplaintext-modifier the links in the tweet will be parsed. *}
-                    {$widgetTwitterStream.text|cleanupplaintext}
+{# Only show the stream if there are tweets #}
+{% if widgetTwitterStream }}
+    <ul>
+    {# Loop the tweets #}
+    {{ for tweet in widgetTwitterStream }}
+        <li>
+            {# By using the cleanupplaintext-modifier the links in the tweet will be parsed. #}
+            {{ widgetTwitterStream.text|cleanupplaintext }}
 
-                    <p class="date">
-                        <a href="{$widgetTwitterStream.url}">
-                            <time datetime="{$widgetTwitterStream.created_at|date:'Y-m-d\TH:i:s'}" pubdate>
-                                {$widgetTwitterStream.created_at|timeago}
-                            </time>
-                        </a>
-                    </p>
-                </li>
-            {/iteration:widgetTwitterStream}
-        </ul>
-    {/option:widgetTwitterStream}
-{/cache:{$LANGUAGE}_twitterWidgetStreamCache}
+            <p class="date">
+                <a href="{{ widgetTwitterStream.url }}">
+                    <time datetime="{{ widgetTwitterStream.created_at|date('Y-m-d\TH:i:s) }}" pubdate>
+                        {{ widgetTwitterStream.created_at|timeago }}
+                    </time>
+                </a>
+            </p>
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}
 ```
-
-As you can see, we have the cache-tags in place with the same name (*{$LANGUAGE}*_twitterWidgetStreamCache) as we used in the code. This means the output will be cached. If there are tweets we will loop them en parse them in aan unordered list. als some meta-data is parsed.
 
 ## Inserting the extra
 

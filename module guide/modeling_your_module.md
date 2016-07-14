@@ -100,11 +100,11 @@ Note: as described above, we strongly recommend using the built-in Group Permiss
 
 The action- & widget-files are controllers that will handle and manipulate the data, but do not contain any visual representation. For every action that has a visual representation we need to create a template.
 
-As you might have already noticed, all the actions except the ThisIsAwesome action have a template-file (.tpl). They can all be found in the Layout/Templates folder, except the template for the RecentPosts widget. This can be found in the Layout/Widgets folder.
+As you might have already noticed, all the actions except the ThisIsAwesome action have a template-file (.html.twig). They can all be found in the Layout/Templates folder, except the template for the RecentPosts widget. This can be found in the Layout/Widgets folder.
 
 Templates files are regular .html-files but contain placeholders for the data the actionfiles will fetch from the database. More about these templates we'll see in Chapter 9: Templates.
 
-When browsing (e.g. to http://myforksite.local/en/mini-blog/detail/fork-cms-ftw) the same routing conventions will be used to select the correct template. The template should therefor always have the same name as the action/widget file, followed by ".tpl"
+When browsing (e.g. to http://myforksite.local/en/mini-blog/detail/fork-cms-ftw) the same routing conventions will be used to select the correct template. The template should therefor always have the same name as the action/widget file, followed by ".html.twig"
 If for any reason, you need to use a template that does not follow these naming conventions, it is possible to override this behaviour in the called-upon action/widget.
 
 ## Config

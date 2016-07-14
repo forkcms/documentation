@@ -18,14 +18,14 @@ First, we'll need to add the SEO-tab to the edit and add pages of our backend. Y
 The tab itself:
 
 ```
-<li><a href="#tabSEO">{$lblSEO|ucfirst}</a></li>
+<li><a href="#tabSEO">{{ 'lbl.SEO'|trans|ucfirst }}</a></li>
 ```
 
 The content of the tab.
 
 ```
 <div id="tabSEO">
-	{include:{$BACKEND_CORE_PATH}/layout/templates/seo.tpl}
+    {% seo %}
 </div>
 ```
 

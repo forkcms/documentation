@@ -8,10 +8,10 @@ To use the pagination functionallity, we'll need to provide some parameters. Fir
 
 ```
 protected $pagination = array(
-	'limit' => 10, 
-	'offset' => 0, 
-	'requested_page' => 1, 
-	'num_items' => null, 
+	'limit' => 10,
+	'offset' => 0,
+	'requested_page' => 1,
+	'num_items' => null,
 	'num_pages' => null
 );
 ```
@@ -63,18 +63,10 @@ $this->records = FrontendMiniBlogModel::getAll($this->pagination['limit'], $this
 To parse the data to your template, all you have to do is assign it in you parse function and call it in your template.
 
 **Index.php**
-``` 
+```
 protected function parse()
 {
 	$this->tpl->assign('items', $this->records);
 	$this->parsePagination();
 }
-```
-
-**Index.tpl**
-```
-{option:items}
-	....
-	{include:{$FRONTEND_CORE_PATH}/Layout/Templates/Pagination.tpl}
-{/option:items}
 ```

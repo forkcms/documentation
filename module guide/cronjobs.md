@@ -35,7 +35,7 @@ class SendMostAwesome extends BackendBaseCronjob
         $to = BackendModel::getModuleSetting('Core', 'mailer_to');
         $from = BackendModel::getModuleSetting('Core', 'mailer_from');
         $replyTo = BackendModel::getModuleSetting('Core', 'mailer_reply_to');
-        $tpl = BACKEND_MODULES_PATH . '/MiniBlog/Layout/Templates/Mails/Send_top_awesome.tpl';
+        $tpl = BACKEND_MODULES_PATH . '/MiniBlog/Layout/Templates/Mails/Send_top_awesome.html.twig';
 
         $message = \Common\Mailer\Message::newInstance(
             BL::msg('NotificationAwesomeness'))
