@@ -49,7 +49,7 @@ private function loadForm()
 	$this->frm->addEditor('text', $this->record['text']);
 	$this->frm->addEditor('introduction', $this->record['introduction']);
 	$this->frm->addCheckbox('publish', ($this->record['publish'] === 'Y' ? true : false));
-	
+
 	$this->frm->addText('tags', BackendTagsModel::getTags($this->URL->getModule(), $this->record['id']), null, 'inputText tagBox', 'inputTextError tagBox');
 
 	$this->meta = new BackendMeta($this->frm, $this->record['meta_id'], 'title', true);
@@ -69,18 +69,18 @@ With Fork CMS you don't have to write all the form- and input tags yourself. Tak
 
 ```
 ...
-{form:edit}
-	{$txtTitle} {$txtTitleError}
+{% form edit %}
+	{% form_field title %} {% form_field_error title %}
 
 	<div id="pageUrl">
 		<div class="oneLiner">
-			<p><span><a href="{$detailURL}">{$detailURL}</a></span></p>
+			<p><span><a href="{{ detailURL }}">{{ detailURL }}</a></span></p>
 		</div>
 	</div>
 	<div class="tabs">
 		<ul>
-			<li><a href="#tabContent">{$lblContent|ucfirst}</a></li>
-			<li><a href="#tabSEO">{$lblSEO|ucfirst}</a></li>
+			<li><a href="#tabContent">{{ 'lbl.Content'|trans|ucfirst}}</a></li>
+			<li><a href="#tabSEO">{{ 'lbl.SEO'|trans|ucfirst}}</a></li>
 		</ul>
 
 		<div id="tabContent">
@@ -92,27 +92,26 @@ With Fork CMS you don't have to write all the form- and input tags yourself. Tak
 							<div class="heading">
 								<div class="oneLiner">
 									<h3>
-									{$lblIntroduction|ucfirst}
-								<abbr title="{$lblRequiredField}">
-								*</abbr>
+									{{ 'lbl.Introduction'|trans|ucfirst }}
+									<abbr title="{{ 'lbl.RequiredField'|trans }}">*</abbr>
 									</h3>
 								</div>
 							</div>
 							<div class="optionsRTE">
-								{$txtIntroduction}
-								{$txtIntroductionError}
+								{% form_field introduction %}
+								{% form_field_error introduction %}
 							</div>
-... 
-{/form:edit}
+...
+{% endform %}
 ```
 
-We start the form by using {form:nameOfTheForm}. Just like when using iterations and options, there is no dollar-sign. When writing this , it's replaced by the form-tag and a couple of hidden fields Fork CMS uses to determine if the form was submitted.
+We start the form by using {% form nameOfTheForm %}. Just like when using iterations and options, there is no dollar-sign. When writing this , it's replaced by the form-tag and a couple of hidden fields Fork CMS uses to determine if the form was submitted.
 
 Typically when you want to add a form field to your template, you'll write three things.
 
-* A label        → `{$lblIntroduction|ucfirst}`
-* The formfield  → `{$txtIntroduction}`
-* The error       → `{$txtIntroductionError}`
+* A label        → `{{ 'lbl.Introduction'|trans|ucfirst }}`
+* The formfield  → `{% form_field introduction %}`
+* The error      → `{% form_field_error introduction %}`
 
 The label is not mandatory, but most of the times you want to tell the user what he/she is supposed to fill in.
 
@@ -122,12 +121,12 @@ In the next chapter we'll cover how to validate a form and how to add errors to 
 
 > **An optional error**
 > As you now, every variable can be used as an option. So when an error is supplied you could use this as an option:
-> <span {option:txtNrError} class="showInRed"{/option:txtNrError}>
-> {$lblNr} </span>
-> {$txtNr} {$txtNrError}
+> <span {% if txtNrError %} class="showInRed"{% endif %}>
+> {{ 'lbl.Nr'|trans|ucifirst }} </span>
+> {% form_field nr %} {% form_field_error nr %}
 > This way, the label of the form is displayed in red.
 
-When you're done writing all the fields, you close the form with `{/form:nameOfTheForm}`.
+When you're done writing all the fields, you close the form with `{% endfor %}`.
 
 ## Validating
 
@@ -195,14 +194,14 @@ use Backend\Core\engine\Authentication as BackendAuthentication;
 		$item['title'] = $this->frm->getField('title')->getValue();
 		$item['introduction'] = $this->frm->getField('introduction')->getValue();
 		$item['text'] = $this->frm->getField('text')->getValue();
-		$item['publish'] = $this->frm->getField('publish')->getChecked() 
+		$item['publish'] = $this->frm->getField('publish')->getChecked()
 											? 'Y' : 'N';
 		$item['user_id'] = BackendAuthentication::getUser()->getUserId();
 		$item['meta_id'] = $this->meta->save();
 		$item['edited'] = date('Y-m-d H:i:s');
 		$item['language'] = BL::getWorkingLanguage();
 ```
-		
+
 We typically call an update function we defined in our (backend) model which will save the array as a record in the database. Mind that we added a field “id” to our array. The update function will use this field to update the right record.
 
 ```
@@ -214,7 +213,7 @@ We typically call an update function we defined in our (backend) model which wil
 
 		// add item to searchindex
 		BackendSearchModel::saveIndex($this->getModule(), $item['id'],
-		array( 'title' => $item['title'], 'introduction' => $item['introduction'], 
+		array( 'title' => $item['title'], 'introduction' => $item['introduction'],
 			'text' => $item['text']));
 
 		// trigger an action
