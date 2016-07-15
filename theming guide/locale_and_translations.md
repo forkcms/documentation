@@ -34,24 +34,27 @@ All locale can be managed through the Fork CMS interface. It is available under 
 
 Locale can be used in the template files. If you are working on sites that should be available in multiple languages, this will prove to be handy.
 
-To use it in the template files (.tpl) you have to use the following syntax:
+To use it in the template files (.html.twig) you have to use the following syntax:
 
 ```
-{$[act|err|lbl|msg]<Name>}
+* labels => `{{ 'lbl.NameOfTheTranslation'|trans }}`
+* messages => `{{ 'msg.NameOfTheTranslation'|trans }}`
+* actions => `{{ 'act.NameOfTheTranslation'|trans }}`
+* errors => `{{ 'err.NameOfTheTranslation'|trans }}`
 ```
 
-So for instance, if you would like to place the word "archive" in the template, you will have to use: `{$lblArchive}`.
+So for instance, if you would like to place the word "archive" in the template, you will have to use: `{{ 'lbl.Archive'|trans }}`.
 
 ### Locale in code
 
-In the code, there are some methods to retrieve locale. Each type of locale has it own method. They use the Frontend\Core\Engine\Language class. It's aliased here as FL.
+In the code, there are some methods to retrieve locale. Each type of locale has it own method. They use the Frontend\Core\Engine\Language class.
 
-* `FL::act($key):` used for retrieving actions
-* `FL::err($key):` used for retrieving error messages
-* `FL::lbl($key):` used for retrieving labels
-* `FL::msg($key):` used for retrieving messages
+* `Language::act($key):` used for retrieving actions
+* `Language::err($key):` used for retrieving error messages
+* `Language::lbl($key):` used for retrieving labels
+* `Language::msg($key):` used for retrieving messages
 
-Be aware that you can apply formating (ucfirst, sprintf, ...) yourself.
+Be aware that you can apply formating (ucfirst, format, ...) yourself.
 
 ### Locale in JS-files
 
@@ -81,10 +84,10 @@ In the templates, it doesn't change a thing, the correct value will automaticall
 
 ### Locale in code
 
-In the backend there are some methods to retrieve locale. Each type of locale has it own method. They use the Backend\Core\Engine\Language class. It's aliased here as BL.
+In the backend there are some methods to retrieve locale. Each type of locale has it own method. They use the Backend\Core\Engine\Language class.
 
-* `BL::err($key, $module):` used for retrieving errors
-* `BL::lbl($key, $module):` used for retrieving labels
-* `BL::msg($key, $module):` used for retrieving messages
+* `Language::err($key, $module):` used for retrieving errors
+* `Language::lbl($key, $module):` used for retrieving labels
+* `Language::msg($key, $module):` used for retrieving messages
 
 As you can see, you are able to specify a module. If you don't provide the module-parameter, it will use the current module.

@@ -33,10 +33,10 @@
 ### Templates
 
 - [ ] Are your templates placed in /core/layout/templates/?
-- [ ] Don't you overwrite module templates unnecessary? 
+- [ ] Don't you overwrite module templates unnecessary?
 - [ ] Do they include the charset meta tag?
 - [ ] Do they include the generator meta tag? Spread the love!
-- [ ] Did you include $siteHTMLHeader and $siteHTMLFooter?
+- [ ] Did you include siteHTMLHeader and siteHTMLFooter?
 - [ ] Do you have a default template?
 - [ ] Did you include breadcrumbs?
 - [ ] Did you include a language selector?

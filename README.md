@@ -28,7 +28,7 @@
 	- [Marketing](user guide/marketing.md)
 	- [Mailmotor](user guide/marketing.md)
 	- [Settings](user guide/settings.md)
-	
+
 * [Module guide](module guide/applications_and_library.md)
 	- [Applications & Library](module guide/applications_and_library.md)
 	- [Routing](module guide/routing.md)
@@ -65,7 +65,6 @@
 	- [Page templates, positions & blocks](theming guide/page_templates_positions_and_blocks.md)
 	- [Making a basic theme](theming guide/making_a_basic_theme.md)
 	- [Locale and translations](theming guide/locale_and_translations.md)
-	- [Template modifiers](theming guide/template_modifiers.md)
 	- [Theme checklist](theming guide/theme_checklist.md)
 
 * [Contribute](contribute/index.md)

@@ -105,7 +105,7 @@ With Fork CMS you don't have to write all the form- and input tags yourself. Tak
 {% endform %}
 ```
 
-We start the form by using {% form nameOfTheForm %}. Just like when using iterations and options, there is no dollar-sign. When writing this , it's replaced by the form-tag and a couple of hidden fields Fork CMS uses to determine if the form was submitted.
+We start the form by using {% form nameOfTheForm %}. When writing this, it's replaced by the form-tag and a couple of hidden fields Fork CMS uses to determine if the form was submitted.
 
 Typically when you want to add a form field to your template, you'll write three things.
 

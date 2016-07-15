@@ -15,14 +15,14 @@ By copying the Triton folder, you now have the correct base structure and files 
 
 Let's take a close look at what's inside Triton.
 
-## home.tpl & default.tpl
+## home.html.twig & default.html.twig
 
 These are page templates. These templates are used by the CMS to define the different content pages.
 
-## head.tpl & footer.tpl
+## head.html.twig & footer.html.twig
 
-These two templates are included in the above-mentionned page templates (home.tpl & default.tpl) via following code: {include:core/layout/templates/head.tpl} & {include:core/layout/templates/footer.tpl}.
-Using this method, we avoid duplicate code in the page templates. So if you change footer.tpl it changes in all templates where it is included (huge timesaver for larger sites with a lot of page templates that contain recurring code like the `<head>` tag.)
+These two templates are included in the above-mentioned page templates (home.html.twig & default.html.twig) via following code: {% include "core/layout/templates/head.html.twig" }} & {% include "core/layout/templates/footer.html.twig" }}.
+Using this method, we avoid duplicate code in the page templates. So if you change footer.html.twig it changes in all templates where it is included (huge time saver for larger sites with a lot of page templates that contain recurring code like the `<head>` tag.)
 
 ## html5.js
 
@@ -30,8 +30,8 @@ This nifty script is a fallback for non-HTML5 browsers. This enables you to use 
 
 ## triton.js
 
-Contains some default scripts, e.g. a class called '.linkedImage' is assinged to a link that contains an image. You can use this class to get rid of the border-bottom we use on ordinary text-links.
+Contains some default scripts, e.g. a class called '.linkedImage' is assigned to a link that contains an image. You can use this class to get rid of the border-bottom we use on ordinary text-links.
 
 ## screen.css
 
-The main css-file used for styling your theme. It contains a decent reset system and the different Internet Explorer versions are detected by the conditional comments in head.tpl. No extra css-files are needed, you can simply scope the IE-browser by using: .ie6, .ie7, .ie8 or .ie9 in the screen.css. (The motivation behind this method can be read at the website of [Paul Irish](http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither).)
+The main css-file used for styling your theme. It contains a decent reset system and the different Internet Explorer versions are detected by the conditional comments in head.html.twig. No extra css-files are needed, you can simply scope the IE-browser by using: .ie6, .ie7, .ie8 or .ie9 in the screen.css. (The motivation behind this method can be read at the website of [Paul Irish](http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither).)

@@ -6,4 +6,4 @@ If you put the filestructure of the core and a theme side by side, you'll see th
 
 ![Theme structure](https://raw.github.com/forkcms/documentation/master/theming%20guide/assets/theme_structure.jpg)
 
-When you start building a website, you'll first want to set up a steady core. This means you have at least some own core-templates (head.tpl, footer.tpl, navigation.tpl...) ready. Once you have your base set, you can alter it with themes.
+When you start building a website, you'll first want to set up a steady core. This means you have at least some own core-templates (head.html.twig, footer.html.twig, navigation.html.twig...) ready. Once you have your base set, you can alter it with themes.
