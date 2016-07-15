@@ -10,9 +10,9 @@ The easiest way to start making a theme is copying the triton theme folder locat
 
 The next thing you should do is open up your info.xml file. It's located directly in the theme folder and contains some basic information about the theme, your templates and your positions. You should change the content of the name tag, the description tag, and the author tag. If you want to use special characters in the description, don't forget to add CDATA tags ("<![CDATA[" and "]]>"). These tags make sure the text data won't be parsed by the XML parser ([more info about CDATA](http://en.wikipedia.org/wiki/CDATA)). If you want to give the tumbnail file another name, you can also change the thumbnail tag.
 
-Every theme contains templates which contain positions. Every theme needs at least a Default.tpl template. Most themes also contain a home.tpl and can contain as much templates as you want to. In day two we need two templates: home.tpl: a two column layout for the home and blog page and Default.tpl: a three column layout for the other pages. These layouts contain positions. The footer and header template don't need to be included in the info.xml since they'll be loaded from the home and default templates. 
+Every theme contains templates which contain positions. Every theme needs at least a Default.html.twig template. Most themes also contain a home.html.twig and can contain as much templates as you want to. In day two we need two templates: home.html.twig: a two column layout for the home and blog page and Default.html.twig: a three column layout for the other pages. These layouts contain positions. The footer and header template don't need to be included in the info.xml since they'll be loaded from the home and default templates.
 
-A position is a place where a user can put modules, widgets or editor content. The Home.tpl has two positions, since there are two columns to be filled. We call them main and right. The Default.tpl contains three positions: left, main and right. Try to use names that describe the position like top, left, right, main,... When you change a fork theme, it tries to reallocate all the blocks to positions with the same name, for example: Fork will try to put the blog index in the main position of the blog page. 
+A position is a place where a user can put modules, widgets or editor content. The Home.html.twig has two positions, since there are two columns to be filled. We call them main and right. The Default.html.twig contains three positions: left, main and right. Try to use names that describe the position like top, left, right, main,... When you change a fork theme, it tries to reallocate all the blocks to positions with the same name, for example: Fork will try to put the blog index in the main position of the blog page.
 
 In the picture you see the main templates: home and in it header. The footer isn't visible but is also included in the home template. The grey parts are the positions.
 
@@ -47,7 +47,7 @@ The xml:
 	</authors>
 	<metanavigation supported="false" />
 	<templates>
-		<template label="Default" path="Core/Layout/Templates/default.tpl">
+		<template label="Default" path="Core/Layout/Templates/default.html.twig">
 			<positions>
 				<position name="main" />
 				<position name="left" />
@@ -57,7 +57,7 @@ The xml:
 				[left,main,main,right]
 			</format>
 		</template>
-		<template label="Home" path="Core/Layout/Templates/home.tpl">
+		<template label="Home" path="Core/Layout/Templates/home.html.twig">
 			<positions>
 				<position name="main" />
 				<position name="right" />
@@ -88,69 +88,58 @@ The next step is updating the copied templates (theme_folder/Core/Layout/Templat
 
 ### Positions
 
-For adding positions you need to use iteration tags. This example shows the position Main with a lot of comments to explain how it works. Comments are put in between the {* and *} tags. Multiline comments are allowed.
+For adding positions you need to use for tags. This example shows the position Main with a lot of comments to explain how it works. Comments are put in between the {* and *} tags. Multiline comments are allowed.
 
 ```
-{* iteration:positionMain loops through all the blocks in this position:
-it does everything in this iteration for every block *}
-{iteration:positionMain}
-	{* This option (blockIsHTML) checks if the block is editor content *}
-	{option:positionMain.blockIsHTML}
-		{* Everything within this option will be added around the blockcontent *}
-		<article class="article content">
-			{* The actual block content, in this case an editor block *}
-			{$positionMain.blockContent}
-		</article>
-	{* end of the option *}
-	{/option:positionMain.blockIsHTML}
-	{* This option (blockIsHTML) checks if the block is a module or a widget *}
-	{option:!positionMain.blockIsHTML}
-		{* The actual block content in this case a widget or a module *}
-		{$positionMain.blockContent}
-	{* end of the second option *}
-	{/option:!positionMain.blockIsHTML}
-{* end of the iteration *}
-{/iteration:positionMain}
+{% for main in positions.main %}
+    {% if main.isEditor %}
+        <article class="article content">
+            {{ main.html|raw }}
+        </article>
+    {% elseif main.html %}
+        {{ main.html|raw }}
+    {% endif %}
+{% endfor %}
 ```
 
-More info about template syntax can be found in this nice cheat sheet: [Fork Template Syntax cheat sheet](http://www.fork-cms.com/frontend/files/userfiles/files/cheatsheet_2_05_2011.pdf). This cheat sheet will be useful when styling the module templates too.
+More info about template syntax can be found in [the twig documentation](http://twig.sensiolabs.org/doc/templates.html).
 
 ### Modifiers
 
 A lot of variables can use modifiers. They modify a variable and are used with the syntax {$variable|modifier}. Some modifiers also need extra parameters. For a list of all modifiers check the cheat sheet. The modifier you'll need most in the main templates is the ucfirst modifier. This modifier makes sure a label or string starts with a capital letter.
 
-When this is done, you shouldn't see iteration and option tags appearing in the frontend anymore. If they still appear, there's probably a position in your template with a wrong name. Don't forget to create all needed templates and to edit or create footer.tpl and header.tpl if you use them.
+When this is done, you shouldn't see loops and if tags appearing in the frontend anymore. If they still appear, there's probably a position in your template with a wrong name. Don't forget to create all needed templates and to edit or create footer.html.twig and header.html.twig if you use them.
 
 ### More variables
 
-Note: Don't forget to add the {$siteHTMLHeader} and {$siteHTMLFooter}.
+Note: Don't forget to add the `{{ siteHTMLHeader|raw }}` and `{{ siteHTMLFooter|raw }}`.
 
 They make you able to add extra scripts with the backend. In the settings tab you'll have the textboxes '<head> script(s)' and 'End of <body> script(s)'. Scripts like google analytics can be pasted there. These script(s) will be added where the siteHTMLHeader/siteHTMLFooter tag is placed, so place it right before the end of the </head> and </body>  tag.
 
 ```
 {* Site wide HTML *}
-	{$siteHTMLHeader}
+	{{ siteHTMLHeader|raw }}
 </head>
 
 {* Site wide HTML *}
-	{$siteHTMLFooter}
+	{{ siteHTMLFooter|raw }}
 </body>
 ```
 
-Another thing you should include in the head is the {$meta} and {$metaCustom} tags. They load the overal meta tags and the page specific meta tags. The links to the favicon and apple touch icon are placed in the head too. 
+Another thing you should include in the head is the `{{ meta|raw }}` and `{{ metaCustom|raw }}` tags. They load the overal meta tags and the page specific meta tags. The links to the favicon and apple touch icon are placed in the head too.
 
 ```
-{* Meta *}
+{# Meta #}
 <meta charset="utf-8" />
 <meta name="generator" content="Fork CMS" />
-{$meta}
-{$metaCustom}
+{{ meta|raw }}
+{{ metaCustom|raw }}
 
-<title>{$pageTitle}</title>
+<title>{{ pageTitle }}</title>
 
-{* Favicon and Apple touch icon *}
-<link rel="shortcut icon" href="{$THEME_URL}/favicon.ico" />
-<link rel="apple-touch-icon" href="{$THEME_URL}/apple-touch-icon.png" />
+{# Favicon and Apple touch icon #}
+<link rel="shortcut icon" href="{{ THEME_URL }}/favicon.ico" />
+<link rel="apple-touch-icon" href="{{ THEME_URL }}/apple-touch-icon.png" />
 ```
 
 ## The CSS
@@ -158,12 +147,12 @@ Another thing you should include in the head is the {$meta} and {$metaCustom} ta
 When you have these templates ready, it's time for the styles! This is easy, just copy paste the css of your slice to the core css folder of your theme (theme_folder/Core/Layout/css) and rename it to screen.css. If you have multiple css files, it is easiest to combine them all in one file. The link to the screen.css file is added in a template with:
 
 ```
-{iteration:cssFiles}
-	<link rel="stylesheet" href="{$cssFiles.file}" />
-{/iteration:cssFiles}
+{% for css in cssFiles %}
+    <link rel="stylesheet" href="{{ css.file }}" />
+{% endfor %}
 ```
 
-If you don't want to combine them in one file, you should make an imports folder in the css folder and use the @import tag in your screen.css file. 
+If you don't want to combine them in one file, you should make an imports folder in the css folder and use the @import tag in your screen.css file.
 
 ## Images, fonts and javascript
 
@@ -172,24 +161,22 @@ The images, fonts and javascript should go in the folders theme_folder/Core/Layo
 You can include scripts in your templates with the variable THEME_URL.
 
 ```
-<script src="{$THEME_URL}/Core/Js/html5.js"></script>
+<script src="{{ THEME_URL }}/Core/Js/html5.js"></script>
 ```
 
 Include the following code in your template to use the core js files (including jQuery, necessary for some things to work):
 
 ```
-{* This loads all frontend core javascript files (fork_folder/Frontend/Core/Js/
-Don't add your specific js files in this folder *}
-{iteration:jsFiles}
-	<script src="{$jsFiles.file}"></script>
-{/iteration:jsFiles}
+{% for js in jsFiles %}
+    <link rel="stylesheet" href="{{ js.file }}" />
+{% endfor %}
 ```
 
 When this is done, the basic layout of your website should be ok. If the modules don't look the way you want them, it may be possible to style them with css. Sometimes you'll need to change the template files of the modules.
 
 ## Modules
 
-If you want to change the structure of a module, you'll need to add a modules folder directly in your theme folder. If you copied the Triton theme, this folder is already present. Everything in this folder should follow the same structure as the Frontend/Modules folder. The files in your theme modules folder will overwrite the file in the exact same position in the Frontend/Modules folder. If you want to change the index page for the blog module, you'll need to add "Blog/Layout/Templates/Index.tpl" in your modules folder. This is the same for every module/widget you want to style. It's easiest to copy the core files you want to overwrite in your own folder and edit them. This way you start from a working module that hasa basic structure. You'll also see all the variables that where already used. 
+If you want to change the structure of a module, you'll need to add a modules folder directly in your theme folder. If you copied the Triton theme, this folder is already present. Everything in this folder should follow the same structure as the Frontend/Modules folder. The files in your theme modules folder will overwrite the file in the exact same position in the Frontend/Modules folder. If you want to change the index page for the blog module, you'll need to add "Blog/Layout/Templates/Index.html.twig" in your modules folder. This is the same for every module/widget you want to style. It's easiest to copy the core files you want to overwrite in your own folder and edit them. This way you start from a working module that hasa basic structure. You'll also see all the variables that where already used.
 
 When changing module themes, a very useful modifier is dump. This modifier shows all the children of a variable. In the blog index the code {$items|dump} gives this:
 
@@ -197,7 +184,7 @@ When changing module themes, a very useful modifier is dump. This modifier shows
 
 With this modifier you're able to have a representation of all the different variables available.
 
-While creating module templates, you'll probably need more than just iterations and options. Creating nested iterations, checking if it's the first/last item of an iteration and cycles ar some things available to help you. More info in the [cheat sheet](http://www.fork-cms.com/frontend/files/userfiles/files/cheatsheet_2_05_2011.pdf).
+While creating module templates, you'll probably need more than just loops and if tags. Creating nested iterations, checking if it's the first/last item of a loop and cycles are some things available to help you. More info in the [cheat sheet](http://www.fork-cms.com/frontend/files/userfiles/files/cheatsheet_2_05_2011.pdf).
 
 ## Finishing the theme
 
