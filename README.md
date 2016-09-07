@@ -73,6 +73,7 @@
 	- [Features](contribute/features.md)
 	- [Documentation](contribute/documentation.md)
 	- [Spreading the word](contribute/spreading_the_word.md)
+	- [Open sourcing your modules/themes](contribute/open_sourcing_fork_cms_modules_and_themes.md)
 
 
 # Contributing
