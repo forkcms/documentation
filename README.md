@@ -1,6 +1,19 @@
-# Documentation
+# Fork CMS Documentation
 
-1. [Installation](01. installation/01. installation.md)
+[![Slack Status](https://fork-cms.herokuapp.com/badge.svg)](https://fork-cms.herokuapp.com/)
+
+This repository contains the documentation of Fork CMS. The documentation files are automatically updated on [http://docs.fork-cms.com](http://docs.fork-cms.com)
+
+## Contributing
+
+Want to help improving our documentation? Check out the dedicated article about contributing. See [contribute/03. documentation](06. contribute/03. documentation.md) for details.
+
+Questions? Feel free to discuss on our [Slack channel](https://fork-cms.herokuapp.com/)
+
+
+## Table of Contents
+
+### 1. Installation
 	1. [Download, upload & installation](01. installation/01. installation.md)
 	1. [Installation Wizard](01. installation/02. installation_wizard.md)
 	1. [Minimum requirements](01. installation/03. minimum_requirements.md)
@@ -9,7 +22,7 @@
 	1. [Version control](01. installation/06. version_control.md)
 	1. [Faq](01. installation/07. faq.md)
 
-2. [Getting started](02. getting started/01. introduction.md)
+### 2. Getting started
 	1. [Introduction](02. getting started/01. introduction.md)
 	1. [Adding modules](02. getting started/02. adding_modules.md)
 	1. [Adding a theme](02. getting started/03. adding_a_theme.md)
@@ -20,9 +33,9 @@
 	1. [Configuring cronjobs](02. getting started/08. configuring_cronjobs.md)
 	1. [Publish your website](02. getting started/09. publish_your_website.md)
 
-3. [User guide](03. user guide/01. introduction.md)
+### 3. User guide
 	1. [Introduction](03. user guide/01. introduction.md)
-	1. [Dashboard](03. user guide/01. dashboard.md)
+	1. [Dashboard](03. user guide/02. dashboard.md)
 	1. [Pages](03. user guide/03. pages.md)
 	1. [The editor](03. user guide/04. the_editor.md)
 	1. [Standard modules](03. user guide/05. standard_modules.md)
@@ -31,7 +44,7 @@
 	1. [Mailmotor](03. user guide/08. mailmotor.md)
 	1. [Settings](03. user guide/09. settings.md)
 
-4. [Theming guide](04. theming guide/01. introduction.md)
+### 4. Theming guide
 	1. [Introduction](04. theming guide/01. introduction.md)
 	1. [What is a theme within fork?](04. theming guide/02. what_is_a_theme_within_fork.md)
 	1. [Theme contents](04. theming guide/03. theme_contents.md)
@@ -41,7 +54,7 @@
 	1. [Locale and translations](04. theming guide/07. locale_and_translations.md)
 	1. [Theme checklist](04. theming guide/08. theme_checklist.md)
 
-5. [Module guide](05. module guide/01. introduction.md)
+### 5. Module guide
 	1. [Introduction](05. module guide/02. introduction.md)
 	1. [Applications & Library](05. module guide/02. applications_and_library.md)
 	1. [Routing](05. module guide/03. routing.md)
@@ -71,7 +84,7 @@
 	1. [Creating a module.zip file](05. module guide/27. creating_a_module_zip_file.md)
 	1. [Implementing Twitter Cards](05. module guide/28. twittercards.md)
 
-6. [Contribute](06. contribute/01. introduction.md)
+### 6. Contribute
 	1. [Introduction](06. contribute/01. introduction.md)
 	1. [Testing](06. contribute/02. testing.md)
 	1. [Documentation](06. contribute/03. documentation.md)
@@ -80,8 +93,3 @@
 	1. [Spreading the word](06. contribute/06. spreading_the_word.md)
 	1. [Features](06. contribute/07. features.md)
 	1. [Open sourcing your modules/themes](06. contribute/08. open_sourcing_fork_cms_modules_and_themes.md)
-
-
-# Contributing
-
-Want to help improving our documentation? See the dedicated article about [contributing](06. contribute/03. documentation.md).
