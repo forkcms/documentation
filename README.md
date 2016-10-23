@@ -6,7 +6,7 @@ This repository contains the documentation of Fork CMS. The documentation files 
 
 ## Contributing
 
-Want to help improving our documentation? Check out the dedicated article about contributing. See [contribute/03. documentation](06. contribute/03. documentation.md) for details.
+Want to help improving our documentation? Check out the dedicated article about contributing. See [contribute/03. documentation](06. contribute/06. documentation.md) for details.
 
 Questions? Feel free to discuss on our [Slack channel](https://fork-cms.herokuapp.com/)
 
@@ -87,9 +87,9 @@ Questions? Feel free to discuss on our [Slack channel](https://fork-cms.herokuap
 ### 6. Contribute
 1. [Introduction](06. contribute/01. introduction.md)
 1. [Testing](06. contribute/02. testing.md)
-1. [Documentation](06. contribute/03. documentation.md)
+1. [Features](06. contribute/03. features.md)
 1. [Translations](06. contribute/04. translations.md)
 1. [User interface](06. contribute/05. user_interface.md)
-1. [Spreading the word](06. contribute/06. spreading_the_word.md)
-1. [Features](06. contribute/07. features.md)
+1. [Documentation](06. contribute/06. documentation.md)
+1. [Spreading the word](06. contribute/07. spreading_the_word.md)
 1. [Open sourcing your modules/themes](06. contribute/08. open_sourcing_fork_cms_modules_and_themes.md)
