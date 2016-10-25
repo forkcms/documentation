@@ -27,11 +27,10 @@ Questions? Feel free to discuss on our [Slack channel](https://fork-cms.herokuap
 1. [Adding modules](02. getting started/02. adding_modules.md)
 1. [Adding a theme](02. getting started/03. adding_a_theme.md)
 1. [Spam protection](02. getting started/04. spam_protection.md)
-1. [Linking a Google analytics account](02. getting started/05. linking_a_google_analytics_account.md)
-1. [Linking Facebook](02. getting started/06. linking_facebook.md)
-1. [Enable Twitter cards](02. getting started/07. enable_twittercards.md)
-1. [Configuring cronjobs](02. getting started/08. configuring_cronjobs.md)
-1. [Publish your website](02. getting started/09. publish_your_website.md)
+1. [Linking Facebook](02. getting started/05. linking_facebook.md)
+1. [Enable Twitter cards](02. getting started/06. enable_twittercards.md)
+1. [Configuring cronjobs](02. getting started/07. configuring_cronjobs.md)
+1. [Publish your website](02. getting started/08. publish_your_website.md)
 
 ### 3. User guide
 1. [Introduction](03. user guide/01. introduction.md)
