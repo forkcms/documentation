@@ -55,6 +55,7 @@ Questions? Feel free to discuss on our [Slack channel](https://fork-cms.herokuap
 
 ### 5. Module guide
 1. [Introduction](05. module guide/01. introduction.md)
+1. [Applications & Library](05. module guide/02. applications_and_library.md)
 
 ### 6. Contribute
 1. [Introduction](06. contribute/01. introduction.md)
