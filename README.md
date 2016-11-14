@@ -53,6 +53,8 @@ Questions? Feel free to discuss on our [Slack channel](https://fork-cms.herokuap
 1. [Locale and translations](04. theming guide/07. locale_and_translations.md)
 1. [Theme checklist](04. theming guide/08. theme_checklist.md)
 
+### 5. Module guide
+1. [Introduction](05. module guide/01. introduction.md)
 
 ### 6. Contribute
 1. [Introduction](06. contribute/01. introduction.md)
