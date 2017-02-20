@@ -1,5 +1,7 @@
 # Fork CMS Documentation
 
+## This repository is now deprecated, all the documentation can now be found at (https://github.com/forkcms/forkcms/tree/master/docs)
+
 [![Slack Status](https://fork-cms.herokuapp.com/badge.svg)](https://fork-cms.herokuapp.com/)
 
 This repository contains the documentation of Fork CMS. The documentation files are automatically updated on [http://docs.fork-cms.com](http://docs.fork-cms.com)
